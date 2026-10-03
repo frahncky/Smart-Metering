@@ -68,8 +68,12 @@ Smart-Metering/
 │   ├── README.md
 │   └── Smart-Metering/
 │       ├── Smart-Metering.kicad_pro
-│       ├── Smart-Metering.kicad_sch
-│       └── Smart-Metering.kicad_pcb
+│       ├── Smart-Metering.kicad_sch      # folha raiz hierárquica
+│       ├── 01_Power_Input.kicad_sch … 09_Power_Supplies.kicad_sch
+│       ├── Smart-Metering.kicad_pcb
+│       ├── SmartMetering.kicad_sym       # símbolos próprios
+│       └── sym-lib-table
+├── cad/                                  # FeatureScripts Onshape do gabinete
 ├── docs/
 │   ├── ARCHITECTURE.md
 │   └── REQUIREMENTS.md
@@ -78,9 +82,15 @@ Smart-Metering/
 
 ## Estado
 
-**Fase 1 — núcleo metrológico ADE9430 iniciado no KiCad.**
+**Fase 1 — núcleo metrológico ADE9430 no KiCad.**
 
-Próxima etapa: completar alimentação, desacoplamento, clock e reset do ADE9430; em seguida implementar os front-ends de tensão e corrente.
+Concluído:
+
+- folha `04_ADE9430` com ADE9430, desacoplamento, cristal de 24,576 MHz e rede de reset;
+- símbolos próprios corrigidos para a convenção de coordenadas do KiCad (eixo Y para cima), com todos os pinos ligados aos nets previstos;
+- FeatureScripts Onshape do gabinete em `cad/`.
+
+Próxima etapa: implementar os front-ends de tensão (`02_Voltage_Sensing`) e corrente (`03_Current_Sensing`); em seguida `09_Power_Supplies`.
 
 ## Referências principais
 
