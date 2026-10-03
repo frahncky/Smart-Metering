@@ -78,9 +78,9 @@ Smart-Metering/
 
 ## Estado
 
-**Fase 0 — definição da arquitetura.**
+**Fase 1 — núcleo metrológico ADE9430 iniciado no KiCad.**
 
-Próxima etapa: construir o esquemático hierárquico no KiCad começando por alimentação, entradas de tensão/corrente e ADE9430.
+Próxima etapa: completar alimentação, desacoplamento, clock e reset do ADE9430; em seguida implementar os front-ends de tensão e corrente.
 
 ## Referências principais
 
