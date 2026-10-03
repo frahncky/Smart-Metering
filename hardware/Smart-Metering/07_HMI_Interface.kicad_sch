@@ -3,12 +3,704 @@
 	(generator "eeschema")
 	(generator_version "10.0")
 	(uuid "b10e1007-0007-4e07-9007-000000000007")
-	(paper "A4")
-	(lib_symbols)
-	(sheet_instances
-		(path "/"
-			(page "1")
+	(paper "A3")
+	(title_block
+		(title "HMI Interface - link to ESP32-P4 board")
+		(date "2026-10-03")
+		(rev "0.1")
+		(company "Smart-Metering")
+		(comment 1 "Board-to-board link: +5V power and UART/IRQ/EN to the HMI board (ESP32-P4 + ESP32-C6 + 7 inch LCD)")
+		(comment 2 "Prototype HMI: Espressif ESP32-P4-Function-EV-Board (Ethernet, Wi-Fi/BT, microSD on that board)")
+	)
+	(lib_symbols
+		(symbol "SmartMetering:C_Vert"
+			(pin_names (offset 0) (hide yes))
+			(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "C" (at 2.54 0 0) (effects (font (size 1.27 1.27))))
+			(property "Value" "C" (at -2.54 0 0) (effects (font (size 1.27 1.27))))
+			(property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+			(property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+			(property "Description" "Capacitor" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+			(symbol "C_Vert_0_1"
+				(polyline (pts (xy -2.032 0.635) (xy 2.032 0.635)) (stroke (width 0.5) (type default)) (fill (type none)))
+				(polyline (pts (xy -2.032 -0.635) (xy 2.032 -0.635)) (stroke (width 0.5) (type default)) (fill (type none)))
+			)
+			(symbol "C_Vert_1_1"
+				(pin passive line (at 0 2.54 270) (length 1.905) (name "" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27)))))
+				(pin passive line (at 0 -2.54 90) (length 1.905) (name "" (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27)))))
+			)
+			(embedded_fonts no)
+		)
+(symbol "Connector_Generic:Conn_02x05_Odd_Even"
+		(pin_names
+			(offset 1.016)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "J"
+			(at 1.27 7.62 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Conn_02x05_Odd_Even"
+			(at 1.27 -7.62 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Generic connector, double row, 02x05, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "connector"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_fp_filters" "Connector*:*_2x??_*"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "Conn_02x05_Odd_Even_1_1"
+			(rectangle
+				(start -1.27 6.35)
+				(end 3.81 -6.35)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type background)
+				)
+			)
+			(rectangle
+				(start -1.27 5.207)
+				(end 0 4.953)
+				(stroke
+					(width 0.1524)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(rectangle
+				(start -1.27 2.667)
+				(end 0 2.413)
+				(stroke
+					(width 0.1524)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(rectangle
+				(start -1.27 0.127)
+				(end 0 -0.127)
+				(stroke
+					(width 0.1524)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(rectangle
+				(start -1.27 -2.413)
+				(end 0 -2.667)
+				(stroke
+					(width 0.1524)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(rectangle
+				(start -1.27 -4.953)
+				(end 0 -5.207)
+				(stroke
+					(width 0.1524)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(rectangle
+				(start 3.81 5.207)
+				(end 2.54 4.953)
+				(stroke
+					(width 0.1524)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(rectangle
+				(start 3.81 2.667)
+				(end 2.54 2.413)
+				(stroke
+					(width 0.1524)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(rectangle
+				(start 3.81 0.127)
+				(end 2.54 -0.127)
+				(stroke
+					(width 0.1524)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(rectangle
+				(start 3.81 -2.413)
+				(end 2.54 -2.667)
+				(stroke
+					(width 0.1524)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(rectangle
+				(start 3.81 -4.953)
+				(end 2.54 -5.207)
+				(stroke
+					(width 0.1524)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(pin passive line
+				(at -5.08 5.08 0)
+				(length 3.81)
+				(name "Pin_1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 7.62 5.08 180)
+				(length 3.81)
+				(name "Pin_2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -5.08 2.54 0)
+				(length 3.81)
+				(name "Pin_3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 7.62 2.54 180)
+				(length 3.81)
+				(name "Pin_4"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "4"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -5.08 0 0)
+				(length 3.81)
+				(name "Pin_5"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "5"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 7.62 0 180)
+				(length 3.81)
+				(name "Pin_6"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "6"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -5.08 -2.54 0)
+				(length 3.81)
+				(name "Pin_7"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "7"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 7.62 -2.54 180)
+				(length 3.81)
+				(name "Pin_8"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "8"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at -5.08 -5.08 0)
+				(length 3.81)
+				(name "Pin_9"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "9"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin passive line
+				(at 7.62 -5.08 180)
+				(length 3.81)
+				(name "Pin_10"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "10"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
+		(symbol "SmartMetering:Fuse"
+			(pin_names (offset 0) (hide yes))
+			(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "F" (at 0 2.54 0) (effects (font (size 1.27 1.27))))
+			(property "Value" "Fuse" (at 0 -2.54 0) (effects (font (size 1.27 1.27))))
+			(property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+			(property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+			(property "Description" "Fuse" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+			(symbol "Fuse_0_1"
+				(rectangle (start -2.54 0.762) (end 2.54 -0.762) (stroke (width 0.254) (type default)) (fill (type none)))
+				(polyline (pts (xy -2.54 0) (xy 2.54 0)) (stroke (width 0.254) (type default)) (fill (type none)))
+			)
+			(symbol "Fuse_1_1"
+				(pin passive line (at -3.81 0 0) (length 1.27) (name "" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27)))))
+				(pin passive line (at 3.81 0 180) (length 1.27) (name "" (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27)))))
+			)
+			(embedded_fonts no)
+		)
+		(symbol "SmartMetering:R_Vert"
+			(pin_names (offset 0) (hide yes))
+			(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "R" (at 2.54 0 0) (effects (font (size 1.27 1.27))))
+			(property "Value" "R" (at -2.54 0 0) (effects (font (size 1.27 1.27))))
+			(property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+			(property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+			(property "Description" "Resistor" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+			(symbol "R_Vert_0_1"
+				(rectangle (start -1.016 2.54) (end 1.016 -2.54) (stroke (width 0.254) (type default)) (fill (type none)))
+			)
+			(symbol "R_Vert_1_1"
+				(pin passive line (at 0 3.81 270) (length 1.27) (name "" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27)))))
+				(pin passive line (at 0 -3.81 90) (length 1.27) (name "" (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27)))))
+			)
+			(embedded_fonts no)
 		)
 	)
+	(text "LIGAÇÃO COM A PLACA HMI (ESP32-P4)\n\nA HMI fica em placa separada (REQ-010). Protótipo: Espressif ESP32-P4-Function-EV-Board,\nque já traz ESP32-P4, ESP32-C6 (Wi-Fi 6/BT 5), Ethernet, microSD, USB e o kit de LCD 7\" 1024x600 MIPI-DSI.\nCom isso Ethernet, Wi-Fi, Bluetooth e microSD do REQ-008/REQ-007 ficam na placa HMI.\n\nJ701: +5V protegido por F701 (PTC 2 A); UART MCU<->P4 (HMI_TX/HMI_RX, 921600 bps sugerido),\nHMI_IRQ (MCU avisa dado novo) e HMI_EN (MCU reinicia a HMI; usar saída open-drain).\nResistores de 33 Ω em série amortecem reflexões no cabo e limitam corrente de ESD.\nPlaca EV: o J1 tem 5 V nos pinos 2 e 4 (o guia indica uso para embarcar a placa num sistema maior).\nAlimentar a placa por esses pinos com o USB-C dela desconectado; UART em GPIOs livres do J1\n(3,3 V, nunca 5 V nos GPIOs). Mapear J701 -> J1 por cabo, conforme o esquema da placa EV."
+		(exclude_from_sim no)(at 25.4 152.4 0)
+		(effects (font (size 1.27 1.27)) (justify left top))
+		(uuid "529ba495-0bcd-5a4e-8aba-dc1df6a38018")
+	)
+	(label "+5V_HMI" (at 147.32 71.12 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "05162267-1765-5124-b435-ba3e54902745")
+	)
+	(label "+5V_HMI" (at 160.02 71.12 0)
+		(effects (font (size 1.27 1.27)) (justify left bottom))
+		(uuid "c44c29a9-46f4-5a0b-b584-4aaa40f6aec6")
+	)
+	(global_label "GND_SYS" (shape bidirectional) (at 147.32 73.66 180)
+		(effects (font (size 1.27 1.27)) (justify right))
+		(uuid "d020dc84-19b6-543d-a282-fb3fcc490212")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}" (at 147.32 73.66 0) (hide yes) (effects (font (size 1.27 1.27))))
+	)
+	(global_label "GND_SYS" (shape bidirectional) (at 160.02 73.66 0)
+		(effects (font (size 1.27 1.27)) (justify left))
+		(uuid "9716c101-230f-5fa1-8ec0-aa3c33b2fc47")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}" (at 160.02 73.66 0) (hide yes) (effects (font (size 1.27 1.27))))
+	)
+	(label "LINK_TX" (at 147.32 76.2 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "34027970-ec58-5c38-b78a-a1db9ecee706")
+	)
+	(label "LINK_RX" (at 160.02 76.2 0)
+		(effects (font (size 1.27 1.27)) (justify left bottom))
+		(uuid "49488060-0329-5a09-a8e3-3187e254fff0")
+	)
+	(label "LINK_IRQ" (at 147.32 78.74 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "56454843-6c48-57f0-96f6-b948b972ce6c")
+	)
+	(label "LINK_EN" (at 160.02 78.74 0)
+		(effects (font (size 1.27 1.27)) (justify left bottom))
+		(uuid "9f371e0d-1758-5ce1-a725-61168497c54a")
+	)
+	(global_label "GND_SYS" (shape bidirectional) (at 147.32 81.28 180)
+		(effects (font (size 1.27 1.27)) (justify right))
+		(uuid "0cf20302-5802-5917-a3a4-29c46a6840fc")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}" (at 147.32 81.28 0) (hide yes) (effects (font (size 1.27 1.27))))
+	)
+	(global_label "GND_SYS" (shape bidirectional) (at 160.02 81.28 0)
+		(effects (font (size 1.27 1.27)) (justify left))
+		(uuid "757f9254-dd64-5df6-931b-f36072d21d5f")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}" (at 160.02 81.28 0) (hide yes) (effects (font (size 1.27 1.27))))
+	)
+	(global_label "+5V" (shape bidirectional) (at 97.79 50.8 180)
+		(effects (font (size 1.27 1.27)) (justify right))
+		(uuid "e03ccf8b-c0ae-55bb-b31e-7e5615b81074")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}" (at 97.79 50.8 0) (hide yes) (effects (font (size 1.27 1.27))))
+	)
+	(label "+5V_HMI" (at 105.41 50.8 0)
+		(effects (font (size 1.27 1.27)) (justify left bottom))
+		(uuid "86bae47e-4fcb-59d0-8d4c-20a458308d56")
+	)
+	(label "+5V_HMI" (at 114.3 55.88 90)
+		(effects (font (size 1.27 1.27)) (justify left bottom))
+		(uuid "b3f5e7e2-173b-55b1-96f9-ba54e5add0ff")
+	)
+	(global_label "GND_SYS" (shape bidirectional) (at 114.3 60.96 270)
+		(effects (font (size 1.27 1.27)) (justify right))
+		(uuid "4dd5966c-0291-555e-ab1c-1ae75d625494")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}" (at 114.3 60.96 0) (hide yes) (effects (font (size 1.27 1.27))))
+	)
+	(global_label "HMI_TX" (shape bidirectional) (at 97.79 101.6 180)
+		(effects (font (size 1.27 1.27)) (justify right))
+		(uuid "1179092c-dd7e-5576-b185-f6e33dfeeab7")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}" (at 97.79 101.6 0) (hide yes) (effects (font (size 1.27 1.27))))
+	)
+	(label "LINK_TX" (at 105.41 101.6 0)
+		(effects (font (size 1.27 1.27)) (justify left bottom))
+		(uuid "4658dcc2-7fa6-5bda-9322-044580f65be5")
+	)
+	(label "LINK_RX" (at 97.79 111.76 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "00ed231b-9379-5590-bcd5-0f3944e27fef")
+	)
+	(global_label "HMI_RX" (shape bidirectional) (at 105.41 111.76 0)
+		(effects (font (size 1.27 1.27)) (justify left))
+		(uuid "91ae6ad7-6da2-587f-8c14-0e3b3286afa0")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}" (at 105.41 111.76 0) (hide yes) (effects (font (size 1.27 1.27))))
+	)
+	(global_label "HMI_IRQ" (shape bidirectional) (at 97.79 121.92 180)
+		(effects (font (size 1.27 1.27)) (justify right))
+		(uuid "c9a14261-522c-5d75-b314-d1e6d6784d12")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}" (at 97.79 121.92 0) (hide yes) (effects (font (size 1.27 1.27))))
+	)
+	(label "LINK_IRQ" (at 105.41 121.92 0)
+		(effects (font (size 1.27 1.27)) (justify left bottom))
+		(uuid "424e06cc-0560-5d9e-9424-0138d3395011")
+	)
+	(global_label "HMI_EN" (shape bidirectional) (at 97.79 132.08 180)
+		(effects (font (size 1.27 1.27)) (justify right))
+		(uuid "2ba39637-fba4-5dee-9c67-fbf014baae72")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}" (at 97.79 132.08 0) (hide yes) (effects (font (size 1.27 1.27))))
+	)
+	(label "LINK_EN" (at 105.41 132.08 0)
+		(effects (font (size 1.27 1.27)) (justify left bottom))
+		(uuid "cbba40b4-7a68-5566-9c6a-3ef9c5a2f09d")
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_02x05_Odd_Even")
+		(at 152.4 76.2 0)
+		(unit 1)(body_style 1)
+		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
+		(uuid "2ab30ff5-e610-5a32-afe6-441c1fa8ca1f")
+		(property "Reference" "J701" (at 153.67 67.31 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "HMI_LINK" (at 153.67 85.09 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_2x05_P2.54mm_Vertical" (at 152.4 76.2 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 152.4 76.2 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Description" "HMI board link: 1-2 +5V, 3-4 GND, 5 TX, 6 RX, 7 IRQ, 8 EN, 9-10 GND" (at 152.4 76.2 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "1ee5a272-9dee-5947-9ec6-7ed0572f758f"))
+		(pin "2" (uuid "c1bc41fb-d106-535b-b16e-d8329e62a138"))
+		(pin "3" (uuid "631f5ac0-d55c-5031-bebf-d3712a2a4d88"))
+		(pin "4" (uuid "621b0b96-7432-5802-8e3f-695c13f44383"))
+		(pin "5" (uuid "f5fe64e4-0daf-59fb-90e3-85341dfd7fa3"))
+		(pin "6" (uuid "c85a2dfe-dbfd-55ce-88ca-06f4247f600c"))
+		(pin "7" (uuid "16d724eb-267d-5bae-b41c-fcb122c0d83d"))
+		(pin "8" (uuid "110614ca-a7e7-57f7-a7c1-19c10659d94b"))
+		(pin "9" (uuid "e02b94b4-816d-5780-8c25-d04dc002d165"))
+		(pin "10" (uuid "63278378-cad7-520f-bdd5-ac97602e1e8b"))
+		(instances
+			(project "Smart-Metering"
+				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1007-0007-4e07-9007-000000000007" (reference "J701") (unit 1))
+			)
+		)
+	)
+	(symbol
+		(lib_id "SmartMetering:Fuse")
+		(at 101.6 50.8 0)
+		(unit 1)(body_style 1)
+		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
+		(uuid "a1b7cfa4-e9ce-59f4-b439-b36538f70142")
+		(property "Reference" "F701" (at 101.6 48.26 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "PTC 2A" (at 101.6 53.34 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Fuse:Fuse_1812_4532Metric" (at 101.6 50.8 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 101.6 50.8 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Description" "Resettable fuse for the HMI board supply" (at 101.6 50.8 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "12bc4829-703a-5d0c-baef-a7cb2a85c6e6"))
+		(pin "2" (uuid "d6a9bdad-546f-5c07-8c24-efd50e7bd43f"))
+		(instances
+			(project "Smart-Metering"
+				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1007-0007-4e07-9007-000000000007" (reference "F701") (unit 1))
+			)
+		)
+	)
+	(symbol
+		(lib_id "SmartMetering:C_Vert")
+		(at 114.3 58.42 0)
+		(unit 1)(body_style 1)
+		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
+		(uuid "45b8ccad-60b3-55b2-99b3-7fcfad14be80")
+		(property "Reference" "C701" (at 116.84 57.15 0) (effects (font (size 1.27 1.27)) (justify left)))
+		(property "Value" "22uF" (at 116.84 59.69 0) (effects (font (size 1.27 1.27)) (justify left)))
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric" (at 114.3 58.42 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 114.3 58.42 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Description" "HMI supply bulk" (at 114.3 58.42 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "00ff0152-c556-5d5b-b62c-1c3f95076de8"))
+		(pin "2" (uuid "0d457e09-3473-5e69-8c2d-702da1683624"))
+		(instances
+			(project "Smart-Metering"
+				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1007-0007-4e07-9007-000000000007" (reference "C701") (unit 1))
+			)
+		)
+	)
+	(symbol
+		(lib_id "SmartMetering:R_Vert")
+		(at 101.6 101.6 90)
+		(unit 1)(body_style 1)
+		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
+		(uuid "04d9b182-d3ef-5996-9d0e-3f8447ce2f71")
+		(property "Reference" "R701" (at 101.6 97.79 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "33R" (at 101.6 105.41 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric" (at 101.6 101.6 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 101.6 101.6 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Description" "Series termination / ESD" (at 101.6 101.6 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "47f7795c-37e2-53ed-88f6-6dc81e2d04f2"))
+		(pin "2" (uuid "14c1e24b-8c8e-50c8-844b-6382269e7aff"))
+		(instances
+			(project "Smart-Metering"
+				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1007-0007-4e07-9007-000000000007" (reference "R701") (unit 1))
+			)
+		)
+	)
+	(symbol
+		(lib_id "SmartMetering:R_Vert")
+		(at 101.6 111.76 90)
+		(unit 1)(body_style 1)
+		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
+		(uuid "d0ae228f-9e35-5dfe-b171-9b328d7b3f53")
+		(property "Reference" "R702" (at 101.6 107.95 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "33R" (at 101.6 115.57 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric" (at 101.6 111.76 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 101.6 111.76 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Description" "Series termination / ESD" (at 101.6 111.76 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "a2828d35-ccdb-5d6a-a577-9caf05a97efb"))
+		(pin "2" (uuid "c77e2db3-c081-5649-897b-05182cfc1a44"))
+		(instances
+			(project "Smart-Metering"
+				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1007-0007-4e07-9007-000000000007" (reference "R702") (unit 1))
+			)
+		)
+	)
+	(symbol
+		(lib_id "SmartMetering:R_Vert")
+		(at 101.6 121.92 90)
+		(unit 1)(body_style 1)
+		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
+		(uuid "a200a3de-ac75-57a1-a19d-86cee9643292")
+		(property "Reference" "R703" (at 101.6 118.11 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "33R" (at 101.6 125.73 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric" (at 101.6 121.92 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 101.6 121.92 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Description" "Series termination / ESD" (at 101.6 121.92 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "fbd0cd86-8143-5ed8-9bde-2c1c60d72121"))
+		(pin "2" (uuid "3c3a984e-3ede-5a74-b035-b2cf6d02acd1"))
+		(instances
+			(project "Smart-Metering"
+				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1007-0007-4e07-9007-000000000007" (reference "R703") (unit 1))
+			)
+		)
+	)
+	(symbol
+		(lib_id "SmartMetering:R_Vert")
+		(at 101.6 132.08 90)
+		(unit 1)(body_style 1)
+		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
+		(uuid "887c6ae8-54c6-58cc-b21c-6f8baa4003e3")
+		(property "Reference" "R704" (at 101.6 128.27 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "33R" (at 101.6 135.89 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric" (at 101.6 132.08 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 101.6 132.08 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Description" "Series termination / ESD" (at 101.6 132.08 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "d8e6ced1-7471-5971-a7ac-d6815ff1c9f3"))
+		(pin "2" (uuid "576dc497-6861-564b-a99b-42f7e842cacc"))
+		(instances
+			(project "Smart-Metering"
+				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1007-0007-4e07-9007-000000000007" (reference "R704") (unit 1))
+			)
+		)
+	)
+	(sheet_instances (path "/" (page "1")))
 	(embedded_fonts no)
 )

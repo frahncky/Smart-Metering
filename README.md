@@ -23,7 +23,7 @@ Desenvolver um instrumento completo para medição, visualização e registro de
 - comunicação Ethernet, Wi-Fi e RS-485/Modbus;
 - interface local em touchscreen de 7".
 
-## Arquitetura de referência aprovada
+## Arquitetura inicial
 
 ```text
 Rede elétrica
@@ -34,44 +34,31 @@ Rede elétrica
                                                         |
                                                         | SPI
                                                         v
-                                                   MAX32650
+                                              MCU de metrologia
                                                         |
-                                           ADuM4152 / ADuM6424A
+                                              Interface isolada
                                                         |
                                                         v
                                                    ESP32-P4
-                                              ┌─────────┼─────────┐
-                                              │         │         │
-                                      Touchscreen     microSD   Ethernet
-                                      7" MIPI-DSI              DP83825I
-                                              │
-                                              +--> RTC MAX31343
-                                              +--> RS-485 / Modbus via ADM2867E
-                                              +--> Wi-Fi / Bluetooth via ESP32-C5
+                                                        |
+                                            Touchscreen 7" + LVGL
+
+                     +--> microSD
+                     +--> RTC
+                     +--> Ethernet
+                     +--> RS-485 / Modbus
+                     +--> Wi-Fi / Bluetooth via coprocessador
 ```
 
 ## Componentes centrais
 
-- **ADE9430** — front-end polifásico para medição e qualidade de energia.
-- **MAX32650** — MCU de metrologia para aquisição do ADE9430, processamento complementar, calibração e eventos.
-- **ADuM4152** — isolamento digital da interface SPI entre os domínios.
-- **ADuM6424A** — isolamento e alimentação isolada auxiliar entre os domínios.
-- **ESP32-P4** — processador principal da HMI, gráficos, touchscreen e serviços de alto nível.
-- **ESP32-C5** — coprocessador de conectividade Wi-Fi/Bluetooth.
-- **DP83825I** — PHY Ethernet 10/100 conectado ao MAC do ESP32-P4.
-- **ADM2867E** — transceptor RS-485 isolado para Modbus RTU.
-- **MAX31343** — RTC para timestamp de eventos e registros.
-- **microSD** — armazenamento local de histórico, eventos e formas de onda.
-- **Touchscreen 7"** — alvo de 1024 × 600, capacitivo, preferencialmente MIPI-DSI.
+- **ADE9430** — front-end de medição polifásica e qualidade de energia.
+- **MCU ARM** — aquisição do ADE9430, cálculo complementar, gerenciamento metrológico, calibração e eventos.
+- **ESP32-P4** — interface gráfica, touchscreen e serviços de alto nível.
+- **ESP32-C6** — opção para Wi-Fi/Bluetooth quando necessário.
+- **Touchscreen 7"** — alvo inicial: 1024 × 600, interface capacitiva.
 
-## Princípio de arquitetura
-
-O equipamento será dividido em dois domínios:
-
-1. **Domínio metrológico** — entradas de tensão e corrente, ADE9430, MAX32650, calibração, eventos e processamento de qualidade de energia.
-2. **Domínio HMI/comunicação** — ESP32-P4, touchscreen, armazenamento, Ethernet, RS-485 e conectividade sem fio.
-
-A separação entre os domínios reduz a influência da carga gráfica e das comunicações sobre a aquisição metrológica e facilita os requisitos de isolamento e segurança.
+A seleção final do MCU ARM, TCs, display, isoladores, fontes e conectores será feita antes do fechamento do esquemático.
 
 ## Estrutura do repositório
 
@@ -81,8 +68,13 @@ Smart-Metering/
 │   ├── README.md
 │   └── Smart-Metering/
 │       ├── Smart-Metering.kicad_pro
-│       ├── Smart-Metering.kicad_sch
-│       └── Smart-Metering.kicad_pcb
+│       ├── Smart-Metering.kicad_sch      # folha raiz hierárquica
+│       ├── 01_Power_Input.kicad_sch … 09_Power_Supplies.kicad_sch
+│       ├── Smart-Metering.kicad_pcb      # layout roteado (18 pads a ligar à mão; DRC do KiCad pendente)
+│       ├── Smart-Metering.kicad_dru      # regras de isolação (clearance/creepage)
+│       ├── SmartMetering.kicad_sym       # símbolos próprios
+│       └── sym-lib-table
+├── cad/                                  # FeatureScripts Onshape do gabinete
 ├── docs/
 │   ├── ARCHITECTURE.md
 │   └── REQUIREMENTS.md
@@ -91,21 +83,36 @@ Smart-Metering/
 
 ## Estado
 
-**Fase 1 — núcleo metrológico ADE9430 iniciado no KiCad.**
+**Fase 2 — esquemático completo da placa de metrologia (rev. 0.1, a revisar no KiCad).**
 
-A arquitetura eletrônica de referência foi consolidada com **ADE9430 + MAX32650 + ESP32-P4 + ESP32-C5**, isolamento com **ADuM4152/ADuM6424A**, Ethernet com **DP83825I**, RS-485 com **ADM2867E** e RTC **MAX31343**.
+Todas as 9 folhas estão desenhadas e os sinais entre folhas foram conferidos (223 componentes):
 
-Próximas etapas:
+| Folha | Conteúdo |
+|---|---|
+| `01_Power_Input` | Alimentação pelas fases medidas (OU de diodos, qualquer fase presente) ou entrada auxiliar, por montagem; AC/DC isolado RECOM RAC20-05SK/277 (85–305 VAC, 5 V / 4 A) → `VIN_ACDC` |
+| `02_Voltage_Sensing` | 3 fases: fusível + varistor, divisor 1/1001 (5 × 200 kΩ + 1 kΩ), anti-aliasing 7,2 kHz; R201 liga neutro ao GND metrológico |
+| `03_Current_Sensing` | IA/IB/IC/IN configuráveis por montagem: TC 333 mV (padrão), Rogowski ou SCT-013 de 1 V; TVS, anti-aliasing 7,2 kHz, pino de identificação; headers internos para conectores M8 de painel |
+| `04_ADE9430` | ADE9430 (U401), desacoplamento, cristal 24,576 MHz, reset |
+| `05_Metrology_MCU` | STM32F413RHT6 (mesma família da referência da biblioteca ADSW-PQ-CLS), HSE 8 MHz, RTC com LSE + CR2032, EEPROM de calibração 24LC64, SWD, LEDs |
+| `06_Isolation` | Barreira reforçada logo após o ADE9430: ISO7762 + ISO7761, MCP3204 (ID dos sensores), ADuM6000 + TPS7A20 → `+3V3_ADE` |
+| `07_HMI_Interface` | Conector para a placa HMI (ESP32-P4): +5V com PTC, UART, IRQ e EN |
+| `08_Communications` | RS-485/Modbus isolada (ADM2587E) e USB-C de serviço (USB FS + carga) |
+| `09_Power_Supplies` | OU de entradas 5 V, carregador chaveado BQ25895 (entrada até 3 A, I2C), `+3V3` (TPS63001) e `+5V` (TPS61022) |
 
-1. completar alimentação, desacoplamento, clock e reset do ADE9430;
-2. implementar os front-ends de tensão e corrente;
-3. inserir o MAX32650 e a interface SPI isolada;
-4. implementar alimentação e isolamento entre os domínios;
-5. desenvolver o bloco ESP32-P4/HMI e as interfaces de comunicação;
-6. fechar o PCB e a integração mecânica/3D.
+A HMI (ESP32-P4 + ESP32-C6, display 7", Ethernet, Wi-Fi/BT, microSD) fica em placa separada (REQ-010). No protótipo: Espressif ESP32-P4-Function-EV-Board.
+
+Componentes de terceiros usam os símbolos oficiais da biblioteca KiCad 10; a biblioteca `SmartMetering` guarda só os símbolos próprios. Referências numeradas por folha (1xx na folha 01, 2xx na 02, …).
+
+### Próximos passos
+
+Revisão completa em [`docs/REVISAO_ESQUEMATICO.md`](docs/REVISAO_ESQUEMATICO.md); as pendências P1–P9 estão resolvidas.
+
+- Rodar o ERC no KiCad e revisar.
+- Confirmações de compra: variante CP-40 do ADE9430, certificação reforçada do ADuM6000, encapsulamento do RAC20-05SK/277.
+- Firmware: configurar o BQ25895 por I2C (ICHG, VREG, VINDPM) e desabilitar o VBUS sensing do OTG no STM32.
+- Layout da PCB (ver [`docs/LAYOUT.md`](docs/LAYOUT.md)): placa roteada (domínio quente, lado seguro e ilha RS-485) com creepage de 8 mm na barreira; restam 18 pads para ligar à mão (listados no LAYOUT), preencher as zonas e rodar o DRC do KiCad (inclui creepage).
 
 ## Referências principais
 
 - Analog Devices ADE9430: https://www.analog.com/en/products/ade9430.html
-- Analog Devices AD-PQMON-SL: https://www.analog.com/en/resources/evaluation-hardware-and-software/evaluation-boards-kits/ad-pqmon-sl.html
 - Espressif ESP32-P4: https://documentation.espressif.com/esp32-p4_datasheet_en.html

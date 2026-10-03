@@ -4,43 +4,12 @@
 
 O instrumento será dividido em dois domínios funcionais:
 
-1. **domínio metrológico**, responsável pela aquisição elétrica, cálculos, calibração e eventos;
+1. **domínio metrológico**, responsável pela aquisição elétrica, cálculos e eventos;
 2. **domínio HMI/comunicação**, responsável pela tela, gráficos, armazenamento de alto nível e conectividade.
 
-Essa separação evita que carga gráfica, rede ou interface do usuário interfiram na medição e permite tratar adequadamente isolamento, segurança elétrica e EMC.
+Essa separação evita que carga gráfica, rede ou interface do usuário interfiram na medição.
 
-## 2. Arquitetura eletrônica de referência
-
-```text
-VA/VB/VC/VN ── proteção + condicionamento ──┐
-                                           │
-IA/IB/IC/IN ── TCs + condicionamento ──────┼──> ADE9430
-                                           │       │
-                                           │       │ SPI
-                                           │       v
-                                           │   MAX32650
-                                           │       │
-                                           │   metrologia
-                                           │   calibração
-                                           │   eventos PQ
-                                           │       │
-                                           │  ADuM4152
-                                           │  ADuM6424A
-                                           │       │
-                                           └───────┼────────> ESP32-P4
-                                                   │
-                            ┌──────────────────────┼──────────────────────┐
-                            │                      │                      │
-                    Touchscreen 7"             microSD               Ethernet
-                    1024 × 600                                       DP83825I
-                    MIPI-DSI
-                            │
-                            ├── MAX31343 — RTC
-                            ├── ADM2867E — RS-485 / Modbus RTU
-                            └── ESP32-C5 — Wi-Fi / Bluetooth
-```
-
-## 3. Cadeia de medição
+## 2. Cadeia de medição
 
 ### Tensão
 
@@ -62,11 +31,11 @@ Entradas previstas:
 - IC;
 - IN opcional.
 
-A solução inicial será baseada em transformadores de corrente (TCs). O circuito deverá permitir a escolha posterior do TC e do burden sem alterar a arquitetura geral.
+A solução inicial será baseada em transformadores de corrente (TCs). O circuito deverá permitir escolha posterior do TC e do burden sem alterar a arquitetura geral.
 
 ### Conversão e metrologia
 
-O **ADE9430** será o núcleo de aquisição.
+O ADE9430 será o núcleo de aquisição.
 
 Funções previstas:
 
@@ -78,49 +47,49 @@ Funções previstas:
 - fator de potência;
 - ângulos;
 - formas de onda;
-- THD e informações para análise harmônica;
-- grandezas necessárias para qualidade de energia;
-- suporte à estratégia de implementação IEC 61000-4-30 Classe S.
+- grandezas necessárias para qualidade de energia.
 
-Comunicação ADE9430 ↔ MAX32650: **SPI**.
+Comunicação ADE9430 ↔ MCU: **SPI**.
 
-## 4. Processador de metrologia
+## 3. Processador de metrologia
 
-Processador selecionado: **MAX32650**.
+MCU: **STM32F413RHT6** (Cortex-M4F, 100 MHz, 1,5 MB flash, 320 KB RAM, LQFP-64).
+
+Escolhido por ser da mesma família da plataforma de referência da biblioteca ADSW-PQ-CLS (IEC 61000-4-30 Classe S) da Analog Devices, a NUCLEO-F413ZH, o que reduz o risco de portar a biblioteca.
 
 Responsabilidades:
 
-- configuração e leitura do ADE9430;
+- configuração e leitura do ADE9430 (SPI1 isolado) e do ADC de identificação dos sensores;
 - calibração;
-- processamento de formas de onda;
-- análise harmônica complementar;
+- processamento de formas de onda e análise harmônica complementar;
 - sequência e desequilíbrio;
-- detecção e registro de eventos;
-- timestamp e sincronização com o RTC;
-- protocolo com a HMI;
+- detecção e registro de eventos com timestamp (RTC interno + LSE + CR2032);
+- protocolo com a HMI (USART2) e Modbus RTU (USART3 + RS-485 isolada);
+- USB de serviço (USB FS);
 - watchdog e autodiagnóstico.
 
-A escolha do MAX32650 aproxima o projeto da arquitetura de referência AD-PQMON-SL da Analog Devices e reduz o risco do desenvolvimento do domínio metrológico.
+## 4. Isolação
 
-## 5. Isolação
+A barreira de isolação reforçada fica **logo após o ADE9430** (folha `06_Isolation`).
 
-Componentes de referência:
+- **Domínio metrológico** (potencial da rede, GND = neutro): entradas de tensão e corrente, ADE9430, ADC de identificação dos sensores.
+- **Domínio seguro** (`GND_SYS`): MCU de metrologia, ESP32-P4, display, USB-C, Ethernet, RS-485, microSD.
 
-- **ADuM4152** — isolamento da interface SPI;
-- **ADuM6424A** — isolamento digital e alimentação isolada auxiliar.
+Elementos da barreira:
 
-O dimensionamento definitivo deverá considerar:
+- isoladores digitais reforçados (ISO7762 + ISO7761, 5 kVrms) para SPI, IRQ0/IRQ1, DREADY, ZX, CF1/CF2 e RESET;
+- DC/DC isolado reforçado (≥ 4 kVAC, tensão de trabalho ≥ 300 VAC) + LDO gerando `+3V3_ADE`;
+- distância de escoamento ≥ 8 mm sob a barreira, a confirmar pela IEC 61010-1 para CAT III 300 V.
 
-- tensão de trabalho;
-- categoria de sobretensão;
-- creepage e clearance;
-- estratégia de aterramento;
-- EMC;
-- requisitos de segurança aplicáveis ao instrumento.
+Com isso o MCU pode ser gravado e depurado sem isolação de bancada, e todas as interfaces acessíveis ao usuário ficam no domínio seguro.
 
-## 6. HMI
+## 5. HMI
 
-Processador: **ESP32-P4**.
+A HMI fica em **placa separada** (REQ-010), ligada à placa de metrologia pelo conector J701 (+5V, UART, IRQ, EN).
+
+Processador: **ESP32-P4**, com **ESP32-C6** para Wi-Fi 6 e Bluetooth 5.
+
+Protótipo: **Espressif ESP32-P4-Function-EV-Board** com o kit de LCD 7" 1024 × 600 MIPI-DSI. A placa já inclui Ethernet, microSD e USB, cobrindo REQ-007 e REQ-008 do lado da HMI.
 
 Funções:
 
@@ -133,61 +102,9 @@ Funções:
 - histórico;
 - menus de configuração;
 - diagnóstico;
-- atualização de firmware;
-- coordenação das interfaces de comunicação e armazenamento.
+- atualização de firmware.
 
-Tela alvo:
-
-- 7 polegadas;
-- 1024 × 600;
-- touch capacitivo;
-- interface preferencial **MIPI-DSI**.
-
-## 7. Conectividade e periféricos
-
-### Wi-Fi e Bluetooth
-
-Coprocessador selecionado: **ESP32-C5**.
-
-Responsável pela conectividade sem fio do equipamento, mantendo o ESP32-P4 dedicado à HMI e serviços de alto nível.
-
-### Ethernet
-
-PHY selecionado: **DP83825I**.
-
-Ligação ao MAC Ethernet do ESP32-P4 por RMII.
-
-### RS-485 / Modbus RTU
-
-Transceptor selecionado: **ADM2867E**.
-
-A interface deverá ser galvanicamente isolada e protegida para uso industrial.
-
-### RTC
-
-RTC selecionado: **MAX31343**.
-
-Utilizado para:
-
-- timestamp de eventos;
-- registros históricos;
-- sincronização temporal local;
-- manutenção da data/hora durante desligamentos.
-
-### Armazenamento
-
-Armazenamento principal removível: **microSD**.
-
-Uso previsto:
-
-- históricos;
-- eventos;
-- formas de onda;
-- arquivos de configuração;
-- registros de calibração;
-- atualizações e logs.
-
-## 8. Telas planejadas
+## 6. Telas planejadas
 
 ### Visão geral
 
@@ -244,11 +161,11 @@ Uso previsto:
 - máximos;
 - histórico.
 
-## 9. Interfaces externas
+## 7. Interfaces externas
 
 Previstas:
 
-- Ethernet 10/100;
+- Ethernet;
 - RS-485 / Modbus RTU;
 - USB-C de serviço;
 - microSD;
@@ -256,23 +173,36 @@ Previstas:
 - Wi-Fi;
 - Bluetooth.
 
-## 10. Ordem de desenvolvimento
+## 8. Ordem de desenvolvimento
 
 1. requisitos elétricos;
 2. alimentação;
 3. entrada de tensão;
 4. entrada de corrente;
 5. ADE9430;
-6. MAX32650;
-7. isolamento ADuM4152/ADuM6424A;
-8. protocolo entre os domínios;
+6. MCU de metrologia;
+7. isolação;
+8. comunicação entre placas;
 9. ESP32-P4;
 10. display/touch;
-11. Ethernet DP83825I;
-12. RS-485 ADM2867E;
-13. ESP32-C5;
-14. RTC MAX31343;
-15. PCB;
-16. firmware metrológico;
-17. HMI;
-18. calibração e ensaios.
+11. Ethernet/RS-485/Wi-Fi;
+12. PCB;
+13. firmware metrológico;
+14. HMI;
+15. calibração e ensaios.
+
+## 9. Alternativas avaliadas
+
+Em 2026-10-03 foi registrada no `main` uma arquitetura de referência alternativa. A rev. 0.1 do esquemático e do layout mantém os componentes já implementados; a tabela fica como registro para revisões futuras.
+
+| Função | Implementado (rev. 0.1) | Alternativa avaliada |
+|---|---|---|
+| MCU de metrologia | STM32F413RHT6 | MAX32650 |
+| Isolamento SPI/sinais | ISO7762 + ISO7761 | ADuM4152 |
+| Alimentação isolada do domínio metrológico | ADuM6000 + TPS7A20 | ADuM6424A |
+| RS-485 isolado | ADM2587E | ADM2867E |
+| RTC | RTC interno do STM32 com LSE e CR2032 | MAX31343 |
+| Wi-Fi/Bluetooth (placa HMI) | ESP32-C6 (placa de avaliação do ESP32-P4) | ESP32-C5 |
+| Ethernet PHY (placa HMI) | da placa de avaliação do ESP32-P4 | DP83825I |
+
+Os itens da placa HMI (Wi-Fi/Bluetooth, Ethernet, display MIPI-DSI) não afetam a placa de metrologia e podem ser adotados quando a HMI própria for projetada.
