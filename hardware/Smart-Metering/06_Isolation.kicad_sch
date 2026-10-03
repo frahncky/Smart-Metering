@@ -219,7 +219,7 @@
 		(effects (font (size 1.27 1.27)) (justify left top))
 		(uuid "ee541489-2323-51b3-bbb5-09c6607a68c7")
 	)
-	(text "SINAIS ISOLADOS (ISO774x, reforçado 5 kVrms, SOIC-16 largo)\nU601 ISO7741: SCLK, MOSI, SS -> ADE9430; MISO <- (barramento compartilhado com U604)\nU602 ISO7742: RESET, SS_SID -> ; CF1, CF2 <- (pulsos de energia)\nU603 ISO7740: IRQ0, IRQ1, DREADY, ZX <-\nSaídas padrão em nível alto sem alimentação do lado de entrada: SS desativado, RESET solto.\nPull-ups de 10 kΩ (R602-R607) nas saídas do ADE9430 que vão para o isolador.\nR601 (1 kΩ) isola a saída do isolador do RC de power-on do RESET (folha 04)."
+	(text "SINAIS ISOLADOS (ISO774x, reforçado 5 kVrms, SOIC-16 largo)\nU601 ISO7741: SCLK, MOSI, SS -> ADE9430; MISO <- (barramento compartilhado com U604)\nU602 ISO7742: RESET, SS_SID -> ; CF1, CF2 <- (pulsos de energia)\nU603 ISO7740: IRQ0, IRQ1, DREADY, ZX <-\nSaídas padrão em nível alto sem alimentação do lado de entrada: SS desativado, RESET solto.\nPull-ups de 10 kΩ (R602-R607) nas saídas do ADE9430 que vão para o isolador.\nR601 (1 kΩ) isola a saída do isolador do RC de power-on do RESET (folha 04: R401/C411)."
 		(exclude_from_sim no)(at 200.66 101.6 0)
 		(effects (font (size 1.27 1.27)) (justify left top))
 		(uuid "b3b9ecad-6266-5a52-898a-6e2ea637a55c")

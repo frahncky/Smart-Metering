@@ -91,12 +91,15 @@ Concluído:
 - folha `02_Voltage_Sensing`: 3 fases com fusível + varistor, divisor 1/1001 (5 × 200 kΩ + 1 kΩ) e anti-aliasing de 7,2 kHz; VxN com impedância casada;
 - folha `03_Current_Sensing`: 4 entradas de corrente (IA/IB/IC/IN) configuráveis por montagem para TC de 333 mV (padrão), bobina Rogowski ou SCT-013 com saída de 1 V (protótipo), com TVS, anti-aliasing de 7,2 kHz e pino de identificação do sensor;
 - folha `06_Isolation`: barreira reforçada logo após o ADE9430 — SPI e sinais IRQ/DREADY/ZX/CF/RESET por isoladores ISO774x, ADC MCP3204 para identificação dos sensores e alimentação isolada (DC/DC reforçado + LDO → `+3V3_ADE`);
+- folha `01_Power_Input`: alimentação pelas fases medidas (qualquer fase presente, OU de diodos) ou por entrada auxiliar, selecionada por montagem; módulo AC/DC isolado 5 V / 2 A gerando `VIN_ACDC`;
 - folha `09_Power_Supplies`: domínio seguro — entrada 5 V por OU de diodos (AC/DC ou USB-C), carregador Li-ion 1S com power path (BQ24074), `+3V3` por buck-boost (TPS63021) e `+5V` por boost (TPS61023), com chave liga/desliga e medição da bateria;
 - FeatureScripts Onshape do gabinete em `cad/`.
 
-Próxima etapa: `01_Power_Input` (conversor AC/DC de faixa larga alimentado pelas fases medidas ou entrada auxiliar, gerando `VIN_ACDC`) e `05_Metrology_MCU`.
+Próxima etapa: `05_Metrology_MCU` (MCU de metrologia ligado aos sinais `MCU_*` da folha 06) e `08_Communications`.
 
-Pendências dos front-ends: escolher os sensores de corrente definitivos (333 mV e Rogowski) e o conector circular das entradas, o fusível de tensão e o varistor, escolher o DC/DC isolado (PS601) e definir os footprints desses componentes; conferir nos datasheets os pinouts desenhados de memória (ISO774x, MCP3204, TPS7A20, BQ24074) e definir a numeração de pinos provisória de TPS63021 e TPS61023; escolher a bateria (1S com NTC de 10 kΩ).
+Referências numeradas por folha: 1xx na folha 01, 2xx na 02, 3xx na 03 e assim por diante.
+
+Pendências dos front-ends: escolher os sensores de corrente definitivos (333 mV e Rogowski) e o conector circular das entradas, o fusível de tensão e o varistor, escolher o DC/DC isolado (PS601) e definir os footprints desses componentes; conferir nos datasheets os pinouts desenhados de memória (ISO774x, MCP3204, TPS7A20, BQ24074) e definir a numeração de pinos provisória de TPS63021 e TPS61023; escolher a bateria (1S com NTC de 10 kΩ) e o módulo AC/DC (PS101), confirmando isolação para CAT III 300 V.
 
 ## Referências principais
 

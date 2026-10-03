@@ -262,7 +262,7 @@
 		(effects (font (size 1.27 1.27)) (justify left))
 		(uuid "e9430000-0000-4000-8000-000000000001")
 	)
-	(text "DECOUPLING — PLACE CLOSE TO U1\nVDD: 100 nF + 10 uF\nDVDDOUT: 100 nF + 4.7 uF\nAVDDOUT: 100 nF + 4.7 uF\nREF: 100 nF + 4.7 uF"
+	(text "DECOUPLING — PLACE CLOSE TO U401\nVDD: 100 nF + 10 uF\nDVDDOUT: 100 nF + 4.7 uF\nAVDDOUT: 100 nF + 4.7 uF\nREF: 100 nF + 4.7 uF"
 		(exclude_from_sim no)(at 25 145 0)
 		(effects (font (size 1.27 1.27)) (justify left))
 		(uuid "e9430000-0000-4000-8000-000000000002")
@@ -488,7 +488,7 @@
 		(unit 1)(body_style 1)
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
 		(uuid "e9430000-0000-4000-8000-000000000100")
-		(property "Reference" "U1" (at 140 64.06 0) (effects (font (size 1.27 1.27))))
+		(property "Reference" "U401" (at 140 64.06 0) (effects (font (size 1.27 1.27))))
 		(property "Value" "ADE9430ACPZ" (at 140 66.6 0) (effects (font (size 1.27 1.27))))
 		(property "Footprint" "Package_DFN_QFN:LFCSP-40-1EP_6x6mm_P0.5mm_EP4.5x4.5mm" (at 140 92 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "https://www.analog.com/media/en/technical-documentation/data-sheets/ade9430.pdf" (at 140 92 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -534,7 +534,7 @@
 		(pin "39" (uuid "e9430000-0000-4000-8000-000000000239"))
 		(pin "40" (uuid "e9430000-0000-4000-8000-000000000240"))
 		(pin "41" (uuid "e9430000-0000-4000-8000-000000000241"))
-		(instances (project "Smart-Metering" (path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1004-0004-4e04-9004-000000000004" (reference "U1") (unit 1))))
+		(instances (project "Smart-Metering" (path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1004-0004-4e04-9004-000000000004" (reference "U401") (unit 1))))
 	)
 	(symbol
 		(lib_id "SmartMetering:C_Vert")
@@ -542,7 +542,7 @@
 		(unit 1)(body_style 1)
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
 		(uuid "e9430000-0000-4000-8000-000000000300")
-		(property "Reference" "C1" (at 57.54 165 0) (effects (font (size 1.27 1.27))))
+		(property "Reference" "C401" (at 57.54 165 0) (effects (font (size 1.27 1.27))))
 		(property "Value" "100nF" (at 52.46 165 0) (effects (font (size 1.27 1.27))))
 		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (at 55 165 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 55 165 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -551,7 +551,7 @@
 		(pin "2" (uuid "e9430000-0000-4000-8000-000000030002"))
 		(instances
 			(project "Smart-Metering"
-				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1004-0004-4e04-9004-000000000004" (reference "C1") (unit 1))
+				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1004-0004-4e04-9004-000000000004" (reference "C401") (unit 1))
 			)
 		)
 	)
@@ -571,7 +571,7 @@
 		(unit 1)(body_style 1)
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
 		(uuid "e9430000-0000-4000-8000-000000000301")
-		(property "Reference" "C2" (at 67.54 165 0) (effects (font (size 1.27 1.27))))
+		(property "Reference" "C402" (at 67.54 165 0) (effects (font (size 1.27 1.27))))
 		(property "Value" "10uF" (at 62.46 165 0) (effects (font (size 1.27 1.27))))
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric" (at 65 165 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 65 165 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -580,7 +580,7 @@
 		(pin "2" (uuid "e9430000-0000-4000-8000-000000030102"))
 		(instances
 			(project "Smart-Metering"
-				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1004-0004-4e04-9004-000000000004" (reference "C2") (unit 1))
+				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1004-0004-4e04-9004-000000000004" (reference "C402") (unit 1))
 			)
 		)
 	)
@@ -600,7 +600,7 @@
 		(unit 1)(body_style 1)
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
 		(uuid "e9430000-0000-4000-8000-000000000302")
-		(property "Reference" "C3" (at 92.54 165 0) (effects (font (size 1.27 1.27))))
+		(property "Reference" "C403" (at 92.54 165 0) (effects (font (size 1.27 1.27))))
 		(property "Value" "100nF" (at 87.46 165 0) (effects (font (size 1.27 1.27))))
 		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (at 90 165 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 90 165 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -609,7 +609,7 @@
 		(pin "2" (uuid "e9430000-0000-4000-8000-000000030202"))
 		(instances
 			(project "Smart-Metering"
-				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1004-0004-4e04-9004-000000000004" (reference "C3") (unit 1))
+				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1004-0004-4e04-9004-000000000004" (reference "C403") (unit 1))
 			)
 		)
 	)
@@ -629,7 +629,7 @@
 		(unit 1)(body_style 1)
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
 		(uuid "e9430000-0000-4000-8000-000000000303")
-		(property "Reference" "C4" (at 102.54 165 0) (effects (font (size 1.27 1.27))))
+		(property "Reference" "C404" (at 102.54 165 0) (effects (font (size 1.27 1.27))))
 		(property "Value" "4.7uF" (at 97.46 165 0) (effects (font (size 1.27 1.27))))
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric" (at 100 165 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 100 165 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -638,7 +638,7 @@
 		(pin "2" (uuid "e9430000-0000-4000-8000-000000030302"))
 		(instances
 			(project "Smart-Metering"
-				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1004-0004-4e04-9004-000000000004" (reference "C4") (unit 1))
+				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1004-0004-4e04-9004-000000000004" (reference "C404") (unit 1))
 			)
 		)
 	)
@@ -658,7 +658,7 @@
 		(unit 1)(body_style 1)
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
 		(uuid "e9430000-0000-4000-8000-000000000304")
-		(property "Reference" "C5" (at 127.54 165 0) (effects (font (size 1.27 1.27))))
+		(property "Reference" "C405" (at 127.54 165 0) (effects (font (size 1.27 1.27))))
 		(property "Value" "100nF" (at 122.46 165 0) (effects (font (size 1.27 1.27))))
 		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (at 125 165 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 125 165 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -667,7 +667,7 @@
 		(pin "2" (uuid "e9430000-0000-4000-8000-000000030402"))
 		(instances
 			(project "Smart-Metering"
-				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1004-0004-4e04-9004-000000000004" (reference "C5") (unit 1))
+				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1004-0004-4e04-9004-000000000004" (reference "C405") (unit 1))
 			)
 		)
 	)
@@ -687,7 +687,7 @@
 		(unit 1)(body_style 1)
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
 		(uuid "e9430000-0000-4000-8000-000000000305")
-		(property "Reference" "C6" (at 137.54 165 0) (effects (font (size 1.27 1.27))))
+		(property "Reference" "C406" (at 137.54 165 0) (effects (font (size 1.27 1.27))))
 		(property "Value" "4.7uF" (at 132.46 165 0) (effects (font (size 1.27 1.27))))
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric" (at 135 165 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 135 165 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -696,7 +696,7 @@
 		(pin "2" (uuid "e9430000-0000-4000-8000-000000030502"))
 		(instances
 			(project "Smart-Metering"
-				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1004-0004-4e04-9004-000000000004" (reference "C6") (unit 1))
+				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1004-0004-4e04-9004-000000000004" (reference "C406") (unit 1))
 			)
 		)
 	)
@@ -716,7 +716,7 @@
 		(unit 1)(body_style 1)
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
 		(uuid "e9430000-0000-4000-8000-000000000306")
-		(property "Reference" "C7" (at 162.54 165 0) (effects (font (size 1.27 1.27))))
+		(property "Reference" "C407" (at 162.54 165 0) (effects (font (size 1.27 1.27))))
 		(property "Value" "100nF" (at 157.46 165 0) (effects (font (size 1.27 1.27))))
 		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (at 160 165 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 160 165 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -725,7 +725,7 @@
 		(pin "2" (uuid "e9430000-0000-4000-8000-000000030602"))
 		(instances
 			(project "Smart-Metering"
-				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1004-0004-4e04-9004-000000000004" (reference "C7") (unit 1))
+				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1004-0004-4e04-9004-000000000004" (reference "C407") (unit 1))
 			)
 		)
 	)
@@ -745,7 +745,7 @@
 		(unit 1)(body_style 1)
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
 		(uuid "e9430000-0000-4000-8000-000000000307")
-		(property "Reference" "C8" (at 172.54 165 0) (effects (font (size 1.27 1.27))))
+		(property "Reference" "C408" (at 172.54 165 0) (effects (font (size 1.27 1.27))))
 		(property "Value" "4.7uF" (at 167.46 165 0) (effects (font (size 1.27 1.27))))
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric" (at 170 165 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 170 165 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -754,7 +754,7 @@
 		(pin "2" (uuid "e9430000-0000-4000-8000-000000030702"))
 		(instances
 			(project "Smart-Metering"
-				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1004-0004-4e04-9004-000000000004" (reference "C8") (unit 1))
+				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1004-0004-4e04-9004-000000000004" (reference "C408") (unit 1))
 			)
 		)
 	)
@@ -774,7 +774,7 @@
 		(unit 1)(body_style 1)
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
 		(uuid "e9430000-0000-4000-8000-000000000400")
-		(property "Reference" "R1" (at 57.54 100 0) (effects (font (size 1.27 1.27))))
+		(property "Reference" "R401" (at 57.54 100 0) (effects (font (size 1.27 1.27))))
 		(property "Value" "10k" (at 52.46 100 0) (effects (font (size 1.27 1.27))))
 		(property "Footprint" "Resistor_SMD:R_0603_1608Metric" (at 55 100 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 55 100 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -783,7 +783,7 @@
 		(pin "2" (uuid "e9430000-0000-4000-8000-000000040002"))
 		(instances
 			(project "Smart-Metering"
-				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1004-0004-4e04-9004-000000000004" (reference "R1") (unit 1))
+				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1004-0004-4e04-9004-000000000004" (reference "R401") (unit 1))
 			)
 		)
 	)
@@ -803,7 +803,7 @@
 		(unit 1)(body_style 1)
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
 		(uuid "e9430000-0000-4000-8000-000000000401")
-		(property "Reference" "C11" (at 74.54 105 0) (effects (font (size 1.27 1.27))))
+		(property "Reference" "C411" (at 74.54 105 0) (effects (font (size 1.27 1.27))))
 		(property "Value" "1uF" (at 69.46 105 0) (effects (font (size 1.27 1.27))))
 		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (at 72 105 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 72 105 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -812,7 +812,7 @@
 		(pin "2" (uuid "e9430000-0000-4000-8000-000000040102"))
 		(instances
 			(project "Smart-Metering"
-				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1004-0004-4e04-9004-000000000004" (reference "C11") (unit 1))
+				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1004-0004-4e04-9004-000000000004" (reference "C411") (unit 1))
 			)
 		)
 	)
@@ -832,7 +832,7 @@
 		(unit 1)(body_style 1)
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
 		(uuid "e9430000-0000-4000-8000-000000000500")
-		(property "Reference" "Y1" (at 222.54 92 0) (effects (font (size 1.27 1.27))))
+		(property "Reference" "Y401" (at 222.54 92 0) (effects (font (size 1.27 1.27))))
 		(property "Value" "24.576MHz" (at 217.46 92 0) (effects (font (size 1.27 1.27))))
 		(property "Footprint" "Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm" (at 220 92 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 220 92 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -843,7 +843,7 @@
 		(pin "4" (uuid "e9430000-0000-4000-8000-000000050004"))
 		(instances
 			(project "Smart-Metering"
-				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1004-0004-4e04-9004-000000000004" (reference "Y1") (unit 1))
+				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1004-0004-4e04-9004-000000000004" (reference "Y401") (unit 1))
 			)
 		)
 	)
@@ -873,7 +873,7 @@
 		(unit 1)(body_style 1)
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
 		(uuid "e9430000-0000-4000-8000-000000000501")
-		(property "Reference" "C9" (at 210.54 118 0) (effects (font (size 1.27 1.27))))
+		(property "Reference" "C409" (at 210.54 118 0) (effects (font (size 1.27 1.27))))
 		(property "Value" "18pF" (at 205.46 118 0) (effects (font (size 1.27 1.27))))
 		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (at 208 118 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 208 118 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -882,7 +882,7 @@
 		(pin "2" (uuid "e9430000-0000-4000-8000-000000050102"))
 		(instances
 			(project "Smart-Metering"
-				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1004-0004-4e04-9004-000000000004" (reference "C9") (unit 1))
+				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1004-0004-4e04-9004-000000000004" (reference "C409") (unit 1))
 			)
 		)
 	)
@@ -902,7 +902,7 @@
 		(unit 1)(body_style 1)
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
 		(uuid "e9430000-0000-4000-8000-000000000502")
-		(property "Reference" "C10" (at 234.54 118 0) (effects (font (size 1.27 1.27))))
+		(property "Reference" "C410" (at 234.54 118 0) (effects (font (size 1.27 1.27))))
 		(property "Value" "18pF" (at 229.46 118 0) (effects (font (size 1.27 1.27))))
 		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (at 232 118 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 232 118 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -911,7 +911,7 @@
 		(pin "2" (uuid "e9430000-0000-4000-8000-000000050202"))
 		(instances
 			(project "Smart-Metering"
-				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1004-0004-4e04-9004-000000000004" (reference "C10") (unit 1))
+				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1004-0004-4e04-9004-000000000004" (reference "C410") (unit 1))
 			)
 		)
 	)
