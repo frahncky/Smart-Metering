@@ -82,24 +82,33 @@ Smart-Metering/
 
 ## Estado
 
-**Fase 1 — núcleo metrológico ADE9430 no KiCad.**
+**Fase 2 — esquemático completo da placa de metrologia (rev. 0.1, a revisar no KiCad).**
 
-Concluído:
+Todas as 9 folhas estão desenhadas e os sinais entre folhas foram conferidos (215 componentes):
 
-- folha `04_ADE9430` com ADE9430, desacoplamento, cristal de 24,576 MHz e rede de reset;
-- símbolos próprios corrigidos para a convenção de coordenadas do KiCad (eixo Y para cima), com todos os pinos ligados aos nets previstos;
-- folha `02_Voltage_Sensing`: 3 fases com fusível + varistor, divisor 1/1001 (5 × 200 kΩ + 1 kΩ) e anti-aliasing de 7,2 kHz; VxN com impedância casada;
-- folha `03_Current_Sensing`: 4 entradas de corrente (IA/IB/IC/IN) configuráveis por montagem para TC de 333 mV (padrão), bobina Rogowski ou SCT-013 com saída de 1 V (protótipo), com TVS, anti-aliasing de 7,2 kHz e pino de identificação do sensor;
-- folha `06_Isolation`: barreira reforçada logo após o ADE9430 — SPI e sinais IRQ/DREADY/ZX/CF/RESET por isoladores ISO774x, ADC MCP3204 para identificação dos sensores e alimentação isolada (DC/DC reforçado + LDO → `+3V3_ADE`);
-- folha `01_Power_Input`: alimentação pelas fases medidas (qualquer fase presente, OU de diodos) ou por entrada auxiliar, selecionada por montagem; módulo AC/DC isolado 5 V / 2 A gerando `VIN_ACDC`;
-- folha `09_Power_Supplies`: domínio seguro — entrada 5 V por OU de diodos (AC/DC ou USB-C), carregador Li-ion 1S com power path (BQ24074), `+3V3` por buck-boost (TPS63021) e `+5V` por boost (TPS61023), com chave liga/desliga e medição da bateria;
-- FeatureScripts Onshape do gabinete em `cad/`.
+| Folha | Conteúdo |
+|---|---|
+| `01_Power_Input` | Alimentação pelas fases medidas (OU de diodos, qualquer fase presente) ou entrada auxiliar, por montagem; módulo AC/DC isolado 5 V / 2 A → `VIN_ACDC` |
+| `02_Voltage_Sensing` | 3 fases: fusível + varistor, divisor 1/1001 (5 × 200 kΩ + 1 kΩ), anti-aliasing 7,2 kHz; R201 liga neutro ao GND metrológico |
+| `03_Current_Sensing` | IA/IB/IC/IN configuráveis por montagem: TC 333 mV (padrão), Rogowski ou SCT-013 de 1 V; TVS, anti-aliasing 7,2 kHz, pino de identificação do sensor |
+| `04_ADE9430` | ADE9430 (U401), desacoplamento, cristal 24,576 MHz, reset |
+| `05_Metrology_MCU` | STM32F413RHT6 (mesma família da referência da biblioteca ADSW-PQ-CLS), HSE 8 MHz, RTC com LSE + CR2032, SWD, LEDs |
+| `06_Isolation` | Barreira reforçada logo após o ADE9430: ISO7762 + ISO7761, MCP3204 (ID dos sensores), DC/DC isolado + TPS7A20 → `+3V3_ADE` |
+| `07_HMI_Interface` | Conector para a placa HMI (ESP32-P4): +5V com PTC, UART, IRQ e EN |
+| `08_Communications` | RS-485/Modbus isolada (ADM2587E) e USB-C de serviço (USB FS + carga) |
+| `09_Power_Supplies` | OU de entradas 5 V, carregador Li-ion 1S com power path (BQ24074), `+3V3` (TPS63001) e `+5V` (TPS61089) |
 
-Próxima etapa: `05_Metrology_MCU` (MCU de metrologia ligado aos sinais `MCU_*` da folha 06) e `08_Communications`.
+A HMI (ESP32-P4 + ESP32-C6, display 7", Ethernet, Wi-Fi/BT, microSD) fica em placa separada (REQ-010). No protótipo: Espressif ESP32-P4-Function-EV-Board.
 
-Referências numeradas por folha: 1xx na folha 01, 2xx na 02, 3xx na 03 e assim por diante.
+Componentes de terceiros usam os símbolos oficiais da biblioteca KiCad 10; a biblioteca `SmartMetering` guarda só os símbolos próprios. Referências numeradas por folha (1xx na folha 01, 2xx na 02, …).
 
-Pendências dos front-ends: escolher os sensores de corrente definitivos (333 mV e Rogowski) e o conector circular das entradas, o fusível de tensão e o varistor, escolher o DC/DC isolado (PS601) e definir os footprints desses componentes; conferir nos datasheets os pinouts desenhados de memória (ISO774x, MCP3204, TPS7A20, BQ24074) e definir a numeração de pinos provisória de TPS63021 e TPS61023; escolher a bateria (1S com NTC de 10 kΩ) e o módulo AC/DC (PS101), confirmando isolação para CAT III 300 V.
+### Pendências antes do layout
+
+- Rodar ERC no KiCad e revisar as folhas.
+- Escolher: sensores de corrente (333 mV e Rogowski) e conector circular das entradas; fusíveis e varistores; DC/DC isolado PS601 e módulo AC/DC PS101 (isolação para CAT III 300 V); bateria 1S com NTC de 10 kΩ.
+- Confirmar no TI WEBENCH os resistores de frequência, limite de corrente e compensação do TPS61089 (R912–R914, C912).
+- Confirmar no datasheet do ADE9430 que MISO fica em alta impedância com SS em nível alto (barramento compartilhado com o MCP3204).
+- Definir os footprints em aberto (fusíveis, varistores, PS101, PS601, conectores dos sensores).
 
 ## Referências principais
 

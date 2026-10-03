@@ -53,29 +53,20 @@ Comunicação ADE9430 ↔ MCU: **SPI**.
 
 ## 3. Processador de metrologia
 
-O MCU será da família ARM Cortex-M, com modelo ainda a definir.
+MCU: **STM32F413RHT6** (Cortex-M4F, 100 MHz, 1,5 MB flash, 320 KB RAM, LQFP-64).
+
+Escolhido por ser da mesma família da plataforma de referência da biblioteca ADSW-PQ-CLS (IEC 61000-4-30 Classe S) da Analog Devices, a NUCLEO-F413ZH, o que reduz o risco de portar a biblioteca.
 
 Responsabilidades:
 
-- configuração e leitura do ADE9430;
+- configuração e leitura do ADE9430 (SPI1 isolado) e do ADC de identificação dos sensores;
 - calibração;
-- processamento de formas de onda;
-- análise harmônica complementar;
+- processamento de formas de onda e análise harmônica complementar;
 - sequência e desequilíbrio;
-- detecção e registro de eventos;
-- timestamp;
-- protocolo com a HMI;
+- detecção e registro de eventos com timestamp (RTC interno + LSE + CR2032);
+- protocolo com a HMI (USART2) e Modbus RTU (USART3 + RS-485 isolada);
+- USB de serviço (USB FS);
 - watchdog e autodiagnóstico.
-
-Critérios para escolha:
-
-- SPI rápido;
-- RAM suficiente para buffers de formas de onda;
-- FPU;
-- DMA;
-- timers precisos;
-- boa disponibilidade;
-- ferramentas de desenvolvimento maduras.
 
 ## 4. Isolação
 
@@ -94,7 +85,11 @@ Com isso o MCU pode ser gravado e depurado sem isolação de bancada, e todas as
 
 ## 5. HMI
 
-Processador: **ESP32-P4**.
+A HMI fica em **placa separada** (REQ-010), ligada à placa de metrologia pelo conector J701 (+5V, UART, IRQ, EN).
+
+Processador: **ESP32-P4**, com **ESP32-C6** para Wi-Fi 6 e Bluetooth 5.
+
+Protótipo: **Espressif ESP32-P4-Function-EV-Board** com o kit de LCD 7" 1024 × 600 MIPI-DSI. A placa já inclui Ethernet, microSD e USB, cobrindo REQ-007 e REQ-008 do lado da HMI.
 
 Funções:
 
@@ -108,13 +103,6 @@ Funções:
 - menus de configuração;
 - diagnóstico;
 - atualização de firmware.
-
-Tela alvo inicial:
-
-- 7 polegadas;
-- 1024 × 600;
-- touch capacitivo;
-- MIPI-DSI ou RGB, conforme painel escolhido.
 
 ## 6. Telas planejadas
 
