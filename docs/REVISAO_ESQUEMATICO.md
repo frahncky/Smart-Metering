@@ -105,20 +105,20 @@ Antes desta revisão, já tinham sido corrigidos ao trocar símbolos desenhados 
 - **Margem do TPS61089:** com entrada de 4,55 V e saída de 5,04 V, a margem é pequena, mas o conversor ainda trabalha como boost. ✔
 - Ver P7 (valores do TPS61089).
 
-## 5. Pendências (decisão ou conferência necessária)
+## 5. Pendências — situação
 
-| # | Prioridade | Item |
+| # | Item | Situação |
 |---|---|---|
-| P1 | Alta | Confirmar no datasheet do ADE9430 a variante CP-40 e o tamanho do pad exposto. Ajustar o footprint (hoje EP 4,6 × 4,6 mm). |
-| P2 | Alta | Confirmar no datasheet do ADE9430: (a) MISO em alta impedância com SS alto, que o barramento compartilhado com o MCP3204 exige; (b) ligação recomendada dos pinos NC1/NC2, hoje em GND. |
-| P3 | Alta | Escolher o conector circular à prova de toque para J301–J304, com isolação para CAT III 300 V, e definir o footprint. |
-| P4 | Alta | Escolher PS601: DC/DC isolado reforçado com pelo menos 4 kVAC e tensão de trabalho de pelo menos 300 VAC. Definir footprint e pinout. |
-| P5 | Média | Avaliar um módulo AC/DC com faixa de entrada maior (85–305 VAC / até cerca de 430 VDC) no lugar do IRM-10-5, para suportar elevações de tensão. |
-| P6 | ~~Média~~ | **Resolvida:** BQ24074 substituído pelo BQ25895 (ver seção 6). |
-| P7 | Média | Confirmar no TI WEBENCH os valores de R912 (frequência), R913 (limite de corrente), R914/C912 (compensação) e C913 do TPS61089. |
-| P8 | Média | Confirmar que a ESP32-P4-Function-EV-Board aceita 5 V pelo conector de expansão e mapear J701 nos pinos dela. |
-| P9 | Baixa | Avaliar uma EEPROM I2C de calibração (PB6/PB7 estão livres) para não depender da flash do MCU. |
-| P10 | Baixa | Rodar o ERC no KiCad e revisar os avisos restantes, como os labels globais usados numa única folha. |
+| P1 | Pad exposto do ADE9430 | **Resolvida por projeto:** footprint com EP de 4,15 mm (Texas RHA0040B VQFN-40 6×6), compatível com as variantes CP-40 de 6×6 mm da ADI (EP de 3,9 a 4,7 mm). Ainda vale confirmar a variante no datasheet antes de pedir a PCB. |
+| P2 | MISO do ADE9430 e NC1/NC2 | **Resolvida:** com SS alto, o ADE9430 para de acionar o MISO e liga um pull-up fraco de 100 kΩ, então compartilhar com o MCP3204 é seguro. O datasheet recomenda NC1/NC2 em GND, como já está. |
+| P3 | Conector dos sensores de corrente | **Resolvida:** J301–J304 são headers internos JST PH de 4 vias, cabeados até conectores M8 fêmea de 4 vias no painel (IEC 61076-2-104, contatos à prova de toque). |
+| P4 | DC/DC isolado do domínio metrológico | **Resolvida:** U606 ADuM6000 (isoPower, 5 kVrms, até 500 mW; símbolo oficial). Os módulos 5 V → 5 V da biblioteca têm só 1–3 kVDC. Confirmar no datasheet a certificação reforçada e a tensão de trabalho. |
+| P5 | Faixa de entrada do AC/DC | **Resolvida:** PS101 = RECOM RAC20-05SK/277 (85–305 VAC / 120–430 VDC, 20 W). 264 VAC (+20 %) dá 373 Vpk, dentro do limite. Fusíveis T500mA, R101 de 3 W e C101 de 10 µF/450 V. Confirmar com a RECOM que a /277 usa o mesmo encapsulamento. |
+| P6 | Carregador | **Resolvida** (BQ25895, seção 6). Com o RAC20, o limite de entrada subiu para 3 A (R902 = 120 Ω). |
+| P7 | Valores do TPS61089 | **Resolvida:** substituído pelo TPS61022 (chave de 8 A, compensação interna). Só usa divisor de realimentação (732k/100k → 5,0 V), indutor de 1 µH e capacitores. |
+| P8 | Alimentar a placa EV pela interface | **Resolvida:** o J1 da ESP32-P4-Function-EV-Board tem 5 V nos pinos 2 e 4, previstos para embarcar a placa num sistema maior. Alimentar por eles com o USB-C da placa EV desconectado. O mapeamento J701 → J1 segue o esquema da placa EV. |
+| P9 | EEPROM de calibração | **Resolvida:** U502 24LC64 (0x50) no I2C1, junto com o BQ25895 (0x6A). |
+| P10 | ERC e labels globais | **Parcial:** labels globais usados numa só folha viraram locais (0 restantes). O ERC do KiCad ainda precisa ser rodado. |
 
 ## 6. Alterações após a revisão
 
@@ -149,3 +149,13 @@ Detalhes:
 - **Folha 05:** PC2 passa a receber CHG_INT_N, e PB6/PB7 viram I2C1.
 
 Alternativa não adotada: usar o boost OTG do BQ25895 para gerar o +5V e eliminar o TPS61089. Isso exige que o MCU troque de modo quando a rede cai, o que deixa a HMI sem alimentação por alguns milissegundos.
+
+### Resolução das pendências P1–P10
+
+- 01: PS101 → RAC20-05SK/277; F101–F104 T500mA; R101 22 Ω 3 W; C101 10 µF/450 V.
+- 03: J301–J304 com footprint JST PH 4 vias (cabo até o M8 do painel).
+- 04: footprint do ADE9430 com EP de 4,15 mm; AVDDOUT, DVDDOUT, REF_ADE, XIN_ADE e XOUT_ADE como labels locais.
+- 05: U502 24LC64 + C515.
+- 06: PS601 → U606 ADuM6000 (RC_SEL em VDD1, RC_IN em GND1, V_SEL em V_ISO) com desacoplamento.
+- 09: U903 TPS61089 → TPS61022 (L902 de 1 µH, 3 × 22 µF na saída); R902 = 120 Ω (entrada de 3 A).
+- Projeto: 223 componentes; todas as verificações automáticas sem erro; todos os footprints existem na biblioteca oficial.

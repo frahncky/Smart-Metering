@@ -457,7 +457,7 @@
 			(embedded_fonts no)
 		)
 	)
-	(text "LIGAÇÃO COM A PLACA HMI (ESP32-P4)\n\nA HMI fica em placa separada (REQ-010). Protótipo: Espressif ESP32-P4-Function-EV-Board,\nque já traz ESP32-P4, ESP32-C6 (Wi-Fi 6/BT 5), Ethernet, microSD, USB e o kit de LCD 7\" 1024x600 MIPI-DSI.\nCom isso Ethernet, Wi-Fi, Bluetooth e microSD do REQ-008/REQ-007 ficam na placa HMI.\n\nJ701: +5V protegido por F701 (PTC 2 A); UART MCU<->P4 (HMI_TX/HMI_RX, 921600 bps sugerido),\nHMI_IRQ (MCU avisa dado novo) e HMI_EN (MCU reinicia a HMI; usar saída open-drain).\nResistores de 33 Ω em série amortecem reflexões no cabo e limitam corrente de ESD.\nMapear J701 aos pinos da placa HMI por um cabo/adaptador."
+	(text "LIGAÇÃO COM A PLACA HMI (ESP32-P4)\n\nA HMI fica em placa separada (REQ-010). Protótipo: Espressif ESP32-P4-Function-EV-Board,\nque já traz ESP32-P4, ESP32-C6 (Wi-Fi 6/BT 5), Ethernet, microSD, USB e o kit de LCD 7\" 1024x600 MIPI-DSI.\nCom isso Ethernet, Wi-Fi, Bluetooth e microSD do REQ-008/REQ-007 ficam na placa HMI.\n\nJ701: +5V protegido por F701 (PTC 2 A); UART MCU<->P4 (HMI_TX/HMI_RX, 921600 bps sugerido),\nHMI_IRQ (MCU avisa dado novo) e HMI_EN (MCU reinicia a HMI; usar saída open-drain).\nResistores de 33 Ω em série amortecem reflexões no cabo e limitam corrente de ESD.\nPlaca EV: o J1 tem 5 V nos pinos 2 e 4 (o guia indica uso para embarcar a placa num sistema maior).\nAlimentar a placa por esses pinos com o USB-C dela desconectado; UART em GPIOs livres do J1\n(3,3 V, nunca 5 V nos GPIOs). Mapear J701 -> J1 por cabo, conforme o esquema da placa EV."
 		(exclude_from_sim no)(at 25.4 152.4 0)
 		(effects (font (size 1.27 1.27)) (justify left top))
 		(uuid "529ba495-0bcd-5a4e-8aba-dc1df6a38018")

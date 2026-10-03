@@ -51,7 +51,7 @@
 			)
 			(embedded_fonts no)
 		)
-(symbol "Converter_ACDC:IRM-10-5"
+(symbol "Converter_ACDC:RAC20-05SK"
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
@@ -67,7 +67,7 @@
 				)
 			)
 		)
-		(property "Value" "IRM-10-5"
+		(property "Value" "RAC20-05SK"
 			(at 0 -6.35 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -77,7 +77,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Converter_ACDC:Converter_ACDC_MeanWell_IRM-10-xx_THT"
+		(property "Footprint" "Converter_ACDC:Converter_ACDC_Recom_RAC20-xxSK_THT"
 			(at 0 -8.89 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -88,8 +88,8 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.meanwell.com/Upload/PDF/IRM-10/IRM-10-SPEC.PDF"
-			(at 0 -10.16 0)
+		(property "Datasheet" "https://recom-power.com/pdf/Powerline_AC-DC/RAC20-K.pdf"
+			(at -3.81 0 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
@@ -99,7 +99,7 @@
 				)
 			)
 		)
-		(property "Description" "5V, 2A, 10W, Isolated, AC-DC, 222A(IRM10)"
+		(property "Description" "20 Watt Single Output AC/DC power supply 5V 4000mA"
 			(at 0 0 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -110,7 +110,7 @@
 				)
 			)
 		)
-		(property "ki_keywords" "Miniature Module-type Power Supply MeanWell"
+		(property "ki_keywords" "ac dc power supply"
 			(at 0 0 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -121,7 +121,7 @@
 				)
 			)
 		)
-		(property "ki_fp_filters" "Converter*ACDC*MeanWell*IRM*10*THT*"
+		(property "ki_fp_filters" "Converter*ACDC*Recom*RAC20*SK*THT*"
 			(at 0 0 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -132,7 +132,7 @@
 				)
 			)
 		)
-		(symbol "IRM-10-5_0_1"
+		(symbol "RAC20-05SK_1_1"
 			(rectangle
 				(start -7.62 5.08)
 				(end 7.62 -5.08)
@@ -276,12 +276,10 @@
 					(type none)
 				)
 			)
-		)
-		(symbol "IRM-10-5_1_1"
 			(pin power_in line
 				(at -10.16 -2.54 0)
 				(length 2.54)
-				(name "AC/N"
+				(name "AC(N)"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -299,7 +297,7 @@
 			(pin power_in line
 				(at -10.16 2.54 0)
 				(length 2.54)
-				(name "AC/L"
+				(name "AC(L)"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -317,14 +315,14 @@
 			(pin power_out line
 				(at 10.16 -2.54 180)
 				(length 2.54)
-				(name "-Vo"
+				(name "-Vout"
 					(effects
 						(font
 							(size 1.27 1.27)
 						)
 					)
 				)
-				(number "3"
+				(number "4"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -335,14 +333,14 @@
 			(pin power_out line
 				(at 10.16 2.54 180)
 				(length 2.54)
-				(name "+Vo"
+				(name "+Vout"
 					(effects
 						(font
 							(size 1.27 1.27)
 						)
 					)
 				)
-				(number "4"
+				(number "5"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -581,7 +579,7 @@
 		(effects (font (size 1.27 1.27)) (justify left top))
 		(uuid "418da68d-f3a1-5b65-bdf3-f2929bc6b305")
 	)
-	(text "PS101: módulo AC/DC isolado (reforçado), 5 V / 2 A, aceita entrada CC 120-370 V.\nEle é a barreira de isolação entre a rede e o domínio seguro (GND_SYS).\nConfirmar isolação e categoria de sobretensão do módulo para CAT III 300 V;\na proteção de surto vem dos varistores (folha 02 e RV101) e de R101 (fusível, limita inrush).\nR101 e C101: limitam a corrente de partida e filtram o ripple do retificador de meia onda.\n\nPotência: 10 W cobre o sistema (~4,5 W) + carga da bateria (~3,8 W).\nPS101 usa o símbolo e o footprint oficiais do IRM-10-5 (biblioteca KiCad).\nHV_RTN: levar em trilha própria até o borne do neutro, sem passar pelo plano GND\nmetrológico, para o ruído do conversor não chegar ao ADE9430.\n\nLAYOUT: todo este bloco está no potencial da rede. Manter distâncias de isolação\nentre o barramento HV, os retornos e o lado de saída (GND_SYS) do PS101."
+	(text "PS101: RECOM RAC20-05SK/277, AC/DC isolado (reforçado), 5 V / 4 A; 85-305 VAC / 120-430 VDC.\nEle é a barreira de isolação entre a rede e o domínio seguro (GND_SYS).\nConfirmar isolação e categoria de sobretensão do módulo para CAT III 300 V;\na proteção de surto vem dos varistores (folha 02 e RV101) e de R101 (fusível, limita inrush).\nR101 (3 W) e C101 (10 uF): limitam a partida e filtram o ripple do retificador de meia onda.\n\nPotência: 20 W cobre o sistema (~5,2 W) + carga da bateria (~4,7 W) com folga.\nPS101 usa o símbolo/footprint oficiais do RAC20-05SK (a variante /277 tem o mesmo encapsulamento:\nconfirmar com a RECOM). Margem: 264 VAC (+20 %) = 373 Vpk, dentro dos 430 VDC.\nHV_RTN: levar em trilha própria até o borne do neutro, sem passar pelo plano GND\nmetrológico, para o ruído do conversor não chegar ao ADE9430.\n\nLAYOUT: todo este bloco está no potencial da rede. Manter distâncias de isolação\nentre o barramento HV, os retornos e o lado de saída (GND_SYS) do PS101."
 		(exclude_from_sim no)(at 200.66 88.9 0)
 		(effects (font (size 1.27 1.27)) (justify left top))
 		(uuid "549fc29a-874b-5e5e-89b2-d5c77a646dc9")
@@ -779,7 +777,7 @@
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
 		(uuid "908c33ec-cb90-5670-960c-7d826668cc9a")
 		(property "Reference" "F101" (at 63.5 48.26 0) (effects (font (size 1.27 1.27))))
-		(property "Value" "T250mA 500VAC" (at 63.5 53.34 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "T500mA 500VAC" (at 63.5 53.34 0) (effects (font (size 1.27 1.27))))
 		(property "Footprint" "Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal" (at 63.5 50.8 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 63.5 50.8 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "Supply tap fuse, phase A, time-lag, >=500 VAC" (at 63.5 50.8 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -817,7 +815,7 @@
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
 		(uuid "dd8bf6bc-5e87-5e1d-b885-b1a1b5a84452")
 		(property "Reference" "F102" (at 63.5 60.96 0) (effects (font (size 1.27 1.27))))
-		(property "Value" "T250mA 500VAC" (at 63.5 66.04 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "T500mA 500VAC" (at 63.5 66.04 0) (effects (font (size 1.27 1.27))))
 		(property "Footprint" "Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal" (at 63.5 63.5 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 63.5 63.5 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "Supply tap fuse, phase B, time-lag, >=500 VAC" (at 63.5 63.5 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -855,7 +853,7 @@
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
 		(uuid "377c16a2-7364-5da4-a53a-19bfab700f58")
 		(property "Reference" "F103" (at 63.5 73.66 0) (effects (font (size 1.27 1.27))))
-		(property "Value" "T250mA 500VAC" (at 63.5 78.74 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "T500mA 500VAC" (at 63.5 78.74 0) (effects (font (size 1.27 1.27))))
 		(property "Footprint" "Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal" (at 63.5 76.2 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 63.5 76.2 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "Supply tap fuse, phase C, time-lag, >=500 VAC" (at 63.5 76.2 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -893,7 +891,7 @@
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp yes)
 		(uuid "fb689c55-5c27-54be-9af3-ca0c4910afd5")
 		(property "Reference" "F104" (at 63.5 99.06 0) (effects (font (size 1.27 1.27))))
-		(property "Value" "T250mA 500VAC" (at 63.5 104.14 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "T500mA 500VAC" (at 63.5 104.14 0) (effects (font (size 1.27 1.27))))
 		(property "Footprint" "Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal" (at 63.5 101.6 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 63.5 101.6 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "Auxiliary input fuse, time-lag, >=500 VAC" (at 63.5 101.6 0) (effects (font (size 1.27 1.27)) (hide yes)))
@@ -931,10 +929,10 @@
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
 		(uuid "c0f7daa9-c786-5f7f-9b88-125efc646b3b")
 		(property "Reference" "R101" (at 100.33 99.06 0) (effects (font (size 1.27 1.27))))
-		(property "Value" "22R 2W" (at 100.33 104.14 0) (effects (font (size 1.27 1.27))))
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0414_L11.9mm_D4.5mm_P15.24mm_Horizontal" (at 100.33 101.6 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "22R 3W" (at 100.33 104.14 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0617_L17.0mm_D6.0mm_P20.32mm_Horizontal" (at 100.33 101.6 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 100.33 101.6 0) (effects (font (size 1.27 1.27)) (hide yes)))
-		(property "Description" "Inrush limiter, fusible flameproof wirewound, 2 W" (at 100.33 101.6 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Description" "Inrush limiter, fusible flameproof wirewound, 3 W" (at 100.33 101.6 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(pin "1" (uuid "cf975fa6-d4ab-5328-85fc-9c9003390580"))
 		(pin "2" (uuid "161bfe7b-3cfc-5dce-a0ee-7e34f279f3e6"))
 		(instances
@@ -950,8 +948,8 @@
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
 		(uuid "924e1d5b-bd83-5117-b41f-cbe2e965e1f1")
 		(property "Reference" "C101" (at 111.76 104.14 0) (effects (font (size 1.27 1.27)) (justify right)))
-		(property "Value" "4.7uF 450V" (at 111.76 106.68 0) (effects (font (size 1.27 1.27)) (justify right)))
-		(property "Footprint" "Capacitor_THT:CP_Radial_D8.0mm_P3.50mm" (at 114.3 104.14 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "10uF 450V" (at 111.76 106.68 0) (effects (font (size 1.27 1.27)) (justify right)))
+		(property "Footprint" "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm" (at 114.3 104.14 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 114.3 104.14 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "HV bus capacitor, 105 °C" (at 114.3 104.14 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(pin "1" (uuid "2342f72e-86cc-54a0-a2a8-01d7813d125d"))
@@ -999,20 +997,20 @@
 		)
 	)
 	(symbol
-		(lib_id "Converter_ACDC:IRM-10-5")
+		(lib_id "Converter_ACDC:RAC20-05SK")
 		(at 139.7 104.14 0)
 		(unit 1)(body_style 1)
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
 		(uuid "5707ec6a-9bc5-5071-b6cf-5af75529c406")
 		(property "Reference" "PS101" (at 139.7 96.52 0) (effects (font (size 1.27 1.27))))
-		(property "Value" "IRM-10-5" (at 139.7 99.06 0) (effects (font (size 1.27 1.27))))
-		(property "Footprint" "Converter_ACDC:Converter_ACDC_MeanWell_IRM-10-xx_THT" (at 139.7 104.14 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Value" "RAC20-05SK/277" (at 139.7 99.06 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Converter_ACDC:Converter_ACDC_Recom_RAC20-xxSK_THT" (at 139.7 104.14 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 139.7 104.14 0) (effects (font (size 1.27 1.27)) (hide yes)))
-		(property "Description" "AC/DC 5 V 2 A, 85-264 VAC / 120-370 VDC input, reinforced (Mean Well IRM-10-5)" (at 139.7 104.14 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Description" "AC/DC 5 V 4 A 20 W, reinforced; /277 variant: 85-305 VAC, 120-430 VDC (confirm with RECOM)" (at 139.7 104.14 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(pin "1" (uuid "2f2ffb27-812e-5bef-9f90-bdb6d97e5f1c"))
 		(pin "2" (uuid "6aa20a76-a67f-5621-bc40-cbd5c25f4ee5"))
-		(pin "3" (uuid "d9840831-cf7c-550a-891d-8ab1e7f8cf3e"))
-		(pin "4" (uuid "5452c28a-0f4c-525e-ae5e-26d8d0572ae7"))
+		(pin "4" (uuid "11ab573b-0d77-576e-b8ba-57f8e8c65350"))
+		(pin "5" (uuid "21d560f5-de86-54ba-ba65-5b21ec2a1784"))
 		(instances
 			(project "Smart-Metering"
 				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1001-0001-4e01-9001-000000000001" (reference "PS101") (unit 1))
