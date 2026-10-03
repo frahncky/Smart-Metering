@@ -1,0 +1,26 @@
+# KiCad - arquivos temporários e locais
+*.bak
+*.kicad_sch-bak
+*.kicad_pcb-bak
+*.kicad_pro-bak
+*.lck
+~*
+*.tmp
+
+# Backups automáticos do KiCad
+*-backups/
+_backups/
+
+# Preferências locais do usuário/projeto
+*.kicad_prl
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# macOS
+.DS_Store
+
+# Editores
+.vscode/
+.idea/
