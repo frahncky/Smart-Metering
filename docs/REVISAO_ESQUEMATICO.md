@@ -127,7 +127,7 @@ Antes desta revisão, já tinham sido corrigidos ao trocar símbolos desenhados 
 | | Antes (BQ24074) | Depois (BQ25895) |
 |---|---|---|
 | Tipo | linear | chaveado, 1,5 MHz, power path NVDC |
-| Limite de entrada | 1,48 A | 2,0 A (R902 = 180 Ω; máximo do IRM-10-5) |
+| Limite de entrada | 1,48 A | ≈ 3,0 A (R902 = 120 Ω; RAC20-05SK/277 fornece 4 A) |
 | Carga com a tela ligada | ~0,3 A (> 8 h para 2500 mAh) | ~0,85 A (~3 h) |
 | Dissipação no CI | ~0,8 W | baixa (conversão chaveada) |
 | Configuração | resistores | registradores via I2C (MCU PB6/PB7) |
@@ -159,3 +159,13 @@ Alternativa não adotada: usar o boost OTG do BQ25895 para gerar o +5V e elimina
 - 06: PS601 → U606 ADuM6000 (RC_SEL em VDD1, RC_IN em GND1, V_SEL em V_ISO) com desacoplamento.
 - 09: U903 TPS61089 → TPS61022 (L902 de 1 µH, 3 × 22 µF na saída); R902 = 120 Ω (entrada de 3 A).
 - Projeto: 223 componentes; todas as verificações automáticas sem erro; todos os footprints existem na biblioteca oficial.
+
+## 7. Correções da revisão do PR #1
+
+| Ponto | Problema | Correção |
+|---|---|---|
+| Divisor do TS (U901) | R901 (REGN-TS) e R903 (TS-GND) estavam trocados: com o NTC de 10 kΩ, TS ficava em ~10 % de REGN e o BQ25895 suspendia a carga por sobretemperatura | R901 = 5,23 kΩ (REGN-TS) e R903 = 30,1 kΩ (TS-GND, em paralelo com o NTC), como na aplicação típica: TS ≈ 59 % de REGN a 25 °C |
+| Detecção da fonte pelo BQ25895 | D+/D- unidos sempre: qualquer fonte virava DCP (3 A), inclusive uma porta USB de PC (500/900 mA) | Q902 (2N7002) une D+/D- só com VIN_ACDC presente. Só pelo USB-C: D+/D- soltos, detecção SDP/desconhecida, 500 mA |
+| OU de diodos AC/DC + USB | Com as duas fontes, a de maior tensão supria a placa, podendo ser a porta USB | Q901 (AO3401A) corta o VBUS quando VIN_ACDC está presente (R912 = 100 kΩ mantém Q901 ligado e Q902 desligado sem o AC/DC) |
+| Regras do DRC | Divisores sem regra entre fases nem contra o domínio metrológico; barramento HV só com clearance; creepage da barreira 6,4 mm contra os 8 mm documentados | Classes DIVIDER_A/B/C, regras 3,0 mm entre fases e 2,0 mm contra o domínio metrológico, HVBUS com clearance e creepage, creepage da barreira 8,0 mm (ver `docs/LAYOUT.md`) |
+| Projeto KiCad | `top_level_sheets` apontava para `creepage.kicad_sch` (resto do modelo) | Aponta para `Smart-Metering.kicad_sch` |

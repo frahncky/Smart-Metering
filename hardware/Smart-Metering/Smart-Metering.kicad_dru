@@ -5,11 +5,19 @@
 
 (rule "Barreira reforcada - clearance"
    (constraint clearance (min 6.0mm))
-   (condition "(A.hasNetclass('HOT') || A.hasNetclass('MAINS') || A.hasNetclass('HVBUS') || A.hasNetclass('DIVIDER')) && (B.hasNetclass('Default') || B.hasNetclass('POWER') || B.hasNetclass('ISO485'))"))
+   (condition "(A.hasNetclass('HOT') || A.hasNetclass('MAINS') || A.hasNetclass('HVBUS') || (A.hasNetclass('DIVIDER_A') || A.hasNetclass('DIVIDER_B') || A.hasNetclass('DIVIDER_C'))) && (B.hasNetclass('Default') || B.hasNetclass('POWER') || B.hasNetclass('ISO485'))"))
 
+# Creepage mínima de 8 mm na barreira (docs/ARCHITECTURE.md, folha 06)
 (rule "Barreira reforcada - creepage"
-   (constraint creepage (min 6.4mm))
-   (condition "(A.hasNetclass('HOT') || A.hasNetclass('MAINS') || A.hasNetclass('HVBUS') || A.hasNetclass('DIVIDER')) && (B.hasNetclass('Default') || B.hasNetclass('POWER') || B.hasNetclass('ISO485'))"))
+   (constraint creepage (min 8.0mm))
+   (condition "(A.hasNetclass('HOT') || A.hasNetclass('MAINS') || A.hasNetclass('HVBUS') || (A.hasNetclass('DIVIDER_A') || A.hasNetclass('DIVIDER_B') || A.hasNetclass('DIVIDER_C'))) && (B.hasNetclass('Default') || B.hasNetclass('POWER') || B.hasNetclass('ISO485'))"))
+
+# Entre as fileiras de pads dos isoladores SOIC-16W (7,3 mm) vale a isolação do próprio
+# componente; conferir no datasheet e avaliar fenda na placa sob o encapsulamento.
+(rule "Pads dos isoladores"
+   (constraint clearance (min 6.0mm))
+   (constraint creepage (min 7.2mm))
+   (condition "(A.memberOfFootprint('U601') && B.memberOfFootprint('U601')) || (A.memberOfFootprint('U602') && B.memberOfFootprint('U602')) || (A.memberOfFootprint('U606') && B.memberOfFootprint('U606'))"))
 
 (rule "Rede entre fases e neutro - clearance"
    (constraint clearance (min 3.0mm))
@@ -21,7 +29,49 @@
 
 (rule "Barramento HV - clearance"
    (constraint clearance (min 3.0mm))
-   (condition "A.hasNetclass('HVBUS') && (B.hasNetclass('MAINS') || B.hasNetclass('HOT'))"))
+   (condition "A.hasNetclass('HVBUS') && (B.hasNetclass('MAINS') || B.hasNetclass('HOT') || (B.hasNetclass('DIVIDER_A') || B.hasNetclass('DIVIDER_B') || B.hasNetclass('DIVIDER_C')))"))
+
+(rule "Barramento HV - creepage"
+   (constraint creepage (min 3.0mm))
+   (condition "A.hasNetclass('HVBUS') && (B.hasNetclass('MAINS') || B.hasNetclass('HOT') || (B.hasNetclass('DIVIDER_A') || B.hasNetclass('DIVIDER_B') || B.hasNetclass('DIVIDER_C')))"))
+
+(rule "Divisores de fases diferentes - clearance"
+   (constraint clearance (min 3.0mm))
+   (condition "(A.hasNetclass('DIVIDER_A') || A.hasNetclass('DIVIDER_B') || A.hasNetclass('DIVIDER_C')) && (B.hasNetclass('DIVIDER_A') || B.hasNetclass('DIVIDER_B') || B.hasNetclass('DIVIDER_C')) && A.NetClass != B.NetClass"))
+
+(rule "Divisores de fases diferentes - creepage"
+   (constraint creepage (min 3.0mm))
+   (condition "(A.hasNetclass('DIVIDER_A') || A.hasNetclass('DIVIDER_B') || A.hasNetclass('DIVIDER_C')) && (B.hasNetclass('DIVIDER_A') || B.hasNetclass('DIVIDER_B') || B.hasNetclass('DIVIDER_C')) && A.NetClass != B.NetClass"))
+
+(rule "Divisor da fase A x domínio metrológico"
+   (constraint clearance (min 2.0mm))
+   (constraint creepage (min 2.0mm))
+   (condition "A.hasNetclass('DIVIDER_A') && B.hasNetclass('HOT') && B.NetName != 'VAP'"))
+
+(rule "Divisor da fase A x rede de outras fases"
+   (constraint clearance (min 3.0mm))
+   (constraint creepage (min 3.0mm))
+   (condition "A.hasNetclass('DIVIDER_A') && B.hasNetclass('MAINS') && B.NetName != 'LINE_A' && B.NetName != 'Net-(D101-Pad2)' && B.NetName != 'Net-(F201-Pad2)'"))
+
+(rule "Divisor da fase B x domínio metrológico"
+   (constraint clearance (min 2.0mm))
+   (constraint creepage (min 2.0mm))
+   (condition "A.hasNetclass('DIVIDER_B') && B.hasNetclass('HOT') && B.NetName != 'VBP'"))
+
+(rule "Divisor da fase B x rede de outras fases"
+   (constraint clearance (min 3.0mm))
+   (constraint creepage (min 3.0mm))
+   (condition "A.hasNetclass('DIVIDER_B') && B.hasNetclass('MAINS') && B.NetName != 'LINE_B' && B.NetName != 'Net-(D102-Pad2)' && B.NetName != 'Net-(F202-Pad2)'"))
+
+(rule "Divisor da fase C x domínio metrológico"
+   (constraint clearance (min 2.0mm))
+   (constraint creepage (min 2.0mm))
+   (condition "A.hasNetclass('DIVIDER_C') && B.hasNetclass('HOT') && B.NetName != 'VCP'"))
+
+(rule "Divisor da fase C x rede de outras fases"
+   (constraint clearance (min 3.0mm))
+   (constraint creepage (min 3.0mm))
+   (condition "A.hasNetclass('DIVIDER_C') && B.hasNetclass('MAINS') && B.NetName != 'LINE_C' && B.NetName != 'Net-(D103-Pad2)' && B.NetName != 'Net-(F203-Pad2)'"))
 
 # Pads dentro de componentes de rede já especificados pelo fabricante para a tensão
 # (bornes e retificadores): o espaçamento interno é o do próprio componente.

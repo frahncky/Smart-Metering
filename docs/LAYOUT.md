@@ -10,7 +10,7 @@
 
 *Vermelho: rede (MAINS/HVBUS). Magenta: nós internos dos divisores. Azul: sinais do domínio metrológico em F.Cu. Verde: B.Cu. Círculos vermelhos: pads ainda sem ligação.*
 
-Todo o **domínio quente** (à esquerda da barreira) foi roteado: entradas de rede, fusíveis, varistores, divisores de tensão, entradas de corrente, ADE9430 com desacoplamento, cristal e filtros, lado quente dos isoladores e entrada do PS101. O lado seguro e a ilha RS-485 ficam para a próxima etapa.
+O **domínio quente** (à esquerda da barreira) está **roteado em parte**: entradas de rede, fusíveis, varistores, divisores de tensão, entradas de corrente, ADE9430 com desacoplamento, cristal e filtros, lado quente dos isoladores e entrada do PS101, com as ligações pendentes listadas abaixo. O lado seguro e a ilha RS-485 ficam para a próxima etapa.
 
 Regras usadas pelo roteador (iguais ou mais rígidas que as do `.kicad_dru`):
 
@@ -39,6 +39,8 @@ Verificação geométrica própria (trilha/via contra todo cobre de outro net, b
 **Falta rodar o DRC do KiCad** (inclui creepage e as regras do `.kicad_dru`) e preencher as zonas (**B**).
 
 ### Pendências do roteamento (ligar à mão no KiCad)
+
+Com a creepage de 8 mm na barreira, o cobre quente passa a ficar até x = 73,65 mm (eixo); o roteamento atual do domínio quente chega a x = 74,65 mm no barramento retificado (canto superior direito) e será refeito com a nova margem.
 
 | Net | Pad sem ligação | Observação |
 |---|---|---|
@@ -77,7 +79,8 @@ Classes definidas em `Smart-Metering.kicad_pro`:
 | Classe | Conteúdo | Trilha |
 |---|---|---|
 | MAINS | fases, nós dos fusíveis, barramento HV, entrada auxiliar | 0,5 mm |
-| DIVIDER | nós internos das cadeias de resistores dos divisores | 0,3 mm |
+| DIVIDER_A, DIVIDER_B, DIVIDER_C | nós internos das cadeias de resistores dos divisores, uma classe por fase | 0,3 mm |
+| HVBUS | barramento retificado da fonte auxiliar (HV_DC) | 0,5 mm |
 | HOT | domínio metrológico (GND = neutro) | 0,2 mm |
 | ISO485 | barramento RS-485 isolado | 0,25 mm |
 | POWER | alimentação do lado seguro (VSYS, +5V, +3V3, comutação dos conversores) | 0,6 mm |
@@ -87,9 +90,16 @@ Regras em `Smart-Metering.kicad_dru` (valores iniciais, **conferir na IEC 61010-
 
 | Regra | Clearance | Creepage |
 |---|---|---|
-| Barreira reforçada: HOT/MAINS/DIVIDER ↔ lado seguro/ISO485 | 6,0 mm | 6,4 mm |
+| Barreira reforçada: HOT/MAINS/HVBUS/DIVIDER_x ↔ lado seguro/ISO485 | 6,0 mm | 8,0 mm |
+| Entre as fileiras de pads de U601/U602/U606 (isolação do próprio componente; avaliar fenda sob o encapsulamento) | 6,0 mm | 7,2 mm |
 | Rede entre fases e neutro: MAINS ↔ MAINS/HOT | 3,0 mm | 3,0 mm |
+| Barramento HV ↔ MAINS/HOT/DIVIDER_x | 3,0 mm | 3,0 mm |
+| Divisores de fases diferentes: DIVIDER_x ↔ DIVIDER_y | 3,0 mm | 3,0 mm |
+| Divisor ↔ domínio metrológico (exceto o VxP da mesma fase) | 2,0 mm | 2,0 mm |
+| Divisor ↔ rede de outras fases | 3,0 mm | 3,0 mm |
 | RS-485 isolada ↔ lado seguro | 3,0 mm | — |
+
+Os nós internos dos divisores ficam nas classes DIVIDER_A, DIVIDER_B e DIVIDER_C (uma por fase), para que o DRC do KiCad confira as distâncias entre fases. Na barreira, o roteador mantém o cobre quente até x = 73,65 mm e o seguro a partir de x = 83,2 mm (eixo das trilhas e vias), o que dá ≥ 8 mm também até os pads dos isoladores.
 
 ## Antes do roteamento (ajustes manuais)
 

@@ -536,7 +536,45 @@
         "line_style": 0,
         "microvia_diameter": 0.3,
         "microvia_drill": 0.1,
-        "name": "DIVIDER",
+        "name": "DIVIDER_A",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 1,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.3,
+        "tuning_profile": "",
+        "via_diameter": 0.6,
+        "via_drill": 0.3,
+        "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "clearance": 0.5,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.2,
+        "line_style": 0,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "DIVIDER_B",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 1,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.3,
+        "tuning_profile": "",
+        "via_diameter": 0.6,
+        "via_drill": 0.3,
+        "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "clearance": 0.5,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.2,
+        "line_style": 0,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "DIVIDER_C",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "priority": 1,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
@@ -808,40 +846,40 @@
         "MAINS"
       ],
       "Net-(R211-Pad2)": [
-        "DIVIDER"
+        "DIVIDER_A"
       ],
       "Net-(R212-Pad2)": [
-        "DIVIDER"
+        "DIVIDER_A"
       ],
       "Net-(R213-Pad2)": [
-        "DIVIDER"
+        "DIVIDER_A"
       ],
       "Net-(R214-Pad2)": [
-        "DIVIDER"
+        "DIVIDER_A"
       ],
       "Net-(R221-Pad2)": [
-        "DIVIDER"
+        "DIVIDER_B"
       ],
       "Net-(R222-Pad2)": [
-        "DIVIDER"
+        "DIVIDER_B"
       ],
       "Net-(R223-Pad2)": [
-        "DIVIDER"
+        "DIVIDER_B"
       ],
       "Net-(R224-Pad2)": [
-        "DIVIDER"
+        "DIVIDER_B"
       ],
       "Net-(R231-Pad2)": [
-        "DIVIDER"
+        "DIVIDER_C"
       ],
       "Net-(R232-Pad2)": [
-        "DIVIDER"
+        "DIVIDER_C"
       ],
       "Net-(R233-Pad2)": [
-        "DIVIDER"
+        "DIVIDER_C"
       ],
       "Net-(R234-Pad2)": [
-        "DIVIDER"
+        "DIVIDER_C"
       ],
       "Net-(U604-Pad5)": [
         "HOT"
@@ -850,6 +888,15 @@
         "HOT"
       ],
       "Net-(U605-Pad4)": [
+        "HOT"
+      ],
+      "Net-(U606-Pad11)": [
+        "HOT"
+      ],
+      "Net-(U606-Pad12)": [
+        "HOT"
+      ],
+      "Net-(U606-Pad14)": [
         "HOT"
       ],
       "RESET_ADE": [
@@ -1044,9 +1091,9 @@
     "subpart_id_separator": 0,
     "top_level_sheets": [
       {
-        "filename": "creepage.kicad_sch",
-        "name": "creepage",
-        "uuid": "00000000-0000-0000-0000-000000000000"
+        "filename": "Smart-Metering.kicad_sch",
+        "name": "Smart-Metering",
+        "uuid": "5fa62d70-4279-48bb-8603-6bcc60fb353a"
       }
     ]
   },

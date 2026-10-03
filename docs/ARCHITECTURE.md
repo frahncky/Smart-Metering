@@ -77,7 +77,7 @@ A barreira de isolação reforçada fica **logo após o ADE9430** (folha `06_Iso
 
 Elementos da barreira:
 
-- isoladores digitais reforçados (família ISO774x, 5 kVrms) para SPI, IRQ0/IRQ1, DREADY, ZX, CF1/CF2 e RESET;
+- isoladores digitais reforçados (ISO7762 + ISO7761, 5 kVrms) para SPI, IRQ0/IRQ1, DREADY, ZX, CF1/CF2 e RESET;
 - DC/DC isolado reforçado (≥ 4 kVAC, tensão de trabalho ≥ 300 VAC) + LDO gerando `+3V3_ADE`;
 - distância de escoamento ≥ 8 mm sob a barreira, a confirmar pela IEC 61010-1 para CAT III 300 V.
 
