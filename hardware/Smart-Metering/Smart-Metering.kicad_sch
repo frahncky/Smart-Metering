@@ -2,13 +2,173 @@
 	(version 20260306)
 	(generator "eeschema")
 	(generator_version "10.0")
-	(uuid 5fa62d70-4279-48bb-8603-6bcc60fb353a)
+	(uuid "5fa62d70-4279-48bb-8603-6bcc60fb353a")
 	(paper "A4")
 	(lib_symbols)
-	(sheet_instances
-		(path "/"
-			(page "1")
+	(sheet (at 20 30) (size 65 25)
+		(stroke (width 0.1524) (type solid))
+		(fill (color 0 0 0 0.0))
+		(uuid "a10e1001-0001-4e01-9001-000000000001")
+		(property "Sheetname" "Power Input"
+			(at 20 29.2 0)
+			(effects (font (size 1.27 1.27)) (justify left bottom))
 		)
+		(property "Sheetfile" "01_Power_Input.kicad_sch"
+			(at 20 55.5 0)
+			(effects (font (size 1.27 1.27)) (justify left top))
+		)
+		(instances
+			(project "Smart-Metering"
+				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a" (page "2"))
+			)
+		)
+	)
+	(sheet (at 110 30) (size 65 25)
+		(stroke (width 0.1524) (type solid))
+		(fill (color 0 0 0 0.0))
+		(uuid "a10e1002-0002-4e02-9002-000000000002")
+		(property "Sheetname" "Voltage Sensing"
+			(at 110 29.2 0)
+			(effects (font (size 1.27 1.27)) (justify left bottom))
+		)
+		(property "Sheetfile" "02_Voltage_Sensing.kicad_sch"
+			(at 110 55.5 0)
+			(effects (font (size 1.27 1.27)) (justify left top))
+		)
+		(instances
+			(project "Smart-Metering"
+				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a" (page "3"))
+			)
+		)
+	)
+	(sheet (at 200 30) (size 65 25)
+		(stroke (width 0.1524) (type solid))
+		(fill (color 0 0 0 0.0))
+		(uuid "a10e1003-0003-4e03-9003-000000000003")
+		(property "Sheetname" "Current Sensing"
+			(at 200 29.2 0)
+			(effects (font (size 1.27 1.27)) (justify left bottom))
+		)
+		(property "Sheetfile" "03_Current_Sensing.kicad_sch"
+			(at 200 55.5 0)
+			(effects (font (size 1.27 1.27)) (justify left top))
+		)
+		(instances
+			(project "Smart-Metering"
+				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a" (page "4"))
+			)
+		)
+	)
+	(sheet (at 20 90) (size 65 25)
+		(stroke (width 0.1524) (type solid))
+		(fill (color 0 0 0 0.0))
+		(uuid "a10e1004-0004-4e04-9004-000000000004")
+		(property "Sheetname" "ADE9430"
+			(at 20 89.2 0)
+			(effects (font (size 1.27 1.27)) (justify left bottom))
+		)
+		(property "Sheetfile" "04_ADE9430.kicad_sch"
+			(at 20 115.5 0)
+			(effects (font (size 1.27 1.27)) (justify left top))
+		)
+		(instances
+			(project "Smart-Metering"
+				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a" (page "5"))
+			)
+		)
+	)
+	(sheet (at 110 90) (size 65 25)
+		(stroke (width 0.1524) (type solid))
+		(fill (color 0 0 0 0.0))
+		(uuid "a10e1005-0005-4e05-9005-000000000005")
+		(property "Sheetname" "Metrology MCU"
+			(at 110 89.2 0)
+			(effects (font (size 1.27 1.27)) (justify left bottom))
+		)
+		(property "Sheetfile" "05_Metrology_MCU.kicad_sch"
+			(at 110 115.5 0)
+			(effects (font (size 1.27 1.27)) (justify left top))
+		)
+		(instances
+			(project "Smart-Metering"
+				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a" (page "6"))
+			)
+		)
+	)
+	(sheet (at 200 90) (size 65 25)
+		(stroke (width 0.1524) (type solid))
+		(fill (color 0 0 0 0.0))
+		(uuid "a10e1006-0006-4e06-9006-000000000006")
+		(property "Sheetname" "Isolation"
+			(at 200 89.2 0)
+			(effects (font (size 1.27 1.27)) (justify left bottom))
+		)
+		(property "Sheetfile" "06_Isolation.kicad_sch"
+			(at 200 115.5 0)
+			(effects (font (size 1.27 1.27)) (justify left top))
+		)
+		(instances
+			(project "Smart-Metering"
+				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a" (page "7"))
+			)
+		)
+	)
+	(sheet (at 20 150) (size 65 25)
+		(stroke (width 0.1524) (type solid))
+		(fill (color 0 0 0 0.0))
+		(uuid "a10e1007-0007-4e07-9007-000000000007")
+		(property "Sheetname" "HMI Interface"
+			(at 20 149.2 0)
+			(effects (font (size 1.27 1.27)) (justify left bottom))
+		)
+		(property "Sheetfile" "07_HMI_Interface.kicad_sch"
+			(at 20 175.5 0)
+			(effects (font (size 1.27 1.27)) (justify left top))
+		)
+		(instances
+			(project "Smart-Metering"
+				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a" (page "8"))
+			)
+		)
+	)
+	(sheet (at 110 150) (size 65 25)
+		(stroke (width 0.1524) (type solid))
+		(fill (color 0 0 0 0.0))
+		(uuid "a10e1008-0008-4e08-9008-000000000008")
+		(property "Sheetname" "Communications"
+			(at 110 149.2 0)
+			(effects (font (size 1.27 1.27)) (justify left bottom))
+		)
+		(property "Sheetfile" "08_Communications.kicad_sch"
+			(at 110 175.5 0)
+			(effects (font (size 1.27 1.27)) (justify left top))
+		)
+		(instances
+			(project "Smart-Metering"
+				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a" (page "9"))
+			)
+		)
+	)
+	(sheet (at 200 150) (size 65 25)
+		(stroke (width 0.1524) (type solid))
+		(fill (color 0 0 0 0.0))
+		(uuid "a10e1009-0009-4e09-9009-000000000009")
+		(property "Sheetname" "Power Supplies"
+			(at 200 149.2 0)
+			(effects (font (size 1.27 1.27)) (justify left bottom))
+		)
+		(property "Sheetfile" "09_Power_Supplies.kicad_sch"
+			(at 200 175.5 0)
+			(effects (font (size 1.27 1.27)) (justify left top))
+		)
+		(instances
+			(project "Smart-Metering"
+				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a" (page "10"))
+			)
+		)
+	)
+	(sheet_instances
+		(path "/" (page "1"))
 	)
 	(embedded_fonts no)
 )
