@@ -30,6 +30,12 @@
    (constraint creepage (min 1.0mm))
    (condition "(A.memberOfFootprint('J201') && B.memberOfFootprint('J201')) || (A.memberOfFootprint('J101') && B.memberOfFootprint('J101')) || (A.memberOfFootprint('D10*') && B.memberOfFootprint('D10*'))"))
 
+# Trilhas chegando aos retificadores D101-D104 (SMA): o próprio encapsulamento tem ~2 mm entre terminais
+(rule "Entrada dos retificadores de rede"
+   (constraint clearance (min 2.4mm))
+   (constraint creepage (min 2.4mm))
+   (condition "A.hasNetclass('MAINS') && B.memberOfFootprint('D10*')"))
+
 (rule "RS-485 isolada - clearance"
    (constraint clearance (min 3.0mm))
    (condition "A.hasNetclass('ISO485') && (B.hasNetclass('Default') || B.hasNetclass('POWER'))"))
