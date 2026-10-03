@@ -1,12 +1,24 @@
-# Layout da placa de metrologia — rev. 0.2 (roteamento do domínio quente)
+# Layout da placa de metrologia — rev. 0.3 (placa roteada, com pendências)
 
 ![Posicionamento inicial (rev. 0.1, antes dos ajustes para o roteamento)](img/layout_posicionamento_rev01.png)
 
 *Vermelho escuro: nets de rede. Vermelho claro: domínio metrológico (potencial da rede). Azul: domínio seguro. Verde: RS-485 isolada. Amarelo: faixas da barreira (sem cobre).*
 
-## Roteamento das partes críticas (rev. 0.2)
+## Placa roteada (rev. 0.3)
 
-![Roteamento do domínio quente](img/layout_roteamento_quente_rev02.png)
+![Placa inteira](img/layout_roteamento_placa_rev03.png)
+
+Domínio quente e lado seguro (com a ilha RS-485) roteados com as regras abaixo, a creepage de 8 mm na barreira e as correções da revisão do PR #1. Restam 18 pads para ligar à mão (lista no fim desta seção).
+
+| Domínio quente | Lado seguro e ilha RS-485 |
+|---|---|
+| ![Domínio quente](img/layout_roteamento_quente_rev03.png) | ![Lado seguro](img/layout_roteamento_seguro_rev03.png) |
+
+No lado seguro: GND_SYS e GND_485 em In1.Cu, +3V3 em In2.Cu, trilhas de potência (POWER) de 0,6 mm, estreitadas para a largura do pad (0,2 mm) na saída dos CIs de passo fino (U901, U902, U903, J802). Os CIs de passo fino foram deslocados até 0,05 mm para os pads caírem na grade de roteamento. Alguns trechos curtos usam In2.Cu como camada de sinal quando não havia outro caminho (55 trechos na placa); o plano de In2 é preenchido em volta deles.
+
+### Rev. 0.2 (só o domínio quente)
+
+![Roteamento do domínio quente, rev. 0.2](img/layout_roteamento_quente_rev02.png)
 
 *Vermelho: rede (MAINS/HVBUS). Magenta: nós internos dos divisores. Azul: sinais do domínio metrológico em F.Cu. Verde: B.Cu. Círculos vermelhos: pads ainda sem ligação.*
 
@@ -34,20 +46,32 @@ Decisões de layout:
 
 ### Verificação
 
-Verificação geométrica própria (trilha/via contra todo cobre de outro net, barreiras e borda): **0 violações** com as distâncias da tabela acima.
+Verificação geométrica própria da placa inteira (trilha/via contra todo cobre de outro net, barreiras e borda): **0 violações** com as distâncias da tabela acima. Menor distância entre cobre quente e cobre seguro através da barreira (fora as fileiras de pads dos próprios isoladores): **8,02 mm**.
 
 **Falta rodar o DRC do KiCad** (inclui creepage e as regras do `.kicad_dru`) e preencher as zonas (**B**).
 
 ### Pendências do roteamento (ligar à mão no KiCad)
 
-Com a creepage de 8 mm na barreira, o cobre quente passa a ficar até x = 73,65 mm (eixo); o roteamento atual do domínio quente chega a x = 74,65 mm no barramento retificado (canto superior direito) e será refeito com a nova margem.
+Domínio quente (6 pads):
 
 | Net | Pad sem ligação | Observação |
 |---|---|---|
-| IRQ0_ADE, IRQ1_ADE, CF1_ADE | U401.31, .32, .33 | canto superior direito do ADE9430; sair para cima e passar para B.Cu antes de C401/C405 |
-| /ADE9430/AVDDOUT | U401.25 | ligar a C405/C406 pela direita |
-| /Isolation/SS_SID | U604.8 | do U601 ao U604 |
-| +3V3_ADE | U401.1, U401.27, C601.1, R602.1 | via para o plano In2.Cu junto de cada pad |
+| ZX_ADE, CF2_ADE | U401.35, U401.34 | lado de cima do ADE9430; sair para cima e passar para B.Cu antes de C401/C405 |
+| /ADE9430/AVDDOUT | U401.25 | ligar a C405/C406 |
+| GND | C405.2, C601.2 | via para o plano In1.Cu junto do pad |
+| +3V3_ADE | R602.1 | via para o plano In2.Cu junto do pad |
+
+Lado seguro e ilha RS-485 (12 pads):
+
+| Net | Pad sem ligação | Observação |
+|---|---|---|
+| VBUS | J802.A9, J802.B4 | pinos VBUS do USB-C; ligar aos outros pinos VBUS do conector |
+| /Power Supplies/VBAT | R906.1 | divisor de VBAT_SENSE |
+| /Power Supplies/CHG_DP, REGN, CHG_N | U901.2, U901.22, U901.4 | saída dos pinos do BQ25895 (passo 0,5 mm) |
+| /Metrology MCU/NRST | U501.7 | MCU |
+| +3V3, GND_SYS | U501.19, U501.32, U501.31 | via para os planos junto dos pinos de alimentação do MCU |
+| MCU_IRQ1 | U602.15 | lado seguro do isolador |
+| /Communications/GND_485 | U801.16 | via para o plano GND_485 (In1.Cu) |
 
 Depois de ligar esses nets: rodar o DRC, revisar os pontos onde a rede cruza o domínio metrológico em camadas diferentes (o plano GND em In1.Cu e o +3V3_ADE em In2.Cu passam sob essas trilhas; avaliar recortar os planos sob as trilhas de rede) e conferir os laços de comutação de U606 e U605.
 
@@ -57,7 +81,7 @@ Depois de ligar esses nets: rodar o DRC, revisar os pontos onde a rede cruza o d
 
 - contorno de **130 × 130 mm**, 4 camadas (F.Cu, In1.Cu = GND, In2.Cu = PWR, B.Cu);
 - **4 furos M3** a 10 mm das bordas (espaçamento de 110 × 110 mm);
-- **223 componentes** com footprints oficiais do KiCad, nets nos pads e vínculo com o esquemático (`path`), de modo que *Tools → Update PCB from Schematic* reconhece todos;
+- **226 componentes** com footprints oficiais do KiCad, nets nos pads e vínculo com o esquemático (`path`), de modo que *Tools → Update PCB from Schematic* reconhece todos;
 - **posicionamento inicial** por domínio: cada componente fica perto do CI ao qual se liga;
 - **faixas de barreira** como áreas proibidas para cobre: 7 mm entre metrologia e lado seguro (x = 75 a 82 mm; os pads dos isoladores SOIC-16W ficam a 7,3 mm entre fileiras) e 7/4 mm em volta da ilha RS-485;
 - **planos de terra por domínio** em In1.Cu e B.Cu (GND, GND_SYS, GND_485), ainda sem preenchimento (pressionar **B** no KiCad);
