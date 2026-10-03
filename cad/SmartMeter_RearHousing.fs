@@ -86,6 +86,24 @@ export const smartMeterRearHousing = defineFeature(
                 definition.insertDepth,
                 { (millimeter) : [4, 9, 20] } as LengthBoundSpec);
         }
+
+        annotation { "Group Name" : "Passagens do painel traseiro", "Collapsed By Default" : false }
+        {
+            annotation { "Name" : "Espacamento horizontal dos parafusos" }
+            isLength(
+                definition.rearMountSpacingX,
+                { (millimeter) : [170, 192, 205] } as LengthBoundSpec);
+
+            annotation { "Name" : "Espacamento vertical dos parafusos" }
+            isLength(
+                definition.rearMountSpacingY,
+                { (millimeter) : [100, 117, 130] } as LengthBoundSpec);
+
+            annotation { "Name" : "Diametro dos furos traseiros" }
+            isLength(
+                definition.rearMountHoleDiameter,
+                { (millimeter) : [2.5, 3.2, 5] } as LengthBoundSpec);
+        }
     }
 
     {
@@ -378,6 +396,202 @@ export const smartMeterRearHousing = defineFeature(
                     ),
                 "targets" : housingBody,
                 "operationType" : BooleanOperationType.SUBTRACTION
+            }
+        );
+
+        // ============================================================
+        // 5 - PASSAGENS NO FUNDO PARA O PAINEL TRASEIRO
+        //
+        // O painel traseiro externo continua sendo uma peça separada,
+        // mas o fundo da carcaça recebe os mesmos recortes principais.
+        // Isso mantém a rigidez do gabinete sem deixar uma grande
+        // abertura traseira.
+        // ============================================================
+
+        var rearSketch = newSketchOnPlane(
+            context,
+            id + "rearSketch",
+            {
+                "sketchPlane" :
+                    plane(
+                        vector(
+                            0 * millimeter,
+                            0 * millimeter,
+                            D - back
+                        ),
+                        vector(0, 0, 1)
+                    )
+            }
+        );
+
+        // Bornes de tensão
+        var voltageCenterX = -55 * millimeter;
+        var voltageCenterY = -42 * millimeter;
+        var voltageWidth = 78 * millimeter;
+        var voltageHeight = 16 * millimeter;
+
+        skRectangle(
+            rearSketch,
+            "rearVoltage",
+            {
+                "firstCorner" :
+                    vector(
+                        voltageCenterX - voltageWidth / 2,
+                        voltageCenterY - voltageHeight / 2
+                    ),
+                "secondCorner" :
+                    vector(
+                        voltageCenterX + voltageWidth / 2,
+                        voltageCenterY + voltageHeight / 2
+                    )
+            }
+        );
+
+        // Quatro entradas de corrente
+        var currentY = 5 * millimeter;
+        var currentSpacing = 22 * millimeter;
+        var currentStartX =
+            -55 * millimeter - 1.5 * currentSpacing;
+        var currentR = 6 * millimeter;
+
+        skCircle(rearSketch, "rearCurrent1", {
+            "center" : vector(currentStartX, currentY),
+            "radius" : currentR
+        });
+        skCircle(rearSketch, "rearCurrent2", {
+            "center" : vector(currentStartX + currentSpacing, currentY),
+            "radius" : currentR
+        });
+        skCircle(rearSketch, "rearCurrent3", {
+            "center" : vector(currentStartX + 2 * currentSpacing, currentY),
+            "radius" : currentR
+        });
+        skCircle(rearSketch, "rearCurrent4", {
+            "center" : vector(currentStartX + 3 * currentSpacing, currentY),
+            "radius" : currentR
+        });
+
+        // Ethernet
+        var ethernetX = 62 * millimeter;
+        var ethernetY = 34 * millimeter;
+        var ethernetW = 16 * millimeter;
+        var ethernetH = 14 * millimeter;
+
+        skRectangle(
+            rearSketch,
+            "rearEthernet",
+            {
+                "firstCorner" :
+                    vector(
+                        ethernetX - ethernetW / 2,
+                        ethernetY - ethernetH / 2
+                    ),
+                "secondCorner" :
+                    vector(
+                        ethernetX + ethernetW / 2,
+                        ethernetY + ethernetH / 2
+                    )
+            }
+        );
+
+        // RS-485
+        var rsX = 62 * millimeter;
+        var rsY = 4 * millimeter;
+        var rsW = 24 * millimeter;
+        var rsH = 12 * millimeter;
+
+        skRectangle(
+            rearSketch,
+            "rearRS485",
+            {
+                "firstCorner" :
+                    vector(
+                        rsX - rsW / 2,
+                        rsY - rsH / 2
+                    ),
+                "secondCorner" :
+                    vector(
+                        rsX + rsW / 2,
+                        rsY + rsH / 2
+                    )
+            }
+        );
+
+        // USB-C
+        var usbX = 62 * millimeter;
+        var usbY = -28 * millimeter;
+        var usbW = 10 * millimeter;
+        var usbH = 4.5 * millimeter;
+
+        skRectangle(
+            rearSketch,
+            "rearUSB",
+            {
+                "firstCorner" :
+                    vector(
+                        usbX - usbW / 2,
+                        usbY - usbH / 2
+                    ),
+                "secondCorner" :
+                    vector(
+                        usbX + usbW / 2,
+                        usbY + usbH / 2
+                    )
+            }
+        );
+
+        // Furos de fixação do painel traseiro
+        var rhx = definition.rearMountSpacingX / 2;
+        var rhy = definition.rearMountSpacingY / 2;
+        var rearHoleR = definition.rearMountHoleDiameter / 2;
+
+        skCircle(rearSketch, "rearMount1", {
+            "center" : vector(-rhx, rhy),
+            "radius" : rearHoleR
+        });
+        skCircle(rearSketch, "rearMount2", {
+            "center" : vector(rhx, rhy),
+            "radius" : rearHoleR
+        });
+        skCircle(rearSketch, "rearMount3", {
+            "center" : vector(-rhx, -rhy),
+            "radius" : rearHoleR
+        });
+        skCircle(rearSketch, "rearMount4", {
+            "center" : vector(rhx, -rhy),
+            "radius" : rearHoleR
+        });
+
+        skSolve(rearSketch);
+
+        opExtrude(
+            context,
+            id + "rearCutTool",
+            {
+                "entities" :
+                    qSketchRegion(id + "rearSketch"),
+                "direction" :
+                    vector(0, 0, 1),
+                "endBound" :
+                    BoundingType.BLIND,
+                "endDepth" :
+                    back + 1 * millimeter
+            }
+        );
+
+        opBoolean(
+            context,
+            id + "cutRearPassages",
+            {
+                "tools" :
+                    qCreatedBy(
+                        id + "rearCutTool",
+                        EntityType.BODY
+                    ),
+                "targets" :
+                    housingBody,
+                "operationType" :
+                    BooleanOperationType.SUBTRACTION
             }
         );
     }
