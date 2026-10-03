@@ -13,18 +13,18 @@ import(path : "onshape/std/common.fs", version : "2892.0");
  * Parede: 3 mm
  * Fundo: 3 mm
  * Fixação frontal: 180 x 115 mm
- * Bosses: Ø10 mm x 12 mm
+ * Bosses: Ø10 mm, ligados ao fundo da carcaça
  * Alojamento para inserto M3: Ø4.6 mm x 9 mm
  *
  * Convenção:
  * Plano frontal aberto = Z0
- * Fundo da caixa = Z positivo
+ * Fundo externo = Z positivo
  */
 
 annotation {
     "Feature Type Name" : "Smart Meter - Corpo Traseiro",
     "Feature Type Description" :
-        "Gera o corpo traseiro parametrico do Smart Metering com cavidade interna e bosses para fixacao da moldura frontal."
+        "Gera o corpo traseiro parametrico do Smart Metering com cavidade interna e pilares para fixacao da moldura frontal."
 }
 export const smartMeterRearHousing = defineFeature(
     function(context is Context, id is Id, definition is map)
@@ -61,25 +61,20 @@ export const smartMeterRearHousing = defineFeature(
 
         annotation { "Group Name" : "Fixacao da moldura frontal", "Collapsed By Default" : false }
         {
-            annotation { "Name" : "Distancia horizontal entre bosses" }
+            annotation { "Name" : "Distancia horizontal entre pilares" }
             isLength(
                 definition.bossSpacingX,
                 { (millimeter) : [100, 180, 205] } as LengthBoundSpec);
 
-            annotation { "Name" : "Distancia vertical entre bosses" }
+            annotation { "Name" : "Distancia vertical entre pilares" }
             isLength(
                 definition.bossSpacingY,
                 { (millimeter) : [60, 115, 135] } as LengthBoundSpec);
 
-            annotation { "Name" : "Diametro externo dos bosses" }
+            annotation { "Name" : "Diametro externo dos pilares" }
             isLength(
                 definition.bossDiameter,
                 { (millimeter) : [7, 10, 18] } as LengthBoundSpec);
-
-            annotation { "Name" : "Altura dos bosses" }
-            isLength(
-                definition.bossHeight,
-                { (millimeter) : [6, 12, 25] } as LengthBoundSpec);
 
             annotation { "Name" : "Diametro para inserto M3" }
             isLength(
@@ -89,7 +84,7 @@ export const smartMeterRearHousing = defineFeature(
             annotation { "Name" : "Profundidade do alojamento do inserto" }
             isLength(
                 definition.insertDepth,
-                { (millimeter) : [4, 9, 15] } as LengthBoundSpec);
+                { (millimeter) : [4, 9, 20] } as LengthBoundSpec);
         }
     }
 
@@ -120,17 +115,8 @@ export const smartMeterRearHousing = defineFeature(
             outerSketch,
             "outerRectangle",
             {
-                "firstCorner" :
-                    vector(
-                        -W / 2,
-                        -H / 2
-                    ),
-
-                "secondCorner" :
-                    vector(
-                        W / 2,
-                        H / 2
-                    )
+                "firstCorner" : vector(-W / 2, -H / 2),
+                "secondCorner" : vector(W / 2, H / 2)
             }
         );
 
@@ -140,17 +126,10 @@ export const smartMeterRearHousing = defineFeature(
             context,
             id + "outerExtrude",
             {
-                "entities" :
-                    qSketchRegion(id + "outerSketch"),
-
-                "direction" :
-                    vector(0, 0, 1),
-
-                "endBound" :
-                    BoundingType.BLIND,
-
-                "endDepth" :
-                    D
+                "entities" : qSketchRegion(id + "outerSketch"),
+                "direction" : vector(0, 0, 1),
+                "endBound" : BoundingType.BLIND,
+                "endDepth" : D
             }
         );
 
@@ -162,7 +141,7 @@ export const smartMeterRearHousing = defineFeature(
 
         // ============================================================
         // 2 - CAVIDADE INTERNA
-        //    Mantém paredes laterais e fundo.
+        //    O corte parte de Z=0 e para antes do fundo.
         // ============================================================
 
         var innerWidth = W - 2 * wall;
@@ -190,7 +169,6 @@ export const smartMeterRearHousing = defineFeature(
                         -innerWidth / 2,
                         -innerHeight / 2
                     ),
-
                 "secondCorner" :
                     vector(
                         innerWidth / 2,
@@ -205,17 +183,10 @@ export const smartMeterRearHousing = defineFeature(
             context,
             id + "cavityTool",
             {
-                "entities" :
-                    qSketchRegion(id + "cavitySketch"),
-
-                "direction" :
-                    vector(0, 0, 1),
-
-                "endBound" :
-                    BoundingType.BLIND,
-
-                "endDepth" :
-                    cavityDepth
+                "entities" : qSketchRegion(id + "cavitySketch"),
+                "direction" : vector(0, 0, 1),
+                "endBound" : BoundingType.BLIND,
+                "endDepth" : cavityDepth
             }
         );
 
@@ -228,17 +199,18 @@ export const smartMeterRearHousing = defineFeature(
                         id + "cavityTool",
                         EntityType.BODY
                     ),
-
-                "targets" :
-                    housingBody,
-
-                "operationType" :
-                    BooleanOperationType.SUBTRACTION
+                "targets" : housingBody,
+                "operationType" : BooleanOperationType.SUBTRACTION
             }
         );
 
         // ============================================================
-        // 3 - BOSSES INTERNOS PARA FIXAÇÃO DA MOLDURA
+        // 3 - PILARES INTERNOS PARA FIXACAO DA MOLDURA
+        //
+        // CORRECAO:
+        // Na versão anterior os pilares tinham somente 12 mm e
+        // ficavam desconectados do restante da caixa. Agora eles
+        // atravessam toda a profundidade D, intersectando o fundo.
         // ============================================================
 
         var bossSketch = newSketchOnPlane(
@@ -299,20 +271,21 @@ export const smartMeterRearHousing = defineFeature(
             context,
             id + "bossExtrude",
             {
-                "entities" :
-                    qSketchRegion(id + "bossSketch"),
-
-                "direction" :
-                    vector(0, 0, 1),
-
-                "endBound" :
-                    BoundingType.BLIND,
-
-                "endDepth" :
-                    definition.bossHeight
+                "entities" : qSketchRegion(id + "bossSketch"),
+                "direction" : vector(0, 0, 1),
+                "endBound" : BoundingType.BLIND,
+                "endDepth" : D
             }
         );
 
+        var bossBodies =
+            qCreatedBy(
+                id + "bossExtrude",
+                EntityType.BODY
+            );
+
+        // O corpo principal entra primeiro na query para preservar
+        // sua identidade após o UNION.
         opBoolean(
             context,
             id + "joinBosses",
@@ -320,25 +293,15 @@ export const smartMeterRearHousing = defineFeature(
                 "tools" :
                     qUnion([
                         housingBody,
-                        qCreatedBy(
-                            id + "bossExtrude",
-                            EntityType.BODY
-                        )
+                        bossBodies
                     ]),
-
-                "operationType" :
-                    BooleanOperationType.UNION
+                "operationType" : BooleanOperationType.UNION
             }
         );
 
-        var combinedHousing =
-            qCreatedBy(
-                id + "joinBosses",
-                EntityType.BODY
-            );
-
         // ============================================================
         // 4 - ALOJAMENTOS PARA INSERTOS ROSCADOS M3
+        //    Abertos pelo plano frontal Z=0.
         // ============================================================
 
         var insertSketch = newSketchOnPlane(
@@ -397,17 +360,10 @@ export const smartMeterRearHousing = defineFeature(
             context,
             id + "insertTool",
             {
-                "entities" :
-                    qSketchRegion(id + "insertSketch"),
-
-                "direction" :
-                    vector(0, 0, 1),
-
-                "endBound" :
-                    BoundingType.BLIND,
-
-                "endDepth" :
-                    definition.insertDepth
+                "entities" : qSketchRegion(id + "insertSketch"),
+                "direction" : vector(0, 0, 1),
+                "endBound" : BoundingType.BLIND,
+                "endDepth" : definition.insertDepth
             }
         );
 
@@ -420,12 +376,8 @@ export const smartMeterRearHousing = defineFeature(
                         id + "insertTool",
                         EntityType.BODY
                     ),
-
-                "targets" :
-                    combinedHousing,
-
-                "operationType" :
-                    BooleanOperationType.SUBTRACTION
+                "targets" : housingBody,
+                "operationType" : BooleanOperationType.SUBTRACTION
             }
         );
     }
