@@ -8,24 +8,18 @@ import(path : "onshape/std/common.fs", version : "2892.0");
  * Compatível com:
  * cad/SmartMeter_RearHousing.fs
  *
- * Objetivo:
- * - Bandeja removível para as PCBs internas
- * - Separação física entre metrologia/potência e HMI/comunicação
- * - Oito standoffs para duas placas
- * - Passagens de cabos na base
- *
- * Dimensões padrão:
- * Bandeja: 202 x 127 x 3 mm
- * Divisória: 3 mm de espessura x 25 mm de altura
- * Zona de metrologia: 90 mm de largura
- * Standoffs: Ø10 mm x 8 mm acima da bandeja
- * Furos dos standoffs: Ø3.2 mm
+ * Versão revisada:
+ * - Base da bandeja
+ * - Divisória entre metrologia/potência e HMI/comunicação
+ * - 8 standoffs para duas PCBs
+ * - 2 passagens de cabos
+ * - Furos Ø3,2 mm nos standoffs
  */
 
 annotation {
     "Feature Type Name" : "Smart Meter - Bandeja Interna",
     "Feature Type Description" :
-        "Gera a bandeja interna do Smart Metering com divisoria de seguranca, standoffs para duas PCBs e passagens de cabos."
+        "Gera a bandeja interna do Smart Metering com divisoria, standoffs e passagens de cabos."
 }
 export const smartMeterInternalTray = defineFeature(
     function(context is Context, id is Id, definition is map)
@@ -125,12 +119,11 @@ export const smartMeterInternalTray = defineFeature(
         var H = definition.trayHeight;
         var T = definition.trayThickness;
 
-        var dividerX = -W / 2 + definition.metrologyZoneWidth;
-        var dividerTotalHeight = T + definition.dividerHeight;
-        var standoffTotalHeight = T + definition.standoffHeight;
+        var dividerX =
+            -W / 2 + definition.metrologyZoneWidth;
 
         // ============================================================
-        // 1 - BASE DA BANDEJA
+        // 1 - BASE
         // ============================================================
 
         var baseSketch = newSketchOnPlane(
@@ -174,10 +167,9 @@ export const smartMeterInternalTray = defineFeature(
             );
 
         // ============================================================
-        // 2 - DIVISORIA ENTRE METROLOGIA E HMI/COMUNICACAO
+        // 2 - DIVISORIA
         //
-        // A divisória começa em Z=0 para intersectar a base,
-        // garantindo uma união booleana robusta.
+        // Começa em Z=0 e atravessa a espessura da base.
         // ============================================================
 
         var dividerSketch = newSketchOnPlane(
@@ -218,7 +210,8 @@ export const smartMeterInternalTray = defineFeature(
                 "entities" : qSketchRegion(id + "dividerSketch"),
                 "direction" : vector(0, 0, 1),
                 "endBound" : BoundingType.BLIND,
-                "endDepth" : dividerTotalHeight
+                "endDepth" :
+                    T + definition.dividerHeight
             }
         );
 
@@ -228,8 +221,24 @@ export const smartMeterInternalTray = defineFeature(
                 EntityType.BODY
             );
 
+        opBoolean(
+            context,
+            id + "joinDivider",
+            {
+                "tools" :
+                    qUnion([
+                        baseBody,
+                        dividerBody
+                    ]),
+                "operationType" :
+                    BooleanOperationType.UNION
+            }
+        );
+
         // ============================================================
-        // 3 - STANDOFFS DAS DUAS PCBs
+        // 3 - STANDOFFS
+        //
+        // Todos começam em Z=0 para intersectar a bandeja.
         // ============================================================
 
         var leftZoneCenterX =
@@ -238,13 +247,18 @@ export const smartMeterInternalTray = defineFeature(
         var rightZoneCenterX =
             dividerX + (W / 2 - dividerX) / 2;
 
-        var leftDx = definition.metrologyHoleSpacingX / 2;
-        var leftDy = definition.metrologyHoleSpacingY / 2;
+        var leftDx =
+            definition.metrologyHoleSpacingX / 2;
+        var leftDy =
+            definition.metrologyHoleSpacingY / 2;
 
-        var rightDx = definition.commHoleSpacingX / 2;
-        var rightDy = definition.commHoleSpacingY / 2;
+        var rightDx =
+            definition.commHoleSpacingX / 2;
+        var rightDy =
+            definition.commHoleSpacingY / 2;
 
-        var standR = definition.standoffDiameter / 2;
+        var standR =
+            definition.standoffDiameter / 2;
 
         var standSketch = newSketchOnPlane(
             context,
@@ -258,7 +272,6 @@ export const smartMeterInternalTray = defineFeature(
             }
         );
 
-        // PCB de metrologia - lado esquerdo
         skCircle(standSketch, "m1", {
             "center" : vector(leftZoneCenterX - leftDx, leftDy),
             "radius" : standR
@@ -276,7 +289,6 @@ export const smartMeterInternalTray = defineFeature(
             "radius" : standR
         });
 
-        // PCB de comunicação/HMI - lado direito
         skCircle(standSketch, "c1", {
             "center" : vector(rightZoneCenterX - rightDx, rightDy),
             "radius" : standR
@@ -303,7 +315,8 @@ export const smartMeterInternalTray = defineFeature(
                 "entities" : qSketchRegion(id + "standSketch"),
                 "direction" : vector(0, 0, 1),
                 "endBound" : BoundingType.BLIND,
-                "endDepth" : standoffTotalHeight
+                "endDepth" :
+                    T + definition.standoffHeight
             }
         );
 
@@ -313,18 +326,13 @@ export const smartMeterInternalTray = defineFeature(
                 EntityType.BODY
             );
 
-        // ============================================================
-        // 4 - UNE BASE + DIVISORIA + STANDOFFS
-        // ============================================================
-
         opBoolean(
             context,
-            id + "joinStructure",
+            id + "joinStandoffs",
             {
                 "tools" :
                     qUnion([
                         baseBody,
-                        dividerBody,
                         standBodies
                     ]),
                 "operationType" :
@@ -332,16 +340,10 @@ export const smartMeterInternalTray = defineFeature(
             }
         );
 
-        var trayBody =
-            qCreatedBy(
-                id + "joinStructure",
-                EntityType.BODY
-            );
-
         // ============================================================
-        // 5 - PASSAGENS DE CABOS NA BASE
+        // 4 - PASSAGENS DE CABOS
         //
-        // Duas aberturas próximas à divisória, uma de cada lado.
+        // O corte tem profundidade exatamente igual à base.
         // ============================================================
 
         var cableSketch = newSketchOnPlane(
@@ -356,7 +358,8 @@ export const smartMeterInternalTray = defineFeature(
             }
         );
 
-        var slotOffset = definition.cableSlotWidth * 1.5;
+        var slotOffset =
+            definition.cableSlotWidth * 1.5;
 
         var leftSlotCenterX =
             dividerX
@@ -368,8 +371,11 @@ export const smartMeterInternalTray = defineFeature(
             + definition.dividerThickness / 2
             + slotOffset;
 
-        var slotHalfW = definition.cableSlotWidth / 2;
-        var slotHalfL = definition.cableSlotLength / 2;
+        var slotHalfW =
+            definition.cableSlotWidth / 2;
+
+        var slotHalfL =
+            definition.cableSlotLength / 2;
 
         skRectangle(
             cableSketch,
@@ -411,10 +417,14 @@ export const smartMeterInternalTray = defineFeature(
             context,
             id + "cableTool",
             {
-                "entities" : qSketchRegion(id + "cableSketch"),
-                "direction" : vector(0, 0, 1),
-                "endBound" : BoundingType.THROUGH_ALL,
-                "startBound" : BoundingType.THROUGH_ALL
+                "entities" :
+                    qSketchRegion(id + "cableSketch"),
+                "direction" :
+                    vector(0, 0, 1),
+                "endBound" :
+                    BoundingType.BLIND,
+                "endDepth" :
+                    T
             }
         );
 
@@ -427,16 +437,17 @@ export const smartMeterInternalTray = defineFeature(
                         id + "cableTool",
                         EntityType.BODY
                     ),
-                "targets" : trayBody,
+                "targets" :
+                    baseBody,
                 "operationType" :
                     BooleanOperationType.SUBTRACTION
             }
         );
 
         // ============================================================
-        // 6 - FUROS DOS STANDOFFS
+        // 5 - FUROS DOS STANDOFFS
         //
-        // Começam no topo da bandeja para não perfurar a base.
+        // Começam no topo da base, preservando a bandeja.
         // ============================================================
 
         var holeSketch = newSketchOnPlane(
@@ -519,7 +530,7 @@ export const smartMeterInternalTray = defineFeature(
                         EntityType.BODY
                     ),
                 "targets" :
-                    trayBody,
+                    baseBody,
                 "operationType" :
                     BooleanOperationType.SUBTRACTION
             }
