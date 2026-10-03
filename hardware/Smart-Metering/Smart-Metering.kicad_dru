@@ -1,0 +1,32 @@
+(version 1)
+
+# Regras de isolação da placa de metrologia (rev. 0.1).
+# Valores iniciais: conferir na IEC 61010-1 para CAT III 300 V, grau de poluição 2.
+
+(rule "Barreira reforcada - clearance"
+   (constraint clearance (min 6.0mm))
+   (condition "(A.hasNetclass('HOT') || A.hasNetclass('MAINS') || A.hasNetclass('DIVIDER')) && (B.hasNetclass('Default') || B.hasNetclass('POWER') || B.hasNetclass('ISO485'))"))
+
+(rule "Barreira reforcada - creepage"
+   (constraint creepage (min 6.4mm))
+   (condition "(A.hasNetclass('HOT') || A.hasNetclass('MAINS') || A.hasNetclass('DIVIDER')) && (B.hasNetclass('Default') || B.hasNetclass('POWER') || B.hasNetclass('ISO485'))"))
+
+(rule "Rede entre fases e neutro - clearance"
+   (constraint clearance (min 3.0mm))
+   (condition "A.hasNetclass('MAINS') && (B.hasNetclass('MAINS') || B.hasNetclass('HOT')) && A.NetName != B.NetName"))
+
+(rule "Rede entre fases e neutro - creepage"
+   (constraint creepage (min 4.0mm))
+   (condition "A.hasNetclass('MAINS') && (B.hasNetclass('MAINS') || B.hasNetclass('HOT')) && A.NetName != B.NetName"))
+
+(rule "RS-485 isolada - clearance"
+   (constraint clearance (min 3.0mm))
+   (condition "A.hasNetclass('ISO485') && (B.hasNetclass('Default') || B.hasNetclass('POWER'))"))
+
+(rule "Trilhas de potencia"
+   (constraint track_width (min 0.6mm))
+   (condition "A.hasNetclass('POWER')"))
+
+(rule "Trilhas da rede"
+   (constraint track_width (min 0.5mm))
+   (condition "A.hasNetclass('MAINS')"))
