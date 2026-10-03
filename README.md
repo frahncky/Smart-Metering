@@ -90,11 +90,12 @@ Concluído:
 - símbolos próprios corrigidos para a convenção de coordenadas do KiCad (eixo Y para cima), com todos os pinos ligados aos nets previstos;
 - folha `02_Voltage_Sensing`: 3 fases com fusível + varistor, divisor 1/1001 (5 × 200 kΩ + 1 kΩ) e anti-aliasing de 7,2 kHz; VxN com impedância casada;
 - folha `03_Current_Sensing`: 4 entradas de corrente (IA/IB/IC/IN) configuráveis por montagem para TC de 333 mV (padrão), bobina Rogowski ou SCT-013 com saída de 1 V (protótipo), com TVS, anti-aliasing de 7,2 kHz e pino de identificação do sensor;
+- folha `06_Isolation`: barreira reforçada logo após o ADE9430 — SPI e sinais IRQ/DREADY/ZX/CF/RESET por isoladores ISO774x, ADC MCP3204 para identificação dos sensores e alimentação isolada (DC/DC reforçado + LDO → `+3V3_ADE`);
 - FeatureScripts Onshape do gabinete em `cad/`.
 
-Próxima etapa: `09_Power_Supplies` (alimentação +3V3_ADE referenciada ao neutro) e `01_Power_Input`.
+Próxima etapa: `09_Power_Supplies` (fonte de faixa larga + bateria gerando `+5V`/`+3V3` do domínio seguro) e `05_Metrology_MCU`.
 
-Pendências dos front-ends: escolher os sensores de corrente definitivos (333 mV e Rogowski) e o conector circular das entradas, definir a leitura dos pinos de identificação (SID_x) no domínio metrológico, o fusível de tensão e o varistor, e definir os footprints desses componentes.
+Pendências dos front-ends: escolher os sensores de corrente definitivos (333 mV e Rogowski) e o conector circular das entradas, o fusível de tensão e o varistor, escolher o DC/DC isolado (PS601) e definir os footprints desses componentes; conferir nos datasheets os pinouts desenhados de memória (ISO774x, MCP3204, TPS7A20).
 
 ## Referências principais
 

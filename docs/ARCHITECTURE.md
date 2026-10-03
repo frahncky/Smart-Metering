@@ -79,16 +79,18 @@ Critérios para escolha:
 
 ## 4. Isolação
 
-A interface entre o domínio de medição e o domínio acessível ao usuário deverá ser galvanicamente isolada quando a topologia elétrica exigir.
+A barreira de isolação reforçada fica **logo após o ADE9430** (folha `06_Isolation`).
 
-Serão avaliados:
+- **Domínio metrológico** (potencial da rede, GND = neutro): entradas de tensão e corrente, ADE9430, ADC de identificação dos sensores.
+- **Domínio seguro** (`GND_SYS`): MCU de metrologia, ESP32-P4, display, USB-C, Ethernet, RS-485, microSD.
 
-- isolador digital;
-- fonte DC/DC isolada;
-- distância de escoamento e isolação;
-- classes de sobretensão e segurança aplicáveis.
+Elementos da barreira:
 
-A definição final depende do circuito de entrada e da estratégia de alimentação.
+- isoladores digitais reforçados (família ISO774x, 5 kVrms) para SPI, IRQ0/IRQ1, DREADY, ZX, CF1/CF2 e RESET;
+- DC/DC isolado reforçado (≥ 4 kVAC, tensão de trabalho ≥ 300 VAC) + LDO gerando `+3V3_ADE`;
+- distância de escoamento ≥ 8 mm sob a barreira, a confirmar pela IEC 61010-1 para CAT III 300 V.
+
+Com isso o MCU pode ser gravado e depurado sem isolação de bancada, e todas as interfaces acessíveis ao usuário ficam no domínio seguro.
 
 ## 5. HMI
 
