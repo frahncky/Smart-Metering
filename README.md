@@ -88,9 +88,13 @@ Concluído:
 
 - folha `04_ADE9430` com ADE9430, desacoplamento, cristal de 24,576 MHz e rede de reset;
 - símbolos próprios corrigidos para a convenção de coordenadas do KiCad (eixo Y para cima), com todos os pinos ligados aos nets previstos;
+- folha `02_Voltage_Sensing`: 3 fases com fusível + varistor, divisor 1/1001 (5 × 200 kΩ + 1 kΩ) e anti-aliasing de 7,2 kHz; VxN com impedância casada;
+- folha `03_Current_Sensing`: 4 entradas de TC (IA/IB/IC/IN) com burden 2 × 10 Ω em center-tap, TVS e anti-aliasing de 7,2 kHz (TC de referência 2500:1, fundo de escala ≈ 88 Arms);
 - FeatureScripts Onshape do gabinete em `cad/`.
 
-Próxima etapa: implementar os front-ends de tensão (`02_Voltage_Sensing`) e corrente (`03_Current_Sensing`); em seguida `09_Power_Supplies`.
+Próxima etapa: `09_Power_Supplies` (alimentação +3V3_ADE referenciada ao neutro) e `01_Power_Input`.
+
+Pendências dos front-ends: escolher o TC definitivo (relação e corrente de fundo de escala, que definem o burden), o fusível de tensão e o varistor, e definir os footprints desses componentes.
 
 ## Referências principais
 
