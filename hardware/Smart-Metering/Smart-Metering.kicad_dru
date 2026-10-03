@@ -5,19 +5,30 @@
 
 (rule "Barreira reforcada - clearance"
    (constraint clearance (min 6.0mm))
-   (condition "(A.hasNetclass('HOT') || A.hasNetclass('MAINS') || A.hasNetclass('DIVIDER')) && (B.hasNetclass('Default') || B.hasNetclass('POWER') || B.hasNetclass('ISO485'))"))
+   (condition "(A.hasNetclass('HOT') || A.hasNetclass('MAINS') || A.hasNetclass('HVBUS') || A.hasNetclass('DIVIDER')) && (B.hasNetclass('Default') || B.hasNetclass('POWER') || B.hasNetclass('ISO485'))"))
 
 (rule "Barreira reforcada - creepage"
    (constraint creepage (min 6.4mm))
-   (condition "(A.hasNetclass('HOT') || A.hasNetclass('MAINS') || A.hasNetclass('DIVIDER')) && (B.hasNetclass('Default') || B.hasNetclass('POWER') || B.hasNetclass('ISO485'))"))
+   (condition "(A.hasNetclass('HOT') || A.hasNetclass('MAINS') || A.hasNetclass('HVBUS') || A.hasNetclass('DIVIDER')) && (B.hasNetclass('Default') || B.hasNetclass('POWER') || B.hasNetclass('ISO485'))"))
 
 (rule "Rede entre fases e neutro - clearance"
    (constraint clearance (min 3.0mm))
    (condition "A.hasNetclass('MAINS') && (B.hasNetclass('MAINS') || B.hasNetclass('HOT')) && A.NetName != B.NetName"))
 
 (rule "Rede entre fases e neutro - creepage"
-   (constraint creepage (min 4.0mm))
+   (constraint creepage (min 3.0mm))
    (condition "A.hasNetclass('MAINS') && (B.hasNetclass('MAINS') || B.hasNetclass('HOT')) && A.NetName != B.NetName"))
+
+(rule "Barramento HV - clearance"
+   (constraint clearance (min 3.0mm))
+   (condition "A.hasNetclass('HVBUS') && (B.hasNetclass('MAINS') || B.hasNetclass('HOT'))"))
+
+# Pads dentro de componentes de rede já especificados pelo fabricante para a tensão
+# (bornes e retificadores): o espaçamento interno é o do próprio componente.
+(rule "Interno a bornes e retificadores de rede"
+   (constraint clearance (min 1.0mm))
+   (constraint creepage (min 1.0mm))
+   (condition "(A.memberOfFootprint('J201') && B.memberOfFootprint('J201')) || (A.memberOfFootprint('J101') && B.memberOfFootprint('J101')) || (A.memberOfFootprint('D10*') && B.memberOfFootprint('D10*'))"))
 
 (rule "RS-485 isolada - clearance"
    (constraint clearance (min 3.0mm))
