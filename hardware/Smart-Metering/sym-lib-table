@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "SmartMetering")(type "KiCad")(uri "${KIPRJMOD}/SmartMetering.kicad_sym")(options "")(descr "Smart-Metering custom symbols"))
+)
