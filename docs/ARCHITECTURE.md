@@ -190,3 +190,19 @@ Previstas:
 13. firmware metrológico;
 14. HMI;
 15. calibração e ensaios.
+
+## 9. Alternativas avaliadas
+
+Em 2026-10-03 foi registrada no `main` uma arquitetura de referência alternativa. A rev. 0.1 do esquemático e do layout mantém os componentes já implementados; a tabela fica como registro para revisões futuras.
+
+| Função | Implementado (rev. 0.1) | Alternativa avaliada |
+|---|---|---|
+| MCU de metrologia | STM32F413RHT6 | MAX32650 |
+| Isolamento SPI/sinais | ISO7762 + ISO7761 | ADuM4152 |
+| Alimentação isolada do domínio metrológico | ADuM6000 + TPS7A20 | ADuM6424A |
+| RS-485 isolado | ADM2587E | ADM2867E |
+| RTC | RTC interno do STM32 com LSE e CR2032 | MAX31343 |
+| Wi-Fi/Bluetooth (placa HMI) | ESP32-C6 (placa de avaliação do ESP32-P4) | ESP32-C5 |
+| Ethernet PHY (placa HMI) | da placa de avaliação do ESP32-P4 | DP83825I |
+
+Os itens da placa HMI (Wi-Fi/Bluetooth, Ethernet, display MIPI-DSI) não afetam a placa de metrologia e podem ser adotados quando a HMI própria for projetada.

@@ -70,7 +70,7 @@ Smart-Metering/
 │       ├── Smart-Metering.kicad_pro
 │       ├── Smart-Metering.kicad_sch      # folha raiz hierárquica
 │       ├── 01_Power_Input.kicad_sch … 09_Power_Supplies.kicad_sch
-│       ├── Smart-Metering.kicad_pcb      # layout (posicionamento inicial)
+│       ├── Smart-Metering.kicad_pcb      # layout (domínio quente roteado; lado seguro em roteamento)
 │       ├── Smart-Metering.kicad_dru      # regras de isolação (clearance/creepage)
 │       ├── SmartMetering.kicad_sym       # símbolos próprios
 │       └── sym-lib-table
@@ -110,7 +110,7 @@ Revisão completa em [`docs/REVISAO_ESQUEMATICO.md`](docs/REVISAO_ESQUEMATICO.md
 - Rodar o ERC no KiCad e revisar.
 - Confirmações de compra: variante CP-40 do ADE9430, certificação reforçada do ADuM6000, encapsulamento do RAC20-05SK/277.
 - Firmware: configurar o BQ25895 por I2C (ICHG, VREG, VINDPM) e desabilitar o VBUS sensing do OTG no STM32.
-- Layout da PCB: posicionamento inicial feito (ver [`docs/LAYOUT.md`](docs/LAYOUT.md)); próximos passos: ajustes manuais e roteamento.
+- Layout da PCB (ver [`docs/LAYOUT.md`](docs/LAYOUT.md)): domínio quente roteado (rede, divisores, entradas de corrente, ADE9430, lado quente dos isoladores), com 5 ligações pendentes junto do ADE9430; lado seguro e ilha RS-485 ainda sem roteamento; falta preencher as zonas e rodar o DRC do KiCad (inclui creepage).
 
 ## Referências principais
 
