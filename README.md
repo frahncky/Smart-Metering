@@ -96,7 +96,7 @@ Todas as 9 folhas estão desenhadas e os sinais entre folhas foram conferidos (2
 | `06_Isolation` | Barreira reforçada logo após o ADE9430: ISO7762 + ISO7761, MCP3204 (ID dos sensores), DC/DC isolado + TPS7A20 → `+3V3_ADE` |
 | `07_HMI_Interface` | Conector para a placa HMI (ESP32-P4): +5V com PTC, UART, IRQ e EN |
 | `08_Communications` | RS-485/Modbus isolada (ADM2587E) e USB-C de serviço (USB FS + carga) |
-| `09_Power_Supplies` | OU de entradas 5 V, carregador Li-ion 1S com power path (BQ24074), `+3V3` (TPS63001) e `+5V` (TPS61089) |
+| `09_Power_Supplies` | OU de entradas 5 V, carregador chaveado Li-ion 1S com power path NVDC e I2C (BQ25895, entrada até 2 A), `+3V3` (TPS63001) e `+5V` (TPS61089) |
 
 A HMI (ESP32-P4 + ESP32-C6, display 7", Ethernet, Wi-Fi/BT, microSD) fica em placa separada (REQ-010). No protótipo: Espressif ESP32-P4-Function-EV-Board.
 

@@ -114,8 +114,38 @@ Antes desta revisão, já tinham sido corrigidos ao trocar símbolos desenhados 
 | P3 | Alta | Escolher o conector circular à prova de toque para J301–J304, com isolação para CAT III 300 V, e definir o footprint. |
 | P4 | Alta | Escolher PS601: DC/DC isolado reforçado com pelo menos 4 kVAC e tensão de trabalho de pelo menos 300 VAC. Definir footprint e pinout. |
 | P5 | Média | Avaliar um módulo AC/DC com faixa de entrada maior (85–305 VAC / até cerca de 430 VDC) no lugar do IRM-10-5, para suportar elevações de tensão. |
-| P6 | Média | Para uso portátil, trocar o BQ24074 por um carregador chaveado com entrada de 3 A ou mais (família BQ2589x, que também tem saída boost de 5 V e poderia substituir o TPS61089). |
+| P6 | ~~Média~~ | **Resolvida:** BQ24074 substituído pelo BQ25895 (ver seção 6). |
 | P7 | Média | Confirmar no TI WEBENCH os valores de R912 (frequência), R913 (limite de corrente), R914/C912 (compensação) e C913 do TPS61089. |
 | P8 | Média | Confirmar que a ESP32-P4-Function-EV-Board aceita 5 V pelo conector de expansão e mapear J701 nos pinos dela. |
 | P9 | Baixa | Avaliar uma EEPROM I2C de calibração (PB6/PB7 estão livres) para não depender da flash do MCU. |
 | P10 | Baixa | Rodar o ERC no KiCad e revisar os avisos restantes, como os labels globais usados numa única folha. |
+
+## 6. Alterações após a revisão
+
+### Carregador: BQ24074 → BQ25895 (resolve P6)
+
+| | Antes (BQ24074) | Depois (BQ25895) |
+|---|---|---|
+| Tipo | linear | chaveado, 1,5 MHz, power path NVDC |
+| Limite de entrada | 1,48 A | 2,0 A (R902 = 180 Ω; máximo do IRM-10-5) |
+| Carga com a tela ligada | ~0,3 A (> 8 h para 2500 mAh) | ~0,85 A (~3 h) |
+| Dissipação no CI | ~0,8 W | baixa (conversão chaveada) |
+| Configuração | resistores | registradores via I2C (MCU PB6/PB7) |
+| Telemetria | ~PGOOD, ~CHG | ~INT, STAT e ADC interno (VBUS, VBAT, VSYS, ICHG) |
+
+Detalhes:
+
+- **Detecção de carregador:** D+ e D− do BQ25895 unidos (CHG_DPDM), para ele se reconhecer ligado a um carregador dedicado (DCP) e não ficar limitado em 500 mA.
+- **Sensor de temperatura:** divisor do NTC (R901 30,1 kΩ / R903 5,23 kΩ, a partir de REGN) para um NTC de 10 kΩ. Conferir com a tabela do datasheet.
+- **Componentes externos:** L903 2,2 µH, C914 bootstrap 47 nF, REGN 4,7 µF, PMID 10 µF, SYS 2 × 10 µF, BAT 10 µF.
+- **Diodos de entrada:** D901/D902 trocados para SS54 em SMC, de 5 A, para a corrente maior.
+- **ERC:** PWR_FLAG em VSYS, porque o pino SYS do símbolo oficial é passivo.
+- **Firmware:** na inicialização, configurar por I2C:
+  - corrente de carga (sugestão: 1,0 A);
+  - tensão de fim de carga (4,20 V);
+  - VINDPM absoluto em cerca de 4,2 V, por causa da queda nos diodos de entrada.
+
+  Também ler ~INT para eventos de entrada e bateria.
+- **Folha 05:** PC2 passa a receber CHG_INT_N, e PB6/PB7 viram I2C1.
+
+Alternativa não adotada: usar o boost OTG do BQ25895 para gerar o +5V e eliminar o TPS61089. Isso exige que o MCU troque de modo quando a rede cai, o que deixa a HMI sem alimentação por alguns milissegundos.
