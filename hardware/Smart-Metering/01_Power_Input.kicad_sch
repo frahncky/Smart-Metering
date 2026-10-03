@@ -13,26 +13,6 @@
 		(comment 2 "Isolated AC/DC module PS101 -> VIN_ACDC (5 V, safe domain GND_SYS)")
 	)
 	(lib_symbols
-		(symbol "SmartMetering:ACDC_Module"
-			(pin_names (offset 1.016))
-			(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "PS" (at 0 6.35 0) (effects (font (size 1.27 1.27))))
-			(property "Value" "ACDC_Module" (at 0 -6.35 0) (effects (font (size 1.27 1.27))))
-			(property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
-			(property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
-			(property "Description" "Isolated AC/DC converter module, accepts AC or DC input (pinout TBD)" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
-			(symbol "ACDC_Module_0_1"
-				(rectangle (start -7.62 3.81) (end 7.62 -3.81) (stroke (width 0.254) (type default)) (fill (type background)))
-				(polyline (pts (xy 0 3.81) (xy 0 -3.81)) (stroke (width 0.254) (type dash)) (fill (type none)))
-			)
-			(symbol "ACDC_Module_1_1"
-				(pin power_in line (at -10.16 1.27 0) (length 2.54) (name "AC/L" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27)))))
-				(pin power_in line (at -10.16 -1.27 0) (length 2.54) (name "AC/N" (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27)))))
-				(pin power_out line (at 10.16 1.27 180) (length 2.54) (name "+V" (effects (font (size 1.27 1.27)))) (number "4" (effects (font (size 1.27 1.27)))))
-				(pin power_out line (at 10.16 -1.27 180) (length 2.54) (name "-V" (effects (font (size 1.27 1.27)))) (number "3" (effects (font (size 1.27 1.27)))))
-			)
-			(embedded_fonts no)
-		)
 		(symbol "SmartMetering:CP_Vert"
 			(pin_names (offset 1.016) (hide yes))
 			(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(duplicate_pin_numbers_are_jumpers no)
@@ -71,6 +51,308 @@
 			)
 			(embedded_fonts no)
 		)
+(symbol "Converter_ACDC:IRM-10-5"
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "U"
+			(at 0 6.35 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "IRM-10-5"
+			(at 0 -6.35 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Converter_ACDC:Converter_ACDC_MeanWell_IRM-10-xx_THT"
+			(at 0 -8.89 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://www.meanwell.com/Upload/PDF/IRM-10/IRM-10-SPEC.PDF"
+			(at 0 -10.16 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "5V, 2A, 10W, Isolated, AC-DC, 222A(IRM10)"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "Miniature Module-type Power Supply MeanWell"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_fp_filters" "Converter*ACDC*MeanWell*IRM*10*THT*"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "IRM-10-5_0_1"
+			(rectangle
+				(start -7.62 5.08)
+				(end 7.62 -5.08)
+				(stroke
+					(width 0.254)
+					(type default)
+				)
+				(fill
+					(type background)
+				)
+			)
+			(polyline
+				(pts
+					(xy -5.334 -0.635) (xy -2.794 -0.635)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(arc
+				(start -4.064 0.635)
+				(mid -4.699 0.2495)
+				(end -5.334 0.635)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(arc
+				(start -4.064 0.635)
+				(mid -3.429 1.0072)
+				(end -2.794 0.635)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0 5.08) (xy 0 3.81)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0 2.54) (xy 0 1.27)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0 0) (xy 0 -1.27)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 0 -2.54) (xy 0 -3.81)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 2.794 0.635) (xy 3.302 0.635)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 2.794 -0.635) (xy 5.334 -0.635)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 3.81 0.635) (xy 4.318 0.635)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+			(polyline
+				(pts
+					(xy 4.826 0.635) (xy 5.334 0.635)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(symbol "IRM-10-5_1_1"
+			(pin power_in line
+				(at -10.16 -2.54 0)
+				(length 2.54)
+				(name "AC/N"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin power_in line
+				(at -10.16 2.54 0)
+				(length 2.54)
+				(name "AC/L"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "2"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin power_out line
+				(at 10.16 -2.54 180)
+				(length 2.54)
+				(name "-Vo"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "3"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+			(pin power_out line
+				(at 10.16 2.54 180)
+				(length 2.54)
+				(name "+Vo"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "4"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
 		(symbol "SmartMetering:D_Rect"
 			(pin_names (offset 1.016) (hide yes))
 			(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(duplicate_pin_numbers_are_jumpers no)
@@ -178,13 +460,128 @@
 			)
 			(embedded_fonts no)
 		)
+(symbol "power:PWR_FLAG"
+		(power global)
+		(pin_numbers
+			(hide yes)
+		)
+		(pin_names
+			(offset 0)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "#FLG"
+			(at 0 1.905 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 0 3.81 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "flag power"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "PWR_FLAG_0_0"
+			(pin power_out line
+				(at 0 0 90)
+				(length 0)
+				(name ""
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(symbol "PWR_FLAG_0_1"
+			(polyline
+				(pts
+					(xy 0 0) (xy 0 1.27) (xy -1.016 1.905) (xy 0 2.54) (xy 1.016 1.905) (xy 0 1.27)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(embedded_fonts no)
+	)
 	)
 	(text "ENTRADA DE ENERGIA DO INSTRUMENTO\n\nModo padrão (pelas fases medidas): F101-F103 + D101-D103 + JP101 montados; F104/D104/JP102 não montados.\n  O instrumento continua alimentado enquanto houver qualquer fase presente (OU de diodos, retorno no NEUTRO).\n  Barramento HV ≈ 311 VDC com 220 V fase-neutro.\nModo auxiliar (J101, 100-240 VAC): F104 + D104 + JP102 montados; F101-F103 e JP101 não montados.\n  Use em rede 3 fios sem neutro, ou quando a alimentação não puder vir do circuito medido.\nNUNCA montar os dois conjuntos ao mesmo tempo (os retornos ficariam em paralelo)."
 		(exclude_from_sim no)(at 25.4 15.24 0)
 		(effects (font (size 1.27 1.27)) (justify left top))
 		(uuid "418da68d-f3a1-5b65-bdf3-f2929bc6b305")
 	)
-	(text "PS101: módulo AC/DC isolado (reforçado), 5 V / 2 A, aceita entrada CC 120-370 V.\nEle é a barreira de isolação entre a rede e o domínio seguro (GND_SYS).\nConfirmar isolação e categoria de sobretensão do módulo para CAT III 300 V;\na proteção de surto vem dos varistores (folha 02 e RV101) e de R101 (fusível, limita inrush).\nR101 e C101: limitam a corrente de partida e filtram o ripple do retificador de meia onda.\n\nPotência: 10 W cobre o sistema (~4,5 W) + carga da bateria (~3,8 W).\nPinout de PS101 a conferir no datasheet do módulo escolhido.\n\nLAYOUT: todo este bloco está no potencial da rede. Manter distâncias de isolação\nentre o barramento HV, os retornos e o lado de saída (GND_SYS) do PS101."
+	(text "PS101: módulo AC/DC isolado (reforçado), 5 V / 2 A, aceita entrada CC 120-370 V.\nEle é a barreira de isolação entre a rede e o domínio seguro (GND_SYS).\nConfirmar isolação e categoria de sobretensão do módulo para CAT III 300 V;\na proteção de surto vem dos varistores (folha 02 e RV101) e de R101 (fusível, limita inrush).\nR101 e C101: limitam a corrente de partida e filtram o ripple do retificador de meia onda.\n\nPotência: 10 W cobre o sistema (~4,5 W) + carga da bateria (~3,8 W).\nPS101 usa o símbolo e o footprint oficiais do IRM-10-5 (biblioteca KiCad).\nHV_RTN: levar em trilha própria até o borne do neutro, sem passar pelo plano GND\nmetrológico, para o ruído do conversor não chegar ao ADE9430.\n\nLAYOUT: todo este bloco está no potencial da rede. Manter distâncias de isolação\nentre o barramento HV, os retornos e o lado de saída (GND_SYS) do PS101."
 		(exclude_from_sim no)(at 200.66 88.9 0)
 		(effects (font (size 1.27 1.27)) (justify left top))
 		(uuid "549fc29a-874b-5e5e-89b2-d5c77a646dc9")
@@ -249,11 +646,11 @@
 		(stroke (width 0) (type default))
 		(uuid "b49c84e5-7211-5523-9afd-eb783bbb0500")
 	)
-	(wire (pts (xy 149.86 104.14) (xy 152.4 104.14))
+	(wire (pts (xy 149.86 106.68) (xy 152.4 106.68))
 		(stroke (width 0) (type default))
 		(uuid "6c8ac149-ab03-5f72-8bf8-efaf5177990a")
 	)
-	(wire (pts (xy 152.4 104.14) (xy 152.4 111.76))
+	(wire (pts (xy 152.4 106.68) (xy 152.4 111.76))
 		(stroke (width 0) (type default))
 		(uuid "b6f512bb-0662-54df-9c9a-f8429493a913")
 	)
@@ -306,76 +703,88 @@
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "0468be2d-4534-5e6e-b8ea-5585bd2568df")
 	)
-	(label "HV_RTN" (at 129.54 104.14 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
+	(label "HV_DC" (at 114.3 101.6 90)
+		(effects (font (size 1.27 1.27)) (justify left bottom))
 		(uuid "16f98709-0fb6-566a-a7b0-33b2ac9d79ef")
+	)
+	(label "HV_DC" (at 121.92 88.9 270)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "c6c2e1ab-8993-576e-85cf-bcae35ec50d9")
+	)
+	(label "HV_RTN" (at 121.92 127 270)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "76d4dbbb-35da-5ec1-849d-f3c8c144f6ca")
+	)
+	(label "HV_RTN" (at 129.54 106.68 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "995c3532-a3b5-5b5b-bbf6-98e04ff9f801")
 	)
 	(global_label "GND_SYS" (shape bidirectional) (at 152.4 111.76 270)
 		(effects (font (size 1.27 1.27)) (justify right))
-		(uuid "c6c2e1ab-8993-576e-85cf-bcae35ec50d9")
+		(uuid "c610ef56-8aa4-5e12-a60c-c9782cf756ba")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}" (at 152.4 111.76 0) (hide yes) (effects (font (size 1.27 1.27))))
 	)
 	(global_label "GND_SYS" (shape bidirectional) (at 160.02 106.68 270)
 		(effects (font (size 1.27 1.27)) (justify right))
-		(uuid "76d4dbbb-35da-5ec1-849d-f3c8c144f6ca")
+		(uuid "6182107d-8134-5468-8ba3-6b2f42ba3508")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}" (at 160.02 106.68 0) (hide yes) (effects (font (size 1.27 1.27))))
 	)
 	(global_label "GND_SYS" (shape bidirectional) (at 170.18 106.68 270)
 		(effects (font (size 1.27 1.27)) (justify right))
-		(uuid "995c3532-a3b5-5b5b-bbf6-98e04ff9f801")
+		(uuid "b7a152b3-d700-58c6-abc1-351eb43eec31")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}" (at 170.18 106.68 0) (hide yes) (effects (font (size 1.27 1.27))))
 	)
 	(global_label "VIN_ACDC" (shape bidirectional) (at 180.34 101.6 0)
 		(effects (font (size 1.27 1.27)) (justify left))
-		(uuid "c610ef56-8aa4-5e12-a60c-c9782cf756ba")
+		(uuid "bf83ba6b-0ad7-5be8-a8f2-ec273bbe3a36")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}" (at 180.34 101.6 0) (hide yes) (effects (font (size 1.27 1.27))))
 	)
 	(label "L_AUX" (at 30.48 125.73 0)
 		(effects (font (size 1.27 1.27)) (justify left bottom))
-		(uuid "6182107d-8134-5468-8ba3-6b2f42ba3508")
+		(uuid "00bae37d-3912-508d-a603-048265d83698")
 	)
 	(label "N_AUX" (at 30.48 128.27 0)
 		(effects (font (size 1.27 1.27)) (justify left bottom))
-		(uuid "b7a152b3-d700-58c6-abc1-351eb43eec31")
+		(uuid "8fee3d88-44dc-5b04-9b61-2c498a91765c")
 	)
 	(label "L_AUX" (at 50.8 123.19 90)
 		(effects (font (size 1.27 1.27)) (justify left bottom))
-		(uuid "bf83ba6b-0ad7-5be8-a8f2-ec273bbe3a36")
+		(uuid "3071a741-259b-52fd-a3c9-63de05760520")
 	)
 	(label "N_AUX" (at 50.8 130.81 270)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "00bae37d-3912-508d-a603-048265d83698")
+		(uuid "3db1d933-c910-507c-a46c-0650b62f06b1")
 	)
 	(global_label "NEUTRAL" (shape bidirectional) (at 72.39 127 180)
 		(effects (font (size 1.27 1.27)) (justify right))
-		(uuid "8fee3d88-44dc-5b04-9b61-2c498a91765c")
+		(uuid "707cb67a-56c4-5be3-815c-b6a1fc01a526")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}" (at 72.39 127 0) (hide yes) (effects (font (size 1.27 1.27))))
 	)
 	(label "HV_RTN" (at 80.01 127 0)
 		(effects (font (size 1.27 1.27)) (justify left bottom))
-		(uuid "3071a741-259b-52fd-a3c9-63de05760520")
+		(uuid "08bb3263-1e7a-5361-bfe3-f64ce3ec4da0")
 	)
 	(label "N_AUX" (at 72.39 139.7 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "3db1d933-c910-507c-a46c-0650b62f06b1")
+		(uuid "fd99c2b2-8989-5cbc-bc1f-4c0e59ee6889")
 	)
 	(label "HV_RTN" (at 80.01 139.7 0)
 		(effects (font (size 1.27 1.27)) (justify left bottom))
-		(uuid "707cb67a-56c4-5be3-815c-b6a1fc01a526")
+		(uuid "0f4b533e-8ff5-57ce-ac87-bab787ac77f3")
 	)
 	(symbol
 		(lib_id "SmartMetering:Fuse")
 		(at 63.5 50.8 0)
 		(unit 1)(body_style 1)
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
-		(uuid "7f8fa182-fda8-5bf1-a800-67eb7387378e")
+		(uuid "908c33ec-cb90-5670-960c-7d826668cc9a")
 		(property "Reference" "F101" (at 63.5 48.26 0) (effects (font (size 1.27 1.27))))
 		(property "Value" "T250mA 500VAC" (at 63.5 53.34 0) (effects (font (size 1.27 1.27))))
-		(property "Footprint" "" (at 63.5 50.8 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Footprint" "Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal" (at 63.5 50.8 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 63.5 50.8 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "Supply tap fuse, phase A, time-lag, >=500 VAC" (at 63.5 50.8 0) (effects (font (size 1.27 1.27)) (hide yes)))
-		(pin "1" (uuid "bef55775-3a14-566d-a3d9-264f2e31601a"))
-		(pin "2" (uuid "3ce1e505-9039-54e8-b95c-ceab57242f90"))
+		(pin "1" (uuid "fb1e2ec3-e8cf-5fd8-933d-83f1df15d75b"))
+		(pin "2" (uuid "33c1cb06-5a5b-5cf9-b1d5-989686b490fb"))
 		(instances
 			(project "Smart-Metering"
 				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1001-0001-4e01-9001-000000000001" (reference "F101") (unit 1))
@@ -387,14 +796,14 @@
 		(at 76.2 50.8 0)
 		(unit 1)(body_style 1)
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
-		(uuid "b4cc805c-e265-5b9f-959b-d3a6d28237ee")
+		(uuid "d72e1d2e-1048-558f-8e60-3a51e41bba58")
 		(property "Reference" "D101" (at 78.74 49.53 0) (effects (font (size 1.27 1.27)) (justify left)))
 		(property "Value" "S1M" (at 78.74 52.07 0) (effects (font (size 1.27 1.27)) (justify left)))
 		(property "Footprint" "Diode_SMD:D_SMA" (at 76.2 50.8 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 76.2 50.8 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "1000 V rectifier, OR into the HV bus" (at 76.2 50.8 0) (effects (font (size 1.27 1.27)) (hide yes)))
-		(pin "1" (uuid "3c7ed6aa-1d32-5d28-a861-b87ce635f3a5"))
-		(pin "2" (uuid "1938d033-3892-59a4-a877-2b5f425d6309"))
+		(pin "1" (uuid "62aeb3a0-1ad0-504a-9c1d-4e14a0cd68be"))
+		(pin "2" (uuid "c38425f0-723d-5867-8417-9bf1beca21c5"))
 		(instances
 			(project "Smart-Metering"
 				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1001-0001-4e01-9001-000000000001" (reference "D101") (unit 1))
@@ -406,14 +815,14 @@
 		(at 63.5 63.5 0)
 		(unit 1)(body_style 1)
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
-		(uuid "2e44532b-d704-56d8-9a86-436a2c6b3789")
+		(uuid "dd8bf6bc-5e87-5e1d-b885-b1a1b5a84452")
 		(property "Reference" "F102" (at 63.5 60.96 0) (effects (font (size 1.27 1.27))))
 		(property "Value" "T250mA 500VAC" (at 63.5 66.04 0) (effects (font (size 1.27 1.27))))
-		(property "Footprint" "" (at 63.5 63.5 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Footprint" "Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal" (at 63.5 63.5 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 63.5 63.5 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "Supply tap fuse, phase B, time-lag, >=500 VAC" (at 63.5 63.5 0) (effects (font (size 1.27 1.27)) (hide yes)))
-		(pin "1" (uuid "eaabfd33-0b9d-5e5e-acc3-f17867137c5a"))
-		(pin "2" (uuid "4f0ccc75-6262-5c17-86d5-9776b00d5555"))
+		(pin "1" (uuid "5743ddc4-bb27-5325-af86-1681feeb7807"))
+		(pin "2" (uuid "3d73e1ff-f975-5863-aa5b-c234c74276cb"))
 		(instances
 			(project "Smart-Metering"
 				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1001-0001-4e01-9001-000000000001" (reference "F102") (unit 1))
@@ -425,14 +834,14 @@
 		(at 76.2 63.5 0)
 		(unit 1)(body_style 1)
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
-		(uuid "80aa5acc-586c-57c1-afab-8084171e9fbd")
+		(uuid "57b1e5b5-3fff-514b-8d0e-8c2262d40240")
 		(property "Reference" "D102" (at 78.74 62.23 0) (effects (font (size 1.27 1.27)) (justify left)))
 		(property "Value" "S1M" (at 78.74 64.77 0) (effects (font (size 1.27 1.27)) (justify left)))
 		(property "Footprint" "Diode_SMD:D_SMA" (at 76.2 63.5 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 76.2 63.5 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "1000 V rectifier, OR into the HV bus" (at 76.2 63.5 0) (effects (font (size 1.27 1.27)) (hide yes)))
-		(pin "1" (uuid "5b068026-69fd-5411-9399-9dd6ee4ca7c7"))
-		(pin "2" (uuid "50930fce-ebd3-5c0a-88a4-e097637aa675"))
+		(pin "1" (uuid "f6c40e2f-ba71-582b-9f24-8b52eb8ba3c4"))
+		(pin "2" (uuid "197f2ec1-5feb-5930-b206-cb0a0fb160ba"))
 		(instances
 			(project "Smart-Metering"
 				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1001-0001-4e01-9001-000000000001" (reference "D102") (unit 1))
@@ -444,14 +853,14 @@
 		(at 63.5 76.2 0)
 		(unit 1)(body_style 1)
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
-		(uuid "150c2177-b72a-5159-94cd-b02fcc9db89a")
+		(uuid "377c16a2-7364-5da4-a53a-19bfab700f58")
 		(property "Reference" "F103" (at 63.5 73.66 0) (effects (font (size 1.27 1.27))))
 		(property "Value" "T250mA 500VAC" (at 63.5 78.74 0) (effects (font (size 1.27 1.27))))
-		(property "Footprint" "" (at 63.5 76.2 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Footprint" "Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal" (at 63.5 76.2 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 63.5 76.2 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "Supply tap fuse, phase C, time-lag, >=500 VAC" (at 63.5 76.2 0) (effects (font (size 1.27 1.27)) (hide yes)))
-		(pin "1" (uuid "1fd78952-eb9b-5429-a65d-4d5322c34aad"))
-		(pin "2" (uuid "485caf22-59ab-5e4d-ab2c-bdd6d5547ace"))
+		(pin "1" (uuid "4d1c59d3-b05d-53ed-aaa8-6e29c89b04c0"))
+		(pin "2" (uuid "2badda4f-a646-512f-8cf0-7bab641ea88a"))
 		(instances
 			(project "Smart-Metering"
 				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1001-0001-4e01-9001-000000000001" (reference "F103") (unit 1))
@@ -463,14 +872,14 @@
 		(at 76.2 76.2 0)
 		(unit 1)(body_style 1)
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
-		(uuid "26e42b0f-c4a1-5891-a5c6-b1fdcb7be5b2")
+		(uuid "17bb8c9a-1623-5a7f-af32-1c7b76877bc6")
 		(property "Reference" "D103" (at 78.74 74.93 0) (effects (font (size 1.27 1.27)) (justify left)))
 		(property "Value" "S1M" (at 78.74 77.47 0) (effects (font (size 1.27 1.27)) (justify left)))
 		(property "Footprint" "Diode_SMD:D_SMA" (at 76.2 76.2 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 76.2 76.2 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "1000 V rectifier, OR into the HV bus" (at 76.2 76.2 0) (effects (font (size 1.27 1.27)) (hide yes)))
-		(pin "1" (uuid "59cc479f-5654-5a2c-bf94-bea9faab9e15"))
-		(pin "2" (uuid "162a559f-b899-5a36-9c23-2dabb4e45174"))
+		(pin "1" (uuid "03e81df8-a578-5349-9438-19ef0a4fb7d2"))
+		(pin "2" (uuid "02019ff2-50b6-584b-8640-e3f44dafe57c"))
 		(instances
 			(project "Smart-Metering"
 				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1001-0001-4e01-9001-000000000001" (reference "D103") (unit 1))
@@ -482,14 +891,14 @@
 		(at 63.5 101.6 0)
 		(unit 1)(body_style 1)
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp yes)
-		(uuid "8c0a4025-bbe4-5f88-94d6-110f30043e42")
+		(uuid "fb689c55-5c27-54be-9af3-ca0c4910afd5")
 		(property "Reference" "F104" (at 63.5 99.06 0) (effects (font (size 1.27 1.27))))
 		(property "Value" "T250mA 500VAC" (at 63.5 104.14 0) (effects (font (size 1.27 1.27))))
-		(property "Footprint" "" (at 63.5 101.6 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Footprint" "Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal" (at 63.5 101.6 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 63.5 101.6 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "Auxiliary input fuse, time-lag, >=500 VAC" (at 63.5 101.6 0) (effects (font (size 1.27 1.27)) (hide yes)))
-		(pin "1" (uuid "6cc50dbe-2e3f-5d22-b732-35543ad81ec4"))
-		(pin "2" (uuid "623a1134-a28c-53ed-8fca-ff3945e45566"))
+		(pin "1" (uuid "5dac2b98-6140-5149-9e78-dad1cf14a32c"))
+		(pin "2" (uuid "df5c4f41-2d1d-583e-ae9b-e850fada116d"))
 		(instances
 			(project "Smart-Metering"
 				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1001-0001-4e01-9001-000000000001" (reference "F104") (unit 1))
@@ -501,14 +910,14 @@
 		(at 76.2 101.6 0)
 		(unit 1)(body_style 1)
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp yes)
-		(uuid "355c5cd8-f071-518e-9461-8c35379fe86c")
+		(uuid "52348a17-0855-55ef-a05f-8d1f4310ba3e")
 		(property "Reference" "D104" (at 78.74 100.33 0) (effects (font (size 1.27 1.27)) (justify left)))
 		(property "Value" "S1M" (at 78.74 102.87 0) (effects (font (size 1.27 1.27)) (justify left)))
 		(property "Footprint" "Diode_SMD:D_SMA" (at 76.2 101.6 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 76.2 101.6 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "1000 V rectifier, OR into the HV bus" (at 76.2 101.6 0) (effects (font (size 1.27 1.27)) (hide yes)))
-		(pin "1" (uuid "53e4c98b-b755-5f51-85cf-03a49a4c6227"))
-		(pin "2" (uuid "0128b6ec-9965-53e4-a90a-ef2078781ef7"))
+		(pin "1" (uuid "ff128e38-0e73-56e1-92c1-cecef9801a24"))
+		(pin "2" (uuid "bf19739c-5b92-5f76-800c-2890ebf8234a"))
 		(instances
 			(project "Smart-Metering"
 				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1001-0001-4e01-9001-000000000001" (reference "D104") (unit 1))
@@ -520,14 +929,14 @@
 		(at 100.33 101.6 90)
 		(unit 1)(body_style 1)
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
-		(uuid "479e044f-4824-5dcf-900f-f301de1dfc89")
+		(uuid "c0f7daa9-c786-5f7f-9b88-125efc646b3b")
 		(property "Reference" "R101" (at 100.33 99.06 0) (effects (font (size 1.27 1.27))))
 		(property "Value" "22R 2W" (at 100.33 104.14 0) (effects (font (size 1.27 1.27))))
 		(property "Footprint" "Resistor_THT:R_Axial_DIN0414_L11.9mm_D4.5mm_P15.24mm_Horizontal" (at 100.33 101.6 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 100.33 101.6 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "Inrush limiter, fusible flameproof wirewound, 2 W" (at 100.33 101.6 0) (effects (font (size 1.27 1.27)) (hide yes)))
-		(pin "1" (uuid "e8f7a0dd-4d72-5984-a9cf-39b765f977d5"))
-		(pin "2" (uuid "27c53e1f-fdcc-5703-9394-c12ef78ad072"))
+		(pin "1" (uuid "cf975fa6-d4ab-5328-85fc-9c9003390580"))
+		(pin "2" (uuid "161bfe7b-3cfc-5dce-a0ee-7e34f279f3e6"))
 		(instances
 			(project "Smart-Metering"
 				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1001-0001-4e01-9001-000000000001" (reference "R101") (unit 1))
@@ -539,14 +948,14 @@
 		(at 114.3 104.14 0)
 		(unit 1)(body_style 1)
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
-		(uuid "0f8be079-cf1d-51e6-a295-3cb3011bbb86")
+		(uuid "924e1d5b-bd83-5117-b41f-cbe2e965e1f1")
 		(property "Reference" "C101" (at 111.76 104.14 0) (effects (font (size 1.27 1.27)) (justify right)))
 		(property "Value" "4.7uF 450V" (at 111.76 106.68 0) (effects (font (size 1.27 1.27)) (justify right)))
 		(property "Footprint" "Capacitor_THT:CP_Radial_D8.0mm_P3.50mm" (at 114.3 104.14 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 114.3 104.14 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "HV bus capacitor, 105 °C" (at 114.3 104.14 0) (effects (font (size 1.27 1.27)) (hide yes)))
-		(pin "1" (uuid "33dcd244-38fd-52fd-a538-63784d892d9f"))
-		(pin "2" (uuid "37de4578-8bee-5cfd-afb5-d0616c13080b"))
+		(pin "1" (uuid "2342f72e-86cc-54a0-a2a8-01d7813d125d"))
+		(pin "2" (uuid "d1d42f9d-cda4-5148-aefd-b13c44921a6d"))
 		(instances
 			(project "Smart-Metering"
 				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1001-0001-4e01-9001-000000000001" (reference "C101") (unit 1))
@@ -554,20 +963,56 @@
 		)
 	)
 	(symbol
-		(lib_id "SmartMetering:ACDC_Module")
-		(at 139.7 102.87 0)
+		(lib_id "power:PWR_FLAG")
+		(at 121.92 88.9 0)
 		(unit 1)(body_style 1)
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
-		(uuid "311501b5-6e7c-5d67-b034-a88f621a6429")
-		(property "Reference" "PS101" (at 139.7 95.25 0) (effects (font (size 1.27 1.27))))
-		(property "Value" "IRM-10-5" (at 139.7 110.49 0) (effects (font (size 1.27 1.27))))
-		(property "Footprint" "" (at 139.7 102.87 0) (effects (font (size 1.27 1.27)) (hide yes)))
-		(property "Datasheet" "" (at 139.7 102.87 0) (effects (font (size 1.27 1.27)) (hide yes)))
-		(property "Description" "AC/DC 5 V 2 A, 85-264 VAC / 120-370 VDC input, reinforced (e.g. Mean Well IRM-10-5); verify pinout" (at 139.7 102.87 0) (effects (font (size 1.27 1.27)) (hide yes)))
-		(pin "1" (uuid "e73aed89-3d18-5b90-873b-9f4262834754"))
-		(pin "2" (uuid "46d237ba-0f58-5897-a4d8-5f391d0d8327"))
-		(pin "4" (uuid "2089e7e5-9b99-5f7c-872e-3a0f96649a37"))
-		(pin "3" (uuid "852d79e2-b5f8-5e82-9541-4a2fb1c4b942"))
+		(uuid "4f07dc9a-8326-5ae8-9757-f56a02146877")
+		(property "Reference" "#FLG101" (at 121.92 85.09 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "PWR_FLAG" (at 121.92 86.36 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "" (at 121.92 88.9 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 121.92 88.9 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Description" "" (at 121.92 88.9 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "dd3214db-9db0-50d7-909e-ff59f0c81596"))
+		(instances
+			(project "Smart-Metering"
+				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1001-0001-4e01-9001-000000000001" (reference "#FLG101") (unit 1))
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 121.92 127 0)
+		(unit 1)(body_style 1)
+		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
+		(uuid "d526063b-41de-57de-bd4a-9ab6524b5eee")
+		(property "Reference" "#FLG102" (at 121.92 123.19 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "PWR_FLAG" (at 121.92 124.46 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "" (at 121.92 127 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 121.92 127 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Description" "" (at 121.92 127 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "2aec8b0a-706c-5ade-a322-448d0c65f168"))
+		(instances
+			(project "Smart-Metering"
+				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1001-0001-4e01-9001-000000000001" (reference "#FLG102") (unit 1))
+			)
+		)
+	)
+	(symbol
+		(lib_id "Converter_ACDC:IRM-10-5")
+		(at 139.7 104.14 0)
+		(unit 1)(body_style 1)
+		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
+		(uuid "5707ec6a-9bc5-5071-b6cf-5af75529c406")
+		(property "Reference" "PS101" (at 139.7 96.52 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "IRM-10-5" (at 139.7 99.06 0) (effects (font (size 1.27 1.27))))
+		(property "Footprint" "Converter_ACDC:Converter_ACDC_MeanWell_IRM-10-xx_THT" (at 139.7 104.14 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Datasheet" "" (at 139.7 104.14 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Description" "AC/DC 5 V 2 A, 85-264 VAC / 120-370 VDC input, reinforced (Mean Well IRM-10-5)" (at 139.7 104.14 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(pin "1" (uuid "2f2ffb27-812e-5bef-9f90-bdb6d97e5f1c"))
+		(pin "2" (uuid "6aa20a76-a67f-5621-bc40-cbd5c25f4ee5"))
+		(pin "3" (uuid "d9840831-cf7c-550a-891d-8ab1e7f8cf3e"))
+		(pin "4" (uuid "5452c28a-0f4c-525e-ae5e-26d8d0572ae7"))
 		(instances
 			(project "Smart-Metering"
 				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1001-0001-4e01-9001-000000000001" (reference "PS101") (unit 1))
@@ -579,14 +1024,14 @@
 		(at 160.02 104.14 0)
 		(unit 1)(body_style 1)
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
-		(uuid "450ed91c-d3f1-5fb9-90cf-7834543eb634")
+		(uuid "46b960cd-12a6-5860-8e1d-ddf272a0fd60")
 		(property "Reference" "C102" (at 162.56 106.68 0) (effects (font (size 1.27 1.27)) (justify left)))
 		(property "Value" "22uF" (at 162.56 109.22 0) (effects (font (size 1.27 1.27)) (justify left)))
 		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric" (at 160.02 104.14 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 160.02 104.14 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "AC/DC output capacitor" (at 160.02 104.14 0) (effects (font (size 1.27 1.27)) (hide yes)))
-		(pin "1" (uuid "b38c3cdc-1670-5539-94fc-51ba3674735f"))
-		(pin "2" (uuid "510f6d1f-1563-58c0-bd86-b45b573ad6eb"))
+		(pin "1" (uuid "5d6065f9-ab2c-57b9-946f-4bb2135bc0b3"))
+		(pin "2" (uuid "526aa236-4e0c-5f96-b9f1-c51469c6cc33"))
 		(instances
 			(project "Smart-Metering"
 				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1001-0001-4e01-9001-000000000001" (reference "C102") (unit 1))
@@ -598,14 +1043,14 @@
 		(at 170.18 104.14 0)
 		(unit 1)(body_style 1)
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
-		(uuid "e5d024d0-5e44-5d94-a06c-aabbd880e736")
+		(uuid "7726ece5-0081-5742-a16f-a801b8b94088")
 		(property "Reference" "C103" (at 172.72 106.68 0) (effects (font (size 1.27 1.27)) (justify left)))
 		(property "Value" "100nF" (at 172.72 109.22 0) (effects (font (size 1.27 1.27)) (justify left)))
 		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (at 170.18 104.14 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 170.18 104.14 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "AC/DC output capacitor" (at 170.18 104.14 0) (effects (font (size 1.27 1.27)) (hide yes)))
-		(pin "1" (uuid "cabe6326-8eb0-52ef-832c-58337c8b08a2"))
-		(pin "2" (uuid "afef70e6-5098-5a2a-8e96-1f2a6ebe8833"))
+		(pin "1" (uuid "c3e630b6-d4da-5219-a7e2-fbc81495e257"))
+		(pin "2" (uuid "6041fee4-b0c3-5e2e-858c-58741aee9fb4"))
 		(instances
 			(project "Smart-Metering"
 				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1001-0001-4e01-9001-000000000001" (reference "C103") (unit 1))
@@ -617,14 +1062,14 @@
 		(at 25.4 127 0)
 		(unit 1)(body_style 1)
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
-		(uuid "035b9f4f-9d94-5775-b281-5c620e3c8556")
+		(uuid "f6352d96-36e8-5fc2-b6bf-794fd2d3a8af")
 		(property "Reference" "J101" (at 25.4 123.19 0) (effects (font (size 1.27 1.27))))
 		(property "Value" "AUX L N" (at 25.4 130.81 0) (effects (font (size 1.27 1.27))))
 		(property "Footprint" "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal" (at 25.4 127 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 25.4 127 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "Auxiliary AC input: 1=L 2=N" (at 25.4 127 0) (effects (font (size 1.27 1.27)) (hide yes)))
-		(pin "1" (uuid "9d66d30f-14b5-59fe-a205-e5d09ac6405b"))
-		(pin "2" (uuid "f654cb6d-9b11-529d-a9fe-134d4bd604bc"))
+		(pin "1" (uuid "b3542d2f-424c-589d-af6e-50bfd78a9409"))
+		(pin "2" (uuid "5101a28d-8038-5d66-8f1d-8c775d5779bc"))
 		(instances
 			(project "Smart-Metering"
 				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1001-0001-4e01-9001-000000000001" (reference "J101") (unit 1))
@@ -636,14 +1081,14 @@
 		(at 50.8 127 0)
 		(unit 1)(body_style 1)
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
-		(uuid "b13d2c00-e9f3-5a7f-9179-be3fe291636d")
+		(uuid "4eb9f546-f284-54e3-9aef-df87e1612548")
 		(property "Reference" "RV101" (at 53.34 125.73 0) (effects (font (size 1.27 1.27)) (justify left)))
 		(property "Value" "320VAC 14mm" (at 53.34 128.27 0) (effects (font (size 1.27 1.27)) (justify left)))
-		(property "Footprint" "" (at 50.8 127 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Footprint" "Varistor:RV_Disc_D15.5mm_W4.5mm_P7.5mm" (at 50.8 127 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 50.8 127 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "Auxiliary input MOV (e.g. S14K320)" (at 50.8 127 0) (effects (font (size 1.27 1.27)) (hide yes)))
-		(pin "1" (uuid "88ee6e48-5168-5d2f-8ebe-fdcbcf867937"))
-		(pin "2" (uuid "adcdafb1-6551-5ff4-8f62-0511c3939340"))
+		(pin "1" (uuid "95a664fd-6678-5a4e-be62-12a280caba17"))
+		(pin "2" (uuid "6c3cd016-4996-526c-8483-28bedc585fb5"))
 		(instances
 			(project "Smart-Metering"
 				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1001-0001-4e01-9001-000000000001" (reference "RV101") (unit 1))
@@ -655,14 +1100,14 @@
 		(at 76.2 127 0)
 		(unit 1)(body_style 1)
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
-		(uuid "a0fc05c5-1a42-5047-b2a8-029c392e711d")
+		(uuid "6662949c-6215-5d68-8f51-f78c6b98be44")
 		(property "Reference" "JP101" (at 76.2 129.54 0) (effects (font (size 1.27 1.27))))
 		(property "Value" "LINK" (at 76.2 132.08 0) (effects (font (size 1.27 1.27))))
 		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" (at 76.2 127 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 76.2 127 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "FIT for supply from measured phases (return = NEUTRAL)" (at 76.2 127 0) (effects (font (size 1.27 1.27)) (hide yes)))
-		(pin "1" (uuid "b4bd9b3d-f6b5-58e0-a536-5ee1d195a732"))
-		(pin "2" (uuid "17ef79a9-442f-54d7-a62d-dd134803227d"))
+		(pin "1" (uuid "fbcf3ec7-0b93-5778-9c1f-0442d1a80160"))
+		(pin "2" (uuid "c4ada2cc-6d1f-53c1-ac73-0148735587c5"))
 		(instances
 			(project "Smart-Metering"
 				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1001-0001-4e01-9001-000000000001" (reference "JP101") (unit 1))
@@ -674,14 +1119,14 @@
 		(at 76.2 139.7 0)
 		(unit 1)(body_style 1)
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp yes)
-		(uuid "9130bbb5-56ec-538b-9b45-fe5504b4a16d")
+		(uuid "8aac4c0a-12fb-59cf-a9f9-2820742f862d")
 		(property "Reference" "JP102" (at 76.2 142.24 0) (effects (font (size 1.27 1.27))))
 		(property "Value" "LINK" (at 76.2 144.78 0) (effects (font (size 1.27 1.27))))
 		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" (at 76.2 139.7 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 76.2 139.7 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Description" "FIT for supply from auxiliary input (return = N_AUX); DNP by default" (at 76.2 139.7 0) (effects (font (size 1.27 1.27)) (hide yes)))
-		(pin "1" (uuid "baefdada-13fa-5d2f-aa53-346825a5257d"))
-		(pin "2" (uuid "29e00020-f12e-5ed6-9a33-8619c916b18c"))
+		(pin "1" (uuid "8e5d3a07-04f0-5af5-af71-d27c3e1edff5"))
+		(pin "2" (uuid "ca4c1a26-fa88-5983-b0bf-6f8dd2123c05"))
 		(instances
 			(project "Smart-Metering"
 				(path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1001-0001-4e01-9001-000000000001" (reference "JP102") (unit 1))

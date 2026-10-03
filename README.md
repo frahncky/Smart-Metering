@@ -104,6 +104,8 @@ Componentes de terceiros usam os símbolos oficiais da biblioteca KiCad 10; a bi
 
 ### Pendências antes do layout
 
+Ver a revisão completa em [`docs/REVISAO_ESQUEMATICO.md`](docs/REVISAO_ESQUEMATICO.md).
+
 - Rodar ERC no KiCad e revisar as folhas.
 - Escolher: sensores de corrente (333 mV e Rogowski) e conector circular das entradas; fusíveis e varistores; DC/DC isolado PS601 e módulo AC/DC PS101 (isolação para CAT III 300 V); bateria 1S com NTC de 10 kΩ.
 - Confirmar no TI WEBENCH os resistores de frequência, limite de corrente e compensação do TPS61089 (R912–R914, C912).
