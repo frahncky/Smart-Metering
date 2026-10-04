@@ -1,20 +1,20 @@
-# Layout da placa de metrologia — rev. 0.3 (placa roteada, com pendências)
+# Layout da placa de metrologia — rev. 0.4 (placa roteada, 10 pads a ligar à mão)
 
 ![Posicionamento inicial (rev. 0.1, antes dos ajustes para o roteamento)](img/layout_posicionamento_rev01.png)
 
 *Vermelho escuro: nets de rede. Vermelho claro: domínio metrológico (potencial da rede). Azul: domínio seguro. Verde: RS-485 isolada. Amarelo: faixas da barreira (sem cobre).*
 
-## Placa roteada (rev. 0.3)
+## Placa roteada (rev. 0.4)
 
-![Placa inteira](img/layout_roteamento_placa_rev03.png)
+![Placa inteira](img/layout_roteamento_placa_rev04.png)
 
-Domínio quente e lado seguro (com a ilha RS-485) roteados com as regras abaixo, a creepage de 8 mm na barreira e as correções da revisão do PR #1. Restam 18 pads para ligar à mão (lista no fim desta seção).
+Domínio quente e lado seguro (com a ilha RS-485) roteados com as regras abaixo, a creepage de 8 mm na barreira e as correções da revisão do PR #1. Restam 10 pads para ligar à mão (lista no fim desta seção); na rev. 0.3 eram 18.
 
 | Domínio quente | Lado seguro e ilha RS-485 |
 |---|---|
-| ![Domínio quente](img/layout_roteamento_quente_rev03.png) | ![Lado seguro](img/layout_roteamento_seguro_rev03.png) |
+| ![Domínio quente](img/layout_roteamento_quente_rev04.png) | ![Lado seguro](img/layout_roteamento_seguro_rev04.png) |
 
-No lado seguro: GND_SYS e GND_485 em In1.Cu, +3V3 em In2.Cu, trilhas de potência (POWER) de 0,6 mm, estreitadas para a largura do pad (0,2 mm) na saída dos CIs de passo fino (U901, U902, U903, J802). Os CIs de passo fino foram deslocados até 0,05 mm para os pads caírem na grade de roteamento. Alguns trechos curtos usam In2.Cu como camada de sinal quando não havia outro caminho (55 trechos na placa); o plano de In2 é preenchido em volta deles.
+No lado seguro: GND_SYS e GND_485 em In1.Cu, +3V3 em In2.Cu, trilhas de potência (POWER) de 0,6 mm, estreitadas para a largura do pad (0,2 mm) na saída dos CIs de passo fino (U901, U902, U903, J802). Os CIs de passo fino foram deslocados até 0,05 mm para os pads caírem na grade de roteamento. Alguns trechos curtos usam In2.Cu como camada de sinal quando não havia outro caminho (64 trechos na placa); o plano de In2 é preenchido em volta deles. Nas ligações feitas no reparo final há 12 vias menores (0,45/0,2 mm); as demais vias são de 0,6/0,3 mm.
 
 ### Rev. 0.2 (só o domínio quente)
 
@@ -52,26 +52,25 @@ Verificação geométrica própria da placa inteira (trilha/via contra todo cobr
 
 ### Pendências do roteamento (ligar à mão no KiCad)
 
-Domínio quente (6 pads):
+Domínio quente (2 pads):
 
 | Net | Pad sem ligação | Observação |
 |---|---|---|
-| ZX_ADE, CF2_ADE | U401.35, U401.34 | lado de cima do ADE9430; sair para cima e passar para B.Cu antes de C401/C405 |
-| /ADE9430/AVDDOUT | U401.25 | ligar a C405/C406 |
-| GND | C405.2, C601.2 | via para o plano In1.Cu junto do pad |
-| +3V3_ADE | R602.1 | via para o plano In2.Cu junto do pad |
+| DREADY_ADE | U401.36 | lado de cima do ADE9430, entre as saídas dos pinos vizinhos |
+| /ADE9430/AVDDOUT | U401.25 | lado direito do ADE9430; ligar a C405/C406 |
 
-Lado seguro e ilha RS-485 (12 pads):
+Lado seguro e ilha RS-485 (8 pads):
 
 | Net | Pad sem ligação | Observação |
 |---|---|---|
-| VBUS | J802.A9, J802.B4 | pinos VBUS do USB-C; ligar aos outros pinos VBUS do conector |
-| /Power Supplies/VBAT | R906.1 | divisor de VBAT_SENSE |
 | /Power Supplies/CHG_DP, REGN, CHG_N | U901.2, U901.22, U901.4 | saída dos pinos do BQ25895 (passo 0,5 mm) |
+| /Power Supplies/VBAT | R906.1 | divisor de VBAT_SENSE |
 | /Metrology MCU/NRST | U501.7 | MCU |
-| +3V3, GND_SYS | U501.19, U501.32, U501.31 | via para os planos junto dos pinos de alimentação do MCU |
+| +3V3 | U501.19 | via para o plano In2.Cu junto do pino |
 | MCU_IRQ1 | U602.15 | lado seguro do isolador |
 | /Communications/GND_485 | U801.16 | via para o plano GND_485 (In1.Cu) |
+
+O roteador automático chegou ao limite nessas áreas (rodadas com ordens embaralhadas, vias de 0,45 mm, trechos em In2.Cu e reparo por grupo de pinos vizinhos). São ligações curtas; o DRC do KiCad confere as distâncias ao ligar.
 
 Depois de ligar esses nets: rodar o DRC, revisar os pontos onde a rede cruza o domínio metrológico em camadas diferentes (o plano GND em In1.Cu e o +3V3_ADE em In2.Cu passam sob essas trilhas; avaliar recortar os planos sob as trilhas de rede) e conferir os laços de comutação de U606 e U605.
 
@@ -85,7 +84,7 @@ Depois de ligar esses nets: rodar o DRC, revisar os pontos onde a rede cruza o d
 - **posicionamento inicial** por domínio: cada componente fica perto do CI ao qual se liga;
 - **faixas de barreira** como áreas proibidas para cobre: 7 mm entre metrologia e lado seguro (x = 75 a 82 mm; os pads dos isoladores SOIC-16W ficam a 7,3 mm entre fileiras) e 7/4 mm em volta da ilha RS-485;
 - **planos de terra por domínio** em In1.Cu e B.Cu (GND, GND_SYS, GND_485), ainda sem preenchimento (pressionar **B** no KiCad);
-- roteamento do domínio quente (ver acima); lado seguro ainda sem roteamento.
+- placa inteira roteada (domínio quente, lado seguro e ilha RS-485), com 10 pads a ligar à mão (ver acima).
 
 Componentes que atravessam a barreira:
 
@@ -146,3 +145,12 @@ Os nós internos dos divisores ficam nas classes DIVIDER_A, DIVIDER_B e DIVIDER_
 3. Barreira: isoladores, U606 e LDO U605.
 4. Lado seguro: MCU, alimentação (BQ25895, TPS63001, TPS61022), USB, HMI, RS-485.
 5. Preencher zonas (B), rodar DRC (inclui creepage) e corrigir.
+
+## Modelos 3D
+
+Todos os footprints de componentes têm modelo 3D; só os furos de fixação H1–H4 não têm. No KiCad: Ver → Visualizador 3D; para o gabinete no Onshape: Arquivo → Exportar → STEP.
+
+- modelos oficiais da biblioteca do KiCad (`${KICAD10_3DMODEL_DIR}`) para a maioria dos componentes;
+- U401 (ADE9430), U902 (TPS63001) e F701 usam modelos equivalentes da biblioteca oficial (QFN-40 6×6, VSON-10 3×3 e caixa 1812), porque os modelos próprios desses footprints não existem na biblioteca;
+- PS101 (RAC20-xxSK), F101–F104/F201–F203 (clipes Littelfuse 111 com fusível 5×20), L902/L903 (Bourns SRP7028A) e U903 (VQFN-7 2×2) usam modelos simplificados do projeto em `hardware/Smart-Metering/3d/`, gerados por `gen3d.py` (CadQuery) a partir das dimensões de datasheet. Altura do PS101 adotada: 23 mm (conferir no datasheet da RECOM antes de fechar o gabinete).
+
