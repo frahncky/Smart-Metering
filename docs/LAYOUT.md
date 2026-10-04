@@ -48,7 +48,7 @@ Decisões de layout:
 
 Verificação geométrica própria da placa inteira (trilha/via contra todo cobre de outro net, barreiras e borda): **0 violações** com as distâncias da tabela acima. Menor distância entre cobre quente e cobre seguro através da barreira (fora as fileiras de pads dos próprios isoladores): **8,02 mm**.
 
-**Falta rodar o DRC do KiCad** (inclui creepage e as regras do `.kicad_dru`) e preencher as zonas (**B**).
+**Falta preencher as zonas (**B**) e rodar o DRC do KiCad** (inclui creepage e as regras do `.kicad_dru`). O KiCad não roda no ambiente usado para o roteamento; essas duas etapas precisam ser feitas no KiCad local, com os resultados classificados aqui antes de fabricar (`WORKFLOW.md`).
 
 ### Ligações da rev. 0.5
 
@@ -67,7 +67,20 @@ Pontos a revisar no KiCad:
 
 As trilhas de VSYS e SW_5V foram alargadas até a maior largura que respeita as distâncias (a maior parte do VSYS ficou com 0,7–1,2 mm).
 
-A regra "Trilhas de potencia" do `.kicad_dru` passou a mínimo 0,2 mm com valor ótimo de 0,6 mm. A versão anterior (mínimo 0,6 mm) reprovaria os estreitamentos na saída dos CIs de passo fino.
+Regra de largura das trilhas de potência (`.kicad_dru`): mínimo de 0,6 mm para a classe POWER, com exceção de 0,2 mm só dentro do courtyard dos CIs de passo fino (U901, U902, U903, J802), onde o estreitamento até o pad é obrigatório. As demais trilhas POWER foram alargadas para 0,6 mm onde as distâncias permitiam, sem reduzir os 8 mm da barreira.
+
+O DRC do KiCad deve acusar estes trechos POWER abaixo de 0,6 mm (78 trechos, para revisar e classificar):
+
+| Net | Trechos | Comprimento | Larguras | Situação |
+|---|---|---|---|---|
+| /Power Supplies/VBAT | 14 | 80,5 mm | 0,4 mm | ramo até o divisor R906 (µA); aceitável ou mover R906 |
+| GND_SYS | 20 | 14,4 mm | 0,25–0,4 mm | ligações curtas a vias do plano; conferir |
+| +3V3 | 20 | 10,2 mm | 0,2–0,4 mm | ligações curtas a vias do plano e pinos do MCU; conferir |
+| VBUS | 4 | 15,2 mm | 0,58 mm | alargar a 0,6 mm no KiCad |
+| +5V | 8 | 4,5 mm | 0,51–0,54 mm | estreitamento junto a pads; conferir |
+| /Power Supplies/SW_5V | 5 | 3,6 mm | 0,25–0,35 mm | **corrigir antes de fabricar** (ver acima) |
+| /Power Supplies/VIN_CHG | 1 | 2,4 mm | 0,4 mm | conferir |
+| CHG_SW, VSYS, VIN_ACDC | 6 | 0,6 mm | 0,54 mm | estreitamento na entrada de pads |
 
 Próximos passos: preencher as zonas (**B**), rodar o DRC, revisar os pontos onde a rede cruza o domínio metrológico em camadas diferentes (o plano GND em In1.Cu e o +3V3_ADE em In2.Cu passam sob essas trilhas; avaliar recortar os planos sob as trilhas de rede) e conferir os laços de comutação de U606 e U605.
 

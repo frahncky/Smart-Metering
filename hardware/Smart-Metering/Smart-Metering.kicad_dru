@@ -90,10 +90,14 @@
    (constraint clearance (min 3.0mm))
    (condition "A.hasNetclass('ISO485') && (B.hasNetclass('Default') || B.hasNetclass('POWER'))"))
 
-# 0,6 mm é a largura nominal (classe POWER); o mínimo de 0,2 mm cobre o estreitamento na saída dos CIs de passo fino
 (rule "Trilhas de potencia"
-   (constraint track_width (min 0.2mm) (opt 0.6mm))
+   (constraint track_width (min 0.6mm))
    (condition "A.hasNetclass('POWER')"))
+
+# exceção: estreitamento obrigatório na saída dos CIs de passo fino (pads de 0,25 mm)
+(rule "Potencia - saida de CI de passo fino"
+   (constraint track_width (min 0.2mm))
+   (condition "A.hasNetclass('POWER') && (A.intersectsCourtyard('U901') || A.intersectsCourtyard('U902') || A.intersectsCourtyard('U903') || A.intersectsCourtyard('J802'))"))
 
 (rule "Trilhas da rede"
    (constraint track_width (min 0.5mm))
