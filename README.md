@@ -70,7 +70,7 @@ Smart-Metering/
 │       ├── Smart-Metering.kicad_pro
 │       ├── Smart-Metering.kicad_sch      # folha raiz hierárquica
 │       ├── 01_Power_Input.kicad_sch … 09_Power_Supplies.kicad_sch
-│       ├── Smart-Metering.kicad_pcb      # layout roteado (10 pads a ligar à mão; DRC do KiCad pendente)
+│       ├── Smart-Metering.kicad_pcb      # layout roteado (todas as ligações feitas; DRC do KiCad pendente)
 │       ├── Smart-Metering.kicad_dru      # regras de isolação (clearance/creepage)
 │       ├── SmartMetering.kicad_sym       # símbolos próprios
 │       ├── sym-lib-table
@@ -110,7 +110,7 @@ Revisão completa em [`docs/REVISAO_ESQUEMATICO.md`](docs/REVISAO_ESQUEMATICO.md
 - Rodar o ERC no KiCad e revisar.
 - Confirmações de compra: variante CP-40 do ADE9430, certificação reforçada do ADuM6000, encapsulamento do RAC20-05SK/277.
 - Firmware: configurar o BQ25895 por I2C (ICHG, VREG, VINDPM) e desabilitar o VBUS sensing do OTG no STM32.
-- Layout da PCB (ver [`docs/LAYOUT.md`](docs/LAYOUT.md)): placa roteada (domínio quente, lado seguro e ilha RS-485) com creepage de 8 mm na barreira; restam 10 pads para ligar à mão (listados no LAYOUT), preencher as zonas e rodar o DRC do KiCad (inclui creepage). Todos os componentes têm modelo 3D.
+- Layout da PCB (ver [`docs/LAYOUT.md`](docs/LAYOUT.md)): placa roteada (domínio quente, lado seguro e ilha RS-485) com creepage de 8 mm na barreira; todas as ligações feitas (rev. 0.5); falta preencher as zonas, rodar o DRC do KiCad (inclui creepage) e revisar as trilhas de VSYS e SW_5V (listadas no LAYOUT). Todos os componentes têm modelo 3D.
 
 ## Bateria interna
 
