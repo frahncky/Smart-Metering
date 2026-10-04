@@ -60,10 +60,12 @@ Pontos a revisar no KiCad:
 
 | Net | Situação | Sugestão |
 |---|---|---|
-| /Power Supplies/VSYS | saída SYS do BQ25895 (U901.15/16) com 4,4 mm de trilha de 0,3 mm | alargar ou trocar por área de cobre; o SYS conduz até ~3 A |
-| /Power Supplies/SW_5V | nó de comutação do TPS61022 (U903.2 → L902) com ~9 mm de trilha de 0,2 mm e duas vias (vem da rev. 0.4) | aproximar L902 do U903 e ligar com cobre largo |
+| /Power Supplies/VSYS | saída SYS do BQ25895 (U901.15/16) até C902: 0,4 mm na F.Cu, com caminho paralelo de 1,2 mm na B.Cu (4 vias) nos últimos 2,7 mm; os primeiros ~1,2 mm, entre os pinos de VBAT e o pad CHG_SW do L903, só comportam 0,4 mm | trocar o trecho por área de cobre (zona VSYS na F.Cu) ou afastar L903 do U901; o SYS conduz até ~3 A |
+| /Power Supplies/SW_5V | nó de comutação do TPS61022 (U903.2 → L902): ~9 mm alargados até onde cabia (0,25–0,35 mm, 1,1 mm ainda em 0,2 mm) e duas vias (vem da rev. 0.4) | **corrigir antes de fabricar**: aproximar L902 do U903 e ligar com cobre largo |
 | /Power Supplies/VBAT | ramo até o divisor R906 com ~83 mm de trilha de 0,4 mm (corrente de µA) | aceitável; encurtar se R906 for aproximado do U901 |
 | CHG_N | ~73 mm entre U901.4 e o MCU | aceitável (sinal lento) |
+
+As trilhas de VSYS e SW_5V foram alargadas até a maior largura que respeita as distâncias (a maior parte do VSYS ficou com 0,7–1,2 mm).
 
 A regra "Trilhas de potencia" do `.kicad_dru` passou a mínimo 0,2 mm com valor ótimo de 0,6 mm. A versão anterior (mínimo 0,6 mm) reprovaria os estreitamentos na saída dos CIs de passo fino.
 
