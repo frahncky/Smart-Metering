@@ -1,20 +1,20 @@
-# Layout da placa de metrologia — rev. 0.4 (placa roteada, 10 pads a ligar à mão)
+# Layout da placa de metrologia — rev. 0.5 (placa roteada, todas as ligações feitas)
 
 ![Posicionamento inicial (rev. 0.1, antes dos ajustes para o roteamento)](img/layout_posicionamento_rev01.png)
 
 *Vermelho escuro: nets de rede. Vermelho claro: domínio metrológico (potencial da rede). Azul: domínio seguro. Verde: RS-485 isolada. Amarelo: faixas da barreira (sem cobre).*
 
-## Placa roteada (rev. 0.4)
+## Placa roteada (rev. 0.5)
 
-![Placa inteira](img/layout_roteamento_placa_rev04.png)
+![Placa inteira](img/layout_roteamento_placa_rev05.png)
 
-Domínio quente e lado seguro (com a ilha RS-485) roteados com as regras abaixo, a creepage de 8 mm na barreira e as correções da revisão do PR #1. Restam 10 pads para ligar à mão (lista no fim desta seção); na rev. 0.3 eram 18.
+Domínio quente e lado seguro (com a ilha RS-485) roteados com as regras abaixo, a creepage de 8 mm na barreira e as correções da revisão do PR #1. Na rev. 0.5 todas as ligações do esquemático estão feitas (ver "Ligações da rev. 0.5" abaixo).
 
 | Domínio quente | Lado seguro e ilha RS-485 |
 |---|---|
-| ![Domínio quente](img/layout_roteamento_quente_rev04.png) | ![Lado seguro](img/layout_roteamento_seguro_rev04.png) |
+| ![Domínio quente](img/layout_roteamento_quente_rev05.png) | ![Lado seguro](img/layout_roteamento_seguro_rev05.png) |
 
-No lado seguro: GND_SYS e GND_485 em In1.Cu, +3V3 em In2.Cu, trilhas de potência (POWER) de 0,6 mm, estreitadas para a largura do pad (0,2 mm) na saída dos CIs de passo fino (U901, U902, U903, J802). Os CIs de passo fino foram deslocados até 0,05 mm para os pads caírem na grade de roteamento. Alguns trechos curtos usam In2.Cu como camada de sinal quando não havia outro caminho (64 trechos na placa); o plano de In2 é preenchido em volta deles. Nas ligações feitas no reparo final há 12 vias menores (0,45/0,2 mm); as demais vias são de 0,6/0,3 mm.
+No lado seguro: GND_SYS e GND_485 em In1.Cu, +3V3 em In2.Cu, trilhas de potência (POWER) de 0,6 mm, estreitadas para a largura do pad (0,2 mm) na saída dos CIs de passo fino (U901, U902, U903, J802). Os CIs de passo fino foram deslocados até 0,05 mm para os pads caírem na grade de roteamento. Alguns trechos curtos usam In2.Cu como camada de sinal quando não havia outro caminho (149 trechos na placa); o plano de In2 é preenchido em volta deles. Nas ligações feitas nos reparos há 100 vias menores (0,45/0,2 mm); as demais vias são de 0,6/0,3 mm. As regras da placa (`.kicad_pro`) aceitam essas vias: diâmetro mínimo 0,45 mm, furo mínimo 0,2 mm.
 
 ### Rev. 0.2 (só o domínio quente)
 
@@ -48,31 +48,41 @@ Decisões de layout:
 
 Verificação geométrica própria da placa inteira (trilha/via contra todo cobre de outro net, barreiras e borda): **0 violações** com as distâncias da tabela acima. Menor distância entre cobre quente e cobre seguro através da barreira (fora as fileiras de pads dos próprios isoladores): **8,02 mm**.
 
-**Falta rodar o DRC do KiCad** (inclui creepage e as regras do `.kicad_dru`) e preencher as zonas (**B**).
+**Falta preencher as zonas (tecla B) e rodar o DRC do KiCad** (inclui creepage e as regras do `.kicad_dru`). O KiCad não roda no ambiente usado para o roteamento; essas duas etapas precisam ser feitas no KiCad local, com os resultados classificados aqui antes de fabricar (`WORKFLOW.md`).
 
-### Pendências do roteamento (ligar à mão no KiCad)
+### Ligações da rev. 0.5
 
-Domínio quente (2 pads):
+Na rev. 0.4 havia 10 pads listados como pendentes. Uma verificação de conectividade da placa inteira (cobre de cada net agrupado por contato, vias e planos) achou mais 5 ligações abertas que o roteador tinha dado como feitas: VSYS (U901.15/16 isolados do resto), VBUS (pinos do J802), HSE_IN (C510), VDDA (C506) e +3V3_ADE (R605/R606 sem via para o plano). As 15 foram ligadas por um roteador local em grade de 0,05 mm, que remove e refaz as trilhas vizinhas quando o caminho está fechado (pinos de passo fino do U401, U501 e U901). Cerca de 40 nets vizinhos foram refeitos nessas regiões.
 
-| Net | Pad sem ligação | Observação |
+Depois disso: 0 ligações abertas, 0 violações de distância na verificação própria e 8,02 mm de distância mínima entre cobre quente e seguro.
+
+Pontos a revisar no KiCad:
+
+| Net | Situação | Sugestão |
 |---|---|---|
-| DREADY_ADE | U401.36 | lado de cima do ADE9430, entre as saídas dos pinos vizinhos |
-| /ADE9430/AVDDOUT | U401.25 | lado direito do ADE9430; ligar a C405/C406 |
+| /Power Supplies/VSYS | saída SYS do BQ25895 (U901.15/16) até C902: 0,4 mm na F.Cu, com caminho paralelo de 1,2 mm na B.Cu (4 vias) nos últimos 2,7 mm; os primeiros ~1,2 mm, entre os pinos de VBAT e o pad CHG_SW do L903, só comportam 0,4 mm | trocar o trecho por área de cobre (zona VSYS na F.Cu) ou afastar L903 do U901; o SYS conduz até ~3 A |
+| /Power Supplies/SW_5V | nó de comutação do TPS61022 (U903.2 → L902): ~9 mm alargados até onde cabia (0,25–0,35 mm, 1,1 mm ainda em 0,2 mm) e duas vias (vem da rev. 0.4) | **corrigir antes de fabricar**: aproximar L902 do U903 e ligar com cobre largo |
+| /Power Supplies/VBAT | ramo até o divisor R906 com ~83 mm de trilha de 0,4 mm (corrente de µA) | aceitável; encurtar se R906 for aproximado do U901 |
+| CHG_N | ~73 mm entre U901.4 e o MCU | aceitável (sinal lento) |
 
-Lado seguro e ilha RS-485 (8 pads):
+As trilhas de VSYS e SW_5V foram alargadas até a maior largura que respeita as distâncias (a maior parte do VSYS ficou com 0,7–1,2 mm).
 
-| Net | Pad sem ligação | Observação |
-|---|---|---|
-| /Power Supplies/CHG_DP, REGN, CHG_N | U901.2, U901.22, U901.4 | saída dos pinos do BQ25895 (passo 0,5 mm) |
-| /Power Supplies/VBAT | R906.1 | divisor de VBAT_SENSE |
-| /Metrology MCU/NRST | U501.7 | MCU |
-| +3V3 | U501.19 | via para o plano In2.Cu junto do pino |
-| MCU_IRQ1 | U602.15 | lado seguro do isolador |
-| /Communications/GND_485 | U801.16 | via para o plano GND_485 (In1.Cu) |
+Regra de largura das trilhas de potência (`.kicad_dru`): mínimo de 0,6 mm para a classe POWER, com exceção de 0,2 mm só dentro do courtyard dos CIs de passo fino (U901, U902, U903, J802), onde o estreitamento até o pad é obrigatório. As demais trilhas POWER foram alargadas para 0,6 mm onde as distâncias permitiam, sem reduzir os 8 mm da barreira.
 
-O roteador automático chegou ao limite nessas áreas (rodadas com ordens embaralhadas, vias de 0,45 mm, trechos em In2.Cu e reparo por grupo de pinos vizinhos). São ligações curtas; o DRC do KiCad confere as distâncias ao ligar.
+O DRC do KiCad deve acusar estes trechos POWER abaixo de 0,6 mm (78 trechos, para revisar e classificar):
 
-Depois de ligar esses nets: rodar o DRC, revisar os pontos onde a rede cruza o domínio metrológico em camadas diferentes (o plano GND em In1.Cu e o +3V3_ADE em In2.Cu passam sob essas trilhas; avaliar recortar os planos sob as trilhas de rede) e conferir os laços de comutação de U606 e U605.
+| Net | Trechos | Comprimento | Larguras | Situação |
+|---|---|---|---|---|
+| /Power Supplies/VBAT | 14 | 80,5 mm | 0,4 mm | ramo até o divisor R906 (µA); aceitável ou mover R906 |
+| GND_SYS | 20 | 14,4 mm | 0,25–0,4 mm | ligações curtas a vias do plano; conferir |
+| +3V3 | 20 | 10,2 mm | 0,2–0,4 mm | ligações curtas a vias do plano e pinos do MCU; conferir |
+| VBUS | 4 | 15,2 mm | 0,58 mm | alargar a 0,6 mm no KiCad |
+| +5V | 8 | 4,5 mm | 0,51–0,54 mm | estreitamento junto a pads; conferir |
+| /Power Supplies/SW_5V | 5 | 3,6 mm | 0,25–0,35 mm | **corrigir antes de fabricar** (ver acima) |
+| /Power Supplies/VIN_CHG | 1 | 2,4 mm | 0,4 mm | conferir |
+| CHG_SW, VSYS, VIN_ACDC | 6 | 0,6 mm | 0,54 mm | estreitamento na entrada de pads |
+
+Próximos passos: preencher as zonas (**B**), rodar o DRC, revisar os pontos onde a rede cruza o domínio metrológico em camadas diferentes (o plano GND em In1.Cu e o +3V3_ADE em In2.Cu passam sob essas trilhas; avaliar recortar os planos sob as trilhas de rede) e conferir os laços de comutação de U606 e U605.
 
 ## Estado do posicionamento
 
@@ -84,7 +94,7 @@ Depois de ligar esses nets: rodar o DRC, revisar os pontos onde a rede cruza o d
 - **posicionamento inicial** por domínio: cada componente fica perto do CI ao qual se liga;
 - **faixas de barreira** como áreas proibidas para cobre: 7 mm entre metrologia e lado seguro (x = 75 a 82 mm; os pads dos isoladores SOIC-16W ficam a 7,3 mm entre fileiras) e 7/4 mm em volta da ilha RS-485;
 - **planos de terra por domínio** em In1.Cu e B.Cu (GND, GND_SYS, GND_485), ainda sem preenchimento (pressionar **B** no KiCad);
-- placa inteira roteada (domínio quente, lado seguro e ilha RS-485), com 10 pads a ligar à mão (ver acima).
+- placa inteira roteada (domínio quente, lado seguro e ilha RS-485), com todas as ligações feitas (rev. 0.5).
 
 Componentes que atravessam a barreira:
 

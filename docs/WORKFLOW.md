@@ -43,7 +43,7 @@ Estado da `main` (PRs #1 e #2).
 | REQ-009 segurança | Folhas 01, 02 e 06; regras de isolação em `Smart-Metering.kicad_dru` | Barreira com creepage de 8 mm no layout; DRC do KiCad e IEC 61010-1 pendentes |
 | REQ-010 modularidade | Placa HMI separada (J701) | Interface implementada |
 | REQ-011 alimentação/bateria | Folha 09, J901; `INTERNAL_BATTERY.md` | Carregador e power path implementados; pack e ~CE (D-011) pendentes |
-| Layout | `Smart-Metering.kicad_pcb`; `LAYOUT.md` | Roteado; 10 pads a ligar à mão; zonas e DRC do KiCad pendentes |
+| Layout | `Smart-Metering.kicad_pcb`; `LAYOUT.md` | Roteado, todas as ligações feitas (rev. 0.5); zonas e DRC do KiCad pendentes |
 
 ## Decisões
 
