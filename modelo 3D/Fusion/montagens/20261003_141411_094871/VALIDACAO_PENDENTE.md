@@ -1,0 +1,2 @@
+# Validação pendente
+O relatório interferencias.json desta execução usou a primeira versão do verificador e não deve ser considerado aprovação de encaixe. Sua classificação sem sobreposição contradiz a revisão dimensional. O script oficial SmartMeterAssembly foi atualizado para a análise nativa do Fusion. É necessária nova execução para produzir um relatório válido; os modelos existentes foram preservados.

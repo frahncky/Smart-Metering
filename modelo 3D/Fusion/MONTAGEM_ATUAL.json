@@ -1,0 +1,18 @@
+{
+  "version": "20261003_173930_283634",
+  "assembly": "SmartMeter_Interfaces_Mecanicas.f3d",
+  "exports": "montagens/20261003_173930_283634",
+  "components": 11,
+  "positive_volume_bodies": 12,
+  "checked_pairs": 55,
+  "volume_overlap_pairs": 0,
+  "status": "preliminary",
+  "documentation": "INTERFACES_MECANICAS.md",
+  "pending": [
+    "display model and dimensions",
+    "PCB dimensions and component heights",
+    "internal battery model and dimensions",
+    "fasteners and fabrication tolerances",
+    "re-run SmartMeterAssembly in Fusion: SmartMeter_FrontPanel.step and SmartMeter_RearHousing.step in this export are empty (exported after hiding); the script now exports every STEP first. Standalone part geometry is in the STEP files at the Fusion folder root"
+  ]
+}

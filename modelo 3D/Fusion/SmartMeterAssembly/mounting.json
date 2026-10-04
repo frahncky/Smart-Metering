@@ -1,0 +1,64 @@
+{
+  "positions_mm": {
+    "SmartMeter_RearHousing": [
+      0,
+      0,
+      0
+    ],
+    "SmartMeter_FrontPanel": [
+      0,
+      0,
+      -4
+    ],
+    "SmartMeter_DisplayBracket": [
+      0,
+      0,
+      0
+    ],
+    "SmartMeter_InternalTray": [
+      0,
+      0,
+      40
+    ],
+    "SmartMeter_RearPanel": [
+      0,
+      0,
+      75
+    ],
+    "SmartMeter_DesktopFeet": [
+      0,
+      -72.5,
+      40
+    ],
+    "SmartMeter_PanelMountFrame": [
+      0,
+      0,
+      -8
+    ],
+    "SmartMeter_VentilationGrille": [
+      45,
+      72.5,
+      40
+    ],
+    "SmartMeter_MetrologyCarrier": [
+      -56,
+      0,
+      51
+    ],
+    "SmartMeter_HmiCarrier": [
+      45,
+      0,
+      51
+    ],
+    "SmartMeter_CommCarrier": [
+      45,
+      0,
+      63
+    ]
+  },
+  "rotation_x_deg": {
+    "SmartMeter_DesktopFeet": 90,
+    "SmartMeter_VentilationGrille": -90
+  },
+  "scope": "provisional interfaces; hardware and electronics footprints unconfirmed"
+}

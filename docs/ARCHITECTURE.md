@@ -206,3 +206,7 @@ Em 2026-10-03 foi registrada no `main` uma arquitetura de referência alternativ
 | Ethernet PHY (placa HMI) | da placa de avaliação do ESP32-P4 | DP83825I |
 
 Os itens da placa HMI (Wi-Fi/Bluetooth, Ethernet, display MIPI-DSI) não afetam a placa de metrologia e podem ser adotados quando a HMI própria for projetada.
+
+## 10. Alimentação e bateria interna
+
+Entrada de 127/220 V AC pelo AC/DC RAC20-05SK/277 (folha 01). Li-Po plana 1S interna e protegida, com carregador BQ25895 com power path; `VSYS` alimenta o `+3V3` (TPS63001), o `+5V` (TPS61022) da HMI e o DC/DC isolado (ADuM6000) do domínio metrológico. Capacidade e autonomia em aberto; a proposta antiga de 13 h com pack 4S foi substituída. O `GND_SYS` (bateria, carregador, HMI) não se liga ao GND metrológico. Detalhes e pendências em `INTERNAL_BATTERY.md`.

@@ -1,0 +1,177 @@
+"""Recreates the nine GitHub FeatureScripts at their default dimensions.
+Parts are arranged on a grid for inspection, not as a validated assembly.
+"""
+import adsk.core
+import adsk.fusion
+import json
+import math
+import os
+import traceback
+from datetime import datetime
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+OFFICIAL_FOLDER = r'F:\DevIA\Smart-Metering\modelo 3D\Fusion'
+
+def point(x, y):
+    return adsk.core.Point3D.create(x / 10, y / 10, 0)
+
+def sketch_for(comp, z):
+    plane = comp.xYConstructionPlane
+    if abs(z) > 1e-9:
+        inp = comp.constructionPlanes.createInput()
+        inp.setByOffset(plane, adsk.core.ValueInput.createByReal(z / 10))
+        plane = comp.constructionPlanes.add(inp)
+    return comp.sketches.add(plane)
+
+def outline(sketch, spec):
+    x, y = spec['x'], spec['y']
+    if spec['shape'] == 'circle':
+        sketch.sketchCurves.sketchCircles.addByCenterRadius(
+            point(x, y), spec['dia'] / 20)
+        return
+    a, b = spec['w'] / 2, spec['h'] / 2
+    lines = sketch.sketchCurves.sketchLines
+    if spec['shape'] == 'rect':
+        lines.addTwoPointRectangle(point(x-a, y-b), point(x+a, y+b))
+        return
+    r = spec['r']
+    k = r / math.sqrt(2)
+    # Clockwise outline, exact circular corner arcs.
+    corners = [
+        ((-a+r,b), (a-r,b), (a-r+k,b-r+k), (a,b-r)),
+        ((a,b-r), (a,-b+r), (a-r+k,-b+r-k), (a-r,-b)),
+        ((a-r,-b), (-a+r,-b), (-a+r-k,-b+r-k), (-a,-b+r)),
+        ((-a,-b+r), (-a,b-r), (-a+r-k,b-r+k), (-a+r,b)),
+    ]
+    for start, end, mid, arcend in corners:
+        lines.addByTwoPoints(point(x+start[0],y+start[1]),
+                             point(x+end[0],y+end[1]))
+        sketch.sketchCurves.sketchArcs.addByThreePoints(
+            point(x+end[0],y+end[1]),
+            point(x+mid[0],y+mid[1]),
+            point(x+arcend[0],y+arcend[1]))
+
+def build(comp, recipe):
+    modes = {
+        'new': adsk.fusion.FeatureOperations.NewBodyFeatureOperation,
+        'cut': adsk.fusion.FeatureOperations.CutFeatureOperation,
+        'join': adsk.fusion.FeatureOperations.JoinFeatureOperation,
+    }
+    for index, spec in enumerate(recipe['operations']):
+        sketch = sketch_for(comp, spec['z'])
+        sketch.name = '%02d_%s_%s' % (index+1, spec['op'], spec['shape'])
+        outline(sketch, spec)
+        if sketch.profiles.count != 1:
+            raise RuntimeError('%s operation %s has %s profiles' %
+                               (recipe['name'], index+1, sketch.profiles.count))
+        feature = comp.features.extrudeFeatures.addSimple(
+            sketch.profiles.item(0),
+            adsk.core.ValueInput.createByReal(spec['t'] / 10),
+            modes[spec['op']])
+        if not feature:
+            raise RuntimeError('Extrusion failed: '+sketch.name)
+        feature.name = sketch.name
+        sketch.isVisible = False
+    expected = 2 if recipe['name'].endswith('DesktopFeet') else (
+        3 if recipe['name'].endswith('PCBSupports') else 1)
+    if comp.bRepBodies.count != expected:
+        raise RuntimeError('%s: expected %s bodies, got %s' %
+                           (recipe['name'], expected, comp.bRepBodies.count))
+    for body in comp.bRepBodies:
+        if not body.isSolid or body.volume <= 0:
+            raise RuntimeError('Invalid solid: '+recipe['name'])
+
+
+# Provisional positions in millimetres. Accessories remain alongside the assembly.
+POSITIONS = {
+    'SmartMeter_RearHousing': (0, 0, 0),
+    'SmartMeter_FrontPanel': (0, 0, -4),
+    'SmartMeter_DisplayBracket': (0, 0, 0),
+    'SmartMeter_InternalTray': (0, 0, 40),
+    'SmartMeter_RearPanel': (0, 0, 75),
+    'SmartMeter_DesktopFeet': (330, 0, 0),
+    'SmartMeter_PCBSupports': (470, 200, 0),
+    'SmartMeter_PanelMountFrame': (330, -200, 0),
+    'SmartMeter_VentilationGrille': (330, -320, 0),
+}
+CORE = ['SmartMeter_RearHousing', 'SmartMeter_FrontPanel',
+        'SmartMeter_DisplayBracket', 'SmartMeter_InternalTray', 'SmartMeter_RearPanel']
+
+
+def overlap_check(occurrences):
+    design = adsk.fusion.Design.cast(adsk.core.Application.get().activeProduct)
+    results = []
+    for index, name_a in enumerate(CORE):
+        for name_b in CORE[index+1:]:
+            try:
+                entities = adsk.core.ObjectCollection.create()
+                entities.add(occurrences[name_a])
+                entities.add(occurrences[name_b])
+                inp = design.createInterferenceInput(entities)
+                inp.areCoincidentFacesIncluded = False
+                found = design.analyzeInterference(inp)
+                if found is None:
+                    raise RuntimeError('Fusion returned no analysis result')
+                volume = sum(found.item(i).interferenceBody.volume * 1000
+                             for i in range(found.count))
+                results.append({'a':name_a, 'b':name_b, 'volume_mm3':volume,
+                                'status':'interference' if volume > 0.01 else 'no_volume_overlap'})
+            except Exception as error:
+                results.append({'a':name_a, 'b':name_b, 'status':'unverified',
+                                'error':str(error)})
+    expected_pairs = [
+        {'SmartMeter_RearHousing', 'SmartMeter_DisplayBracket'},
+        {'SmartMeter_RearHousing', 'SmartMeter_InternalTray'},
+    ]
+    for pair in expected_pairs:
+        record = next(r for r in results if {r['a'], r['b']} == pair)
+        if record['status'] == 'no_volume_overlap':
+            record['status'] = 'unverified_dimensional_contradiction'
+            record['error'] = 'Default dimensions predict overlap; inspect geometry and placement.'
+    return results
+
+def run(context):
+    app = adsk.core.Application.get()
+    ui = app.userInterface
+    try:
+        with open(os.path.join(HERE, 'geometry.json'), encoding='utf-8') as handle:
+            recipes = json.load(handle)
+        doc = app.documents.add(adsk.core.DocumentTypes.FusionDesignDocumentType)
+        doc.name = 'Smart Metering - Montagem preliminar'
+        design = adsk.fusion.Design.cast(app.activeProduct)
+        design.designType = adsk.fusion.DesignTypes.ParametricDesignType
+        root = design.rootComponent
+        occurrences = {}
+        for recipe in recipes:
+            transform = adsk.core.Matrix3D.create()
+            x, y, z = POSITIONS[recipe['name']]
+            transform.translation = adsk.core.Vector3D.create(x/10, y/10, z/10)
+            occurrence = root.occurrences.addNewComponent(transform)
+            occurrence.component.name = recipe['name']
+            build(occurrence.component, recipe)
+            occurrences[recipe['name']] = occurrence
+            adsk.doEvents()
+        checks = overlap_check(occurrences)
+        output = os.path.join(OFFICIAL_FOLDER, 'montagens',
+                              datetime.now().strftime('%Y%m%d_%H%M%S_%f'))
+        os.makedirs(output, exist_ok=True)
+        report = {'status':'preliminary', 'positions_mm':POSITIONS,
+                  'checks':checks, 'not_validated':['fasteners', 'electronics', 'battery',
+                    'accessory_mounts', 'electrical_clearances'],
+                  'original_geometry_preserved':True}
+        with open(os.path.join(output, 'interferencias.json'), 'w', encoding='utf-8') as handle:
+            json.dump(report, handle, indent=2)
+        manager = design.exportManager
+        archive = os.path.join(output, 'SmartMeter_Montagem_Preliminar.f3d')
+        if not manager.execute(manager.createFusionArchiveExportOptions(archive)):
+            raise RuntimeError('F3D export failed')
+        app.activeViewport.fit()
+        conflicts = sum(item['status']=='interference' for item in checks)
+        ui.messageBox('Montagem preliminar criada. Pares com interferencia: '+
+                      str(conflicts)+'\nRelatorio e F3D em:\n'+output+
+                      '\nOs acessorios ao lado ainda nao foram posicionados.')
+    except Exception:
+        error = traceback.format_exc()
+        with open(os.path.join(HERE, 'erro.txt'), 'w', encoding='utf-8') as handle:
+            handle.write(error)
+        ui.messageBox('Montagem interrompida. Consulte erro.txt.\n'+error)

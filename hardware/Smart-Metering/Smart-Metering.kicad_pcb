@@ -5898,7 +5898,7 @@
 				)
 			)
 		)
-		(property "Value" "18pF"
+		(property "Value" "10pF"
 			(at 0 1.43 90)
 			(layer "F.Fab")
 			(effects
@@ -6015,7 +6015,7 @@
 				)
 			)
 		)
-		(property "Value" "18pF"
+		(property "Value" "10pF"
 			(at 0 1.43 90)
 			(layer "F.Fab")
 			(effects

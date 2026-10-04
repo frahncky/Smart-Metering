@@ -73,11 +73,11 @@ Smart-Metering/
 │       ├── Smart-Metering.kicad_pcb      # layout roteado (10 pads a ligar à mão; DRC do KiCad pendente)
 │       ├── Smart-Metering.kicad_dru      # regras de isolação (clearance/creepage)
 │       ├── SmartMetering.kicad_sym       # símbolos próprios
-│       └── sym-lib-table
-├── cad/                                  # FeatureScripts Onshape do gabinete
-├── docs/
-│   ├── ARCHITECTURE.md
-│   └── REQUIREMENTS.md
+│       ├── sym-lib-table
+│       └── 3d/                           # modelos 3D simplificados do projeto (gen3d.py)
+├── modelo 3D/                            # gabinete: Onshape (FeatureScripts) e Fusion (montagem, STEP)
+├── docs/                                 # arquitetura, requisitos, decisões, layout, revisões
+├── AGENTS.md                             # papéis e regras de trabalho dos agentes
 └── README.md
 ```
 
@@ -111,6 +111,14 @@ Revisão completa em [`docs/REVISAO_ESQUEMATICO.md`](docs/REVISAO_ESQUEMATICO.md
 - Confirmações de compra: variante CP-40 do ADE9430, certificação reforçada do ADuM6000, encapsulamento do RAC20-05SK/277.
 - Firmware: configurar o BQ25895 por I2C (ICHG, VREG, VINDPM) e desabilitar o VBUS sensing do OTG no STM32.
 - Layout da PCB (ver [`docs/LAYOUT.md`](docs/LAYOUT.md)): placa roteada (domínio quente, lado seguro e ilha RS-485) com creepage de 8 mm na barreira; restam 10 pads para ligar à mão (listados no LAYOUT), preencher as zonas e rodar o DRC do KiCad (inclui creepage). Todos os componentes têm modelo 3D.
+
+## Bateria interna
+
+Bateria Li-Po plana 1S recarregável, com NTC, carregada pelo BQ25895 com o medidor ligado à rede (folha 09, J901). Autonomia a definir; a meta anterior de 13 horas foi retirada. Ver [bateria e alimentação](docs/INTERNAL_BATTERY.md).
+
+## Método de trabalho
+
+Papéis dos agentes e regras de colaboração: [AGENTS.md](AGENTS.md). Etapas, revisão e rastreabilidade: [docs/WORKFLOW.md](docs/WORKFLOW.md). Decisões de projeto: [docs/DECISIONS.md](docs/DECISIONS.md). Dimensionamentos: [entradas de tensão](docs/VOLTAGE_SENSING.md), [fonte metrológica e clock](docs/POWER_CLOCK.md).
 
 ## Referências principais
 
