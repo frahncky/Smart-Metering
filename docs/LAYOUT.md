@@ -48,7 +48,7 @@ Decisões de layout:
 
 Verificação geométrica própria da placa inteira (trilha/via contra todo cobre de outro net, barreiras e borda): **0 violações** com as distâncias da tabela acima. Menor distância entre cobre quente e cobre seguro através da barreira (fora as fileiras de pads dos próprios isoladores): **8,02 mm**.
 
-**Falta preencher as zonas (**B**) e rodar o DRC do KiCad** (inclui creepage e as regras do `.kicad_dru`). O KiCad não roda no ambiente usado para o roteamento; essas duas etapas precisam ser feitas no KiCad local, com os resultados classificados aqui antes de fabricar (`WORKFLOW.md`).
+**Falta preencher as zonas (tecla B) e rodar o DRC do KiCad** (inclui creepage e as regras do `.kicad_dru`). O KiCad não roda no ambiente usado para o roteamento; essas duas etapas precisam ser feitas no KiCad local, com os resultados classificados aqui antes de fabricar (`WORKFLOW.md`).
 
 ### Ligações da rev. 0.5
 
