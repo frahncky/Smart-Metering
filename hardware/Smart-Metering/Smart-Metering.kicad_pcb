@@ -15902,7 +15902,7 @@
 			(net 103 "Net-(D101-Pad2)")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Fuse.3dshapes/Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal.step"
+		(model "${KIPRJMOD}/3d/Fuseholder_Littelfuse_111_5x20.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -16303,7 +16303,7 @@
 			(net 104 "Net-(D102-Pad2)")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Fuse.3dshapes/Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal.step"
+		(model "${KIPRJMOD}/3d/Fuseholder_Littelfuse_111_5x20.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -16704,7 +16704,7 @@
 			(net 105 "Net-(D103-Pad2)")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Fuse.3dshapes/Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal.step"
+		(model "${KIPRJMOD}/3d/Fuseholder_Littelfuse_111_5x20.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -17105,7 +17105,7 @@
 			(net 106 "Net-(D104-Pad2)")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Fuse.3dshapes/Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal.step"
+		(model "${KIPRJMOD}/3d/Fuseholder_Littelfuse_111_5x20.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -17506,7 +17506,7 @@
 			(net 117 "Net-(F201-Pad2)")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Fuse.3dshapes/Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal.step"
+		(model "${KIPRJMOD}/3d/Fuseholder_Littelfuse_111_5x20.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -17907,7 +17907,7 @@
 			(net 118 "Net-(F202-Pad2)")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Fuse.3dshapes/Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal.step"
+		(model "${KIPRJMOD}/3d/Fuseholder_Littelfuse_111_5x20.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -18308,7 +18308,7 @@
 			(net 119 "Net-(F203-Pad2)")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Fuse.3dshapes/Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal.step"
+		(model "${KIPRJMOD}/3d/Fuseholder_Littelfuse_111_5x20.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -18425,7 +18425,7 @@
 			(net 17 "/HMI Interface/+5V_HMI")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Fuse.3dshapes/Fuse_1812_4532Metric.step"
+		(model "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_1812_4532Metric.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -23635,7 +23635,7 @@
 			(net 56 "/Power Supplies/SW_5V")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Inductor_SMD.3dshapes/L_Bourns_SRP7028A_7.3x6.6mm.step"
+		(model "${KIPRJMOD}/3d/Bourns_SRP7028A_7.3x6.6mm.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -24040,7 +24040,7 @@
 			(net 60 "/Power Supplies/VSYS")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Inductor_SMD.3dshapes/L_Bourns_SRP7028A_7.3x6.6mm.step"
+		(model "${KIPRJMOD}/3d/Bourns_SRP7028A_7.3x6.6mm.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -24309,7 +24309,7 @@
 			(net 160 "VIN_ACDC")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Converter_DCDC.3dshapes/Converter_ACDC_Recom_RAC20-xxSK_THT.step"
+		(model "${KIPRJMOD}/3d/Recom_RAC20-xxSK_THT.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -36231,7 +36231,7 @@
 			(net 66 "GND")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Package_DFN_QFN.3dshapes/Texas_RHA0040B_VQFN-40-1EP_6x6mm_P0.5mm_EP4.15x4.15mm.step"
+		(model "${KICAD10_3DMODEL_DIR}/Package_DFN_QFN.3dshapes/QFN-40-1EP_6x6mm_P0.5mm_EP4.6x4.6mm.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -40876,7 +40876,7 @@
 			(net 67 "GND_SYS")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Package_SON.3dshapes/Texas_DRC0010J.step"
+		(model "${KICAD10_3DMODEL_DIR}/Package_SON.3dshapes/VSON-10-1EP_3x3mm_P0.5mm_EP1.65x2.4mm.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -41163,7 +41163,7 @@
 			(net 60 "/Power Supplies/VSYS")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Package_DFN_QFN.3dshapes/Texas_RWU0007A_VQFN-7_2x2mm_P0.5mm.step"
+		(model "${KIPRJMOD}/3d/Texas_RWU0007A_VQFN-7_2x2mm.step"
 			(offset
 				(xyz 0 0 0)
 			)
