@@ -52,12 +52,12 @@ Verificação geométrica própria da placa inteira (trilha/via contra todo cobr
 
 ### Rev. 0.6: cristal do MCU e boost de 5 V
 
-Seis componentes mudaram de lugar depois do posicionamento automático (`POST_MOVE` no gerador), sem mexer nos demais:
+Seis componentes mudaram de lugar, sem mexer nos demais. A fonte de verdade das posições e do roteamento é o próprio `Smart-Metering.kicad_pcb`: o gerador e o roteador usados para produzi-lo não estão no repositório, então as próximas mudanças devem ser feitas no KiCad sobre este arquivo.
 
 - **Y501** (cristal HSE de 8 MHz) girado 180° e baixado 0,75 mm, para o HSE_IN (pino 5) e o HSE_OUT (pino 6) do U501 chegarem ao cristal sem se cruzar.
 - **C510 e C511** (15 pF, carga do HSE) agora ficam a ~1,7 mm dos pads do Y501; antes estavam a 10–12 mm. HSE_IN tem 1,5 mm e HSE_OUT 5,4 mm, só na F.Cu e sem vias (antes ~10 mm com 3 vias e 3 camadas).
 - **C906 e C907** (22 µF, saída de +3V3) saíram de perto do Y501 e foram para o lado do U902, que gera o +3V3.
-- **L902** girado e encostado no U903. O SW_5V tem agora 5,7 mm na F.Cu, sem vias: 0,3 mm na saída do pino 2 (entre os pinos 1 e 3, passo de 0,55 mm) e 0,6 mm até o pad do indutor. Antes eram ~9 mm de 0,25–0,35 mm com duas vias. O +5V do pino 3 passa por baixo do SW numa via de 0,6 mm.
+- **L902** girado e encostado no U903. O SW_5V tem agora 5,7 mm na F.Cu, sem vias: 0,3 mm dentro do courtyard do U903 (saída do pino 2, entre os pinos 1 e 3 com passo de 0,55 mm), um degrau de 0,4 mm na borda e 0,6 mm daí até o pad do indutor. Antes eram ~9 mm de 0,25–0,35 mm com duas vias. O +5V do pino 3 desce para a B.Cu por duas vias de 0,45 mm em paralelo, passando por baixo do SW.
 
 As trilhas que ficaram sob os componentes movidos foram refeitas. Verificação: 0 ligações abertas, 0 violações e 8,02 mm na barreira.
 
