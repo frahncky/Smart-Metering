@@ -1,0 +1,465 @@
+{
+  "status": "preliminary",
+  "positions_mm": {
+    "SmartMeter_RearHousing": [
+      0,
+      0,
+      0
+    ],
+    "SmartMeter_FrontPanel": [
+      0,
+      0,
+      -4
+    ],
+    "SmartMeter_DisplayBracket": [
+      0,
+      0,
+      0
+    ],
+    "SmartMeter_InternalTray": [
+      0,
+      0,
+      40
+    ],
+    "SmartMeter_RearPanel": [
+      0,
+      0,
+      75
+    ],
+    "SmartMeter_DesktopFeet": [
+      330,
+      0,
+      0
+    ],
+    "SmartMeter_PCBSupports": [
+      470,
+      200,
+      0
+    ],
+    "SmartMeter_PanelMountFrame": [
+      330,
+      -200,
+      0
+    ],
+    "SmartMeter_VentilationGrille": [
+      330,
+      -320,
+      0
+    ]
+  },
+  "checks": [
+    {
+      "a": "SmartMeter_RearHousing",
+      "b": "SmartMeter_FrontPanel",
+      "volume_mm3": 0,
+      "status": "no_volume_overlap"
+    },
+    {
+      "a": "SmartMeter_RearHousing",
+      "b": "SmartMeter_DisplayBracket",
+      "volume_mm3": 0,
+      "status": "unverified_dimensional_contradiction",
+      "error": "Default dimensions predict overlap; inspect geometry and placement."
+    },
+    {
+      "a": "SmartMeter_RearHousing",
+      "b": "SmartMeter_InternalTray",
+      "volume_mm3": 0,
+      "status": "unverified_dimensional_contradiction",
+      "error": "Default dimensions predict overlap; inspect geometry and placement."
+    },
+    {
+      "a": "SmartMeter_RearHousing",
+      "b": "SmartMeter_RearPanel",
+      "volume_mm3": 0,
+      "status": "no_volume_overlap"
+    },
+    {
+      "a": "SmartMeter_FrontPanel",
+      "b": "SmartMeter_DisplayBracket",
+      "volume_mm3": 0,
+      "status": "no_volume_overlap"
+    },
+    {
+      "a": "SmartMeter_FrontPanel",
+      "b": "SmartMeter_InternalTray",
+      "volume_mm3": 0,
+      "status": "no_volume_overlap"
+    },
+    {
+      "a": "SmartMeter_FrontPanel",
+      "b": "SmartMeter_RearPanel",
+      "volume_mm3": 0,
+      "status": "no_volume_overlap"
+    },
+    {
+      "a": "SmartMeter_DisplayBracket",
+      "b": "SmartMeter_InternalTray",
+      "volume_mm3": 0,
+      "status": "no_volume_overlap"
+    },
+    {
+      "a": "SmartMeter_DisplayBracket",
+      "b": "SmartMeter_RearPanel",
+      "volume_mm3": 0,
+      "status": "no_volume_overlap"
+    },
+    {
+      "a": "SmartMeter_InternalTray",
+      "b": "SmartMeter_RearPanel",
+      "volume_mm3": 0,
+      "status": "no_volume_overlap"
+    }
+  ],
+  "actual_geometry": {
+    "SmartMeter_DesktopFeet": {
+      "translation_mm": [
+        330.0,
+        0.0,
+        0.0
+      ],
+      "bodies": [
+        {
+          "volume_mm3": 0.0,
+          "min_mm": [
+            335.0,
+            5.0,
+            5.0
+          ],
+          "max_mm": [
+            335.0,
+            5.0,
+            5.0
+          ]
+        },
+        {
+          "volume_mm3": 0.0,
+          "min_mm": [
+            335.0,
+            5.0,
+            5.0
+          ],
+          "max_mm": [
+            335.0,
+            5.0,
+            5.0
+          ]
+        }
+      ]
+    },
+    "SmartMeter_DisplayBracket": {
+      "translation_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "bodies": [
+        {
+          "volume_mm3": 0.0,
+          "min_mm": [
+            5.0,
+            5.0,
+            5.0
+          ],
+          "max_mm": [
+            5.0,
+            5.0,
+            5.0
+          ]
+        }
+      ]
+    },
+    "SmartMeter_FrontPanel": {
+      "translation_mm": [
+        0.0,
+        0.0,
+        -4.0
+      ],
+      "bodies": [
+        {
+          "volume_mm3": 0.0,
+          "min_mm": [
+            5.0,
+            5.0,
+            0.9999999999999998
+          ],
+          "max_mm": [
+            5.0,
+            5.0,
+            0.9999999999999998
+          ]
+        }
+      ]
+    },
+    "SmartMeter_InternalTray": {
+      "translation_mm": [
+        0.0,
+        0.0,
+        40.0
+      ],
+      "bodies": [
+        {
+          "volume_mm3": 0.0,
+          "min_mm": [
+            5.0,
+            5.0,
+            45.0
+          ],
+          "max_mm": [
+            5.0,
+            5.0,
+            45.0
+          ]
+        },
+        {
+          "volume_mm3": 0.0,
+          "min_mm": [
+            5.0,
+            5.0,
+            45.0
+          ],
+          "max_mm": [
+            5.0,
+            5.0,
+            45.0
+          ]
+        },
+        {
+          "volume_mm3": 0.0,
+          "min_mm": [
+            5.0,
+            5.0,
+            45.0
+          ],
+          "max_mm": [
+            5.0,
+            5.0,
+            45.0
+          ]
+        },
+        {
+          "volume_mm3": 0.0,
+          "min_mm": [
+            5.0,
+            5.0,
+            45.0
+          ],
+          "max_mm": [
+            5.0,
+            5.0,
+            45.0
+          ]
+        },
+        {
+          "volume_mm3": 0.0,
+          "min_mm": [
+            5.0,
+            5.0,
+            45.0
+          ],
+          "max_mm": [
+            5.0,
+            5.0,
+            45.0
+          ]
+        },
+        {
+          "volume_mm3": 0.0,
+          "min_mm": [
+            5.0,
+            5.0,
+            45.0
+          ],
+          "max_mm": [
+            5.0,
+            5.0,
+            45.0
+          ]
+        },
+        {
+          "volume_mm3": 0.0,
+          "min_mm": [
+            5.0,
+            5.0,
+            45.0
+          ],
+          "max_mm": [
+            5.0,
+            5.0,
+            45.0
+          ]
+        },
+        {
+          "volume_mm3": 0.0,
+          "min_mm": [
+            5.0,
+            5.0,
+            45.0
+          ],
+          "max_mm": [
+            5.0,
+            5.0,
+            45.0
+          ]
+        },
+        {
+          "volume_mm3": 0.0,
+          "min_mm": [
+            5.0,
+            5.0,
+            45.0
+          ],
+          "max_mm": [
+            5.0,
+            5.0,
+            45.0
+          ]
+        }
+      ]
+    },
+    "SmartMeter_PCBSupports": {
+      "translation_mm": [
+        470.0,
+        200.0,
+        0.0
+      ],
+      "bodies": [
+        {
+          "volume_mm3": 14629.245136840857,
+          "min_mm": [
+            307.5,
+            152.5,
+            0.0
+          ],
+          "max_mm": [
+            359.0,
+            247.5,
+            3.0000000000000004
+          ]
+        },
+        {
+          "volume_mm3": 0.0,
+          "min_mm": [
+            475.0,
+            205.0,
+            5.0
+          ],
+          "max_mm": [
+            475.0,
+            205.0,
+            5.0
+          ]
+        },
+        {
+          "volume_mm3": 6799.245136840856,
+          "min_mm": [
+            581.0,
+            172.5,
+            0.0
+          ],
+          "max_mm": [
+            622.5,
+            227.5,
+            3.0000000000000004
+          ]
+        }
+      ]
+    },
+    "SmartMeter_PanelMountFrame": {
+      "translation_mm": [
+        330.0,
+        -200.0,
+        0.0
+      ],
+      "bodies": [
+        {
+          "volume_mm3": 27609.53099505923,
+          "min_mm": [
+            210.0,
+            -282.5,
+            0.0
+          ],
+          "max_mm": [
+            450.0,
+            -117.5,
+            4.0
+          ]
+        }
+      ]
+    },
+    "SmartMeter_RearHousing": {
+      "translation_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "bodies": [
+        {
+          "volume_mm3": 265928.5230285118,
+          "min_mm": [
+            -110.0,
+            -72.5,
+            0.0
+          ],
+          "max_mm": [
+            110.0,
+            72.5,
+            75.0
+          ]
+        }
+      ]
+    },
+    "SmartMeter_RearPanel": {
+      "translation_mm": [
+        0.0,
+        0.0,
+        75.0
+      ],
+      "bodies": [
+        {
+          "volume_mm3": 71970.41620023444,
+          "min_mm": [
+            -104.0,
+            -66.5,
+            75.0
+          ],
+          "max_mm": [
+            104.0,
+            66.5,
+            78.0
+          ]
+        }
+      ]
+    },
+    "SmartMeter_VentilationGrille": {
+      "translation_mm": [
+        330.0,
+        -320.0,
+        0.0
+      ],
+      "bodies": [
+        {
+          "volume_mm3": 4449.575228068094,
+          "min_mm": [
+            285.0,
+            -338.0,
+            0.0
+          ],
+          "max_mm": [
+            375.0,
+            -302.0,
+            2.5
+          ]
+        }
+      ]
+    }
+  },
+  "not_validated": [
+    "fasteners",
+    "electronics",
+    "battery",
+    "accessory_mounts",
+    "electrical_clearances"
+  ],
+  "original_geometry_preserved": true
+}

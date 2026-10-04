@@ -1,0 +1,122 @@
+{
+  "status": "preliminary",
+  "positions_mm": {
+    "SmartMeter_RearHousing": [
+      0,
+      0,
+      0
+    ],
+    "SmartMeter_FrontPanel": [
+      0,
+      0,
+      -4
+    ],
+    "SmartMeter_DisplayBracket": [
+      0,
+      0,
+      0
+    ],
+    "SmartMeter_InternalTray": [
+      0,
+      0,
+      40
+    ],
+    "SmartMeter_RearPanel": [
+      0,
+      0,
+      75
+    ],
+    "SmartMeter_DesktopFeet": [
+      330,
+      0,
+      0
+    ],
+    "SmartMeter_PCBSupports": [
+      470,
+      200,
+      0
+    ],
+    "SmartMeter_PanelMountFrame": [
+      330,
+      -200,
+      0
+    ],
+    "SmartMeter_VentilationGrille": [
+      330,
+      -320,
+      0
+    ]
+  },
+  "checks": [
+    {
+      "a": "SmartMeter_RearHousing",
+      "b": "SmartMeter_FrontPanel",
+      "volume_mm3": 0,
+      "status": "no_volume_overlap"
+    },
+    {
+      "a": "SmartMeter_RearHousing",
+      "b": "SmartMeter_DisplayBracket",
+      "volume_mm3": 0,
+      "status": "unverified_dimensional_contradiction",
+      "error": "Default dimensions predict overlap; inspect geometry and placement."
+    },
+    {
+      "a": "SmartMeter_RearHousing",
+      "b": "SmartMeter_InternalTray",
+      "volume_mm3": 0,
+      "status": "unverified_dimensional_contradiction",
+      "error": "Default dimensions predict overlap; inspect geometry and placement."
+    },
+    {
+      "a": "SmartMeter_RearHousing",
+      "b": "SmartMeter_RearPanel",
+      "volume_mm3": 0,
+      "status": "no_volume_overlap"
+    },
+    {
+      "a": "SmartMeter_FrontPanel",
+      "b": "SmartMeter_DisplayBracket",
+      "volume_mm3": 0,
+      "status": "no_volume_overlap"
+    },
+    {
+      "a": "SmartMeter_FrontPanel",
+      "b": "SmartMeter_InternalTray",
+      "volume_mm3": 0,
+      "status": "no_volume_overlap"
+    },
+    {
+      "a": "SmartMeter_FrontPanel",
+      "b": "SmartMeter_RearPanel",
+      "volume_mm3": 0,
+      "status": "no_volume_overlap"
+    },
+    {
+      "a": "SmartMeter_DisplayBracket",
+      "b": "SmartMeter_InternalTray",
+      "volume_mm3": 0,
+      "status": "no_volume_overlap"
+    },
+    {
+      "a": "SmartMeter_DisplayBracket",
+      "b": "SmartMeter_RearPanel",
+      "volume_mm3": 0,
+      "status": "no_volume_overlap"
+    },
+    {
+      "a": "SmartMeter_InternalTray",
+      "b": "SmartMeter_RearPanel",
+      "volume_mm3": 0,
+      "status": "no_volume_overlap"
+    }
+  ],
+  "not_validated": [
+    "fasteners",
+    "electronics",
+    "battery",
+    "accessory_mounts",
+    "electrical_clearances"
+  ],
+  "original_geometry_preserved": true
+}

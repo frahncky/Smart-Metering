@@ -126,7 +126,7 @@ Os nós internos dos divisores ficam nas classes DIVIDER_A, DIVIDER_B e DIVIDER_
 
 ## Antes do roteamento (ajustes manuais)
 
-1. **Placa e gabinete:** ajustar o FeatureScript `cad/SmartMeter_PCBSupports.fs` (metrologia): largura 130 mm, altura 130 mm, furos 110 × 110 mm.
+1. **Placa e gabinete:** ajustar o FeatureScript `modelo 3D/Onshape/SmartMeter_PCBSupports.fs` (metrologia): largura 130 mm, altura 130 mm, furos 110 × 110 mm.
 2. **Conectores de borda:** conferir o lado de entrada dos fios dos bornes (J201, J101, J801) e a abertura do USB-C (J802), que devem ficar voltados para fora da placa.
 3. **Cadeias dos divisores (R211–R237):** alinhar em linha reta, uma cadeia por fase, com pelo menos 3 mm entre cadeias de fases diferentes.
 4. **ADE9430 (U401):**

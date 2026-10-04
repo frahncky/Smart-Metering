@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "F:/DevIA/Smart-Metering/modelo 3D/Fusion/SmartMeterAssembly/SmartMeterAssembly.py", line 180, in run
+    placements = placement_diagnostics(occurrences)
+  File "F:/DevIA/Smart-Metering/modelo 3D/Fusion/SmartMeterAssembly/SmartMeterAssembly.py", line 141, in placement_diagnostics
+    raise RuntimeError('Position mismatch: '+name)
+RuntimeError: Position mismatch: SmartMeter_DesktopFeet

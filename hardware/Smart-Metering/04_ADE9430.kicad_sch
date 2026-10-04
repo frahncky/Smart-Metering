@@ -267,7 +267,7 @@
 		(effects (font (size 1.27 1.27)) (justify left))
 		(uuid "e9430000-0000-4000-8000-000000000002")
 	)
-	(text "CLOCK\n24.576 MHz crystal\n18 pF load capacitors to GND"
+	(text "CLOCK\n24.576 MHz crystal ABM8-24.576MHZ-8-D1X-T (CL 8 pF)\n10 pF C0G load capacitors to GND (D-005)"
 		(exclude_from_sim no)(at 205 55 0)
 		(effects (font (size 1.27 1.27)) (justify left))
 		(uuid "e9430000-0000-4000-8000-000000000003")
@@ -825,7 +825,7 @@
 		(property "Value" "24.576MHz" (at 217.46 92 0) (effects (font (size 1.27 1.27))))
 		(property "Footprint" "Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm" (at 220 92 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 220 92 0) (effects (font (size 1.27 1.27)) (hide yes)))
-		(property "Description" "ADE9430 master crystal, 24.576 MHz" (at 220 92 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Description" "ADE9430 master crystal, 24.576 MHz, Abracon ABM8-24.576MHZ-8-D1X-T, CL 8 pF" (at 220 92 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(pin "1" (uuid "e9430000-0000-4000-8000-000000050001"))
 		(pin "2" (uuid "e9430000-0000-4000-8000-000000050002"))
 		(pin "3" (uuid "e9430000-0000-4000-8000-000000050003"))
@@ -861,10 +861,10 @@
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
 		(uuid "e9430000-0000-4000-8000-000000000501")
 		(property "Reference" "C409" (at 210.54 118 0) (effects (font (size 1.27 1.27))))
-		(property "Value" "18pF" (at 205.46 118 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "10pF" (at 205.46 118 0) (effects (font (size 1.27 1.27))))
 		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (at 208 118 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 208 118 0) (effects (font (size 1.27 1.27)) (hide yes)))
-		(property "Description" "Crystal load capacitor" (at 208 118 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Description" "Crystal load capacitor, 10 pF C0G 1%" (at 208 118 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(pin "1" (uuid "e9430000-0000-4000-8000-000000050101"))
 		(pin "2" (uuid "e9430000-0000-4000-8000-000000050102"))
 		(instances
@@ -889,10 +889,10 @@
 		(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(dnp no)
 		(uuid "e9430000-0000-4000-8000-000000000502")
 		(property "Reference" "C410" (at 234.54 118 0) (effects (font (size 1.27 1.27))))
-		(property "Value" "18pF" (at 229.46 118 0) (effects (font (size 1.27 1.27))))
+		(property "Value" "10pF" (at 229.46 118 0) (effects (font (size 1.27 1.27))))
 		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (at 232 118 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(property "Datasheet" "" (at 232 118 0) (effects (font (size 1.27 1.27)) (hide yes)))
-		(property "Description" "Crystal load capacitor" (at 232 118 0) (effects (font (size 1.27 1.27)) (hide yes)))
+		(property "Description" "Crystal load capacitor, 10 pF C0G 1%" (at 232 118 0) (effects (font (size 1.27 1.27)) (hide yes)))
 		(pin "1" (uuid "e9430000-0000-4000-8000-000000050201"))
 		(pin "2" (uuid "e9430000-0000-4000-8000-000000050202"))
 		(instances

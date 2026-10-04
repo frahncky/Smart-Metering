@@ -1,0 +1,10 @@
+{
+  "autodeskProduct": "Fusion360",
+  "type": "script",
+  "author": "Smart Metering",
+  "description": {
+    "": "Recria as nove peças do GitHub nas dimensões padrão"
+  },
+  "supportedOS": "windows|mac",
+  "version": "1.0.0"
+}
