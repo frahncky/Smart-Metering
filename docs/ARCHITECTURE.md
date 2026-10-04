@@ -200,3 +200,7 @@ Previstas:
 13. firmware metrológico;
 14. HMI;
 15. calibração e ensaios.
+
+## 9. Alimentação e bateria interna
+
+Entrada127/220V AC com móduloAC/DC a selecionar. Arquitetura atual: LiPo plana interna protegida, gerenciamentopower path, barramentoHMI e conversor isolado para metrologia. Capacidade e autonomia em aberto; proposta antiga13h/pack4S substituída. GND_HMI não se conecta diretamente ao GND metrológico. A folha10 implementa apenas interfaces de pack eNTC; carregador, boost e corte físico ainda pendentes. Detalhes: INTERNAL_BATTERY.md.

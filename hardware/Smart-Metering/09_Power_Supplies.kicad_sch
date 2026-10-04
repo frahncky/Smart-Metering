@@ -1,14 +1,157 @@
-(kicad_sch
-	(version 20260306)
-	(generator "eeschema")
-	(generator_version "10.0")
-	(uuid "b10e1009-0009-4e09-9009-000000000009")
-	(paper "A4")
-	(lib_symbols)
-	(sheet_instances
-		(path "/"
-			(page "1")
+(kicad_sch (version 20260306) (generator "eeschema") (generator_version "10.0") (uuid "b10e1009-0009-4e09-9009-000000000009") (paper "A4") (title_block (title "ADE9430 local 3.3 V supply") (date "2026-10-02") (rev "0.1")) (lib_symbols (symbol "SmartMetering:TPS7A2033PDBVR" (pin_names (offset 1.016)) (in_bom yes) (on_board yes) (property "Reference" "U" (at 0 10 0) (effects (font (size 1.27 1.27)))) (property "Value" "TPS7A2033PDBVR" (at 0 8 0) (effects (font (size 1.27 1.27)))) (symbol "TPS7A2033PDBVR_0_1" (rectangle (start -5.08 7.62) (end 5.08 -7.62) (stroke (width 0.254) (type default)) (fill (type background)))) (symbol "TPS7A2033PDBVR_1_1" (pin power_in line (at -7.62 5.08 0) (length 2.54) (name "IN" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27)))))(pin power_in line (at 0 -10.16 90) (length 2.54) (name "GND" (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27)))))(pin input line (at -7.62 0 0) (length 2.54) (name "EN" (effects (font (size 1.27 1.27)))) (number "3" (effects (font (size 1.27 1.27)))))(pin no_connect line (at 7.62 -5.08 180) (length 2.54) (name "NC" (effects (font (size 1.27 1.27)))) (number "4" (effects (font (size 1.27 1.27)))))(pin power_out line (at 7.62 5.08 180) (length 2.54) (name "OUT" (effects (font (size 1.27 1.27)))) (number "5" (effects (font (size 1.27 1.27))))))) (symbol "SmartMetering:Supply_2Pin" (pin_names (offset 1.016)) (in_bom yes) (on_board yes) (property "Reference" "J" (at 0 10 0) (effects (font (size 1.27 1.27)))) (property "Value" "Supply_2Pin" (at 0 8 0) (effects (font (size 1.27 1.27)))) (symbol "Supply_2Pin_0_1" (rectangle (start 0 2.54) (end 5.08 -5.08) (stroke (width 0.254) (type default)) (fill (type background)))) (symbol "Supply_2Pin_1_1" (pin passive line (at -2.54 0 0) (length 2.54) (name "5V" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27)))))(pin passive line (at -2.54 -2.54 0) (length 2.54) (name "RETURN" (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27))))))) (symbol "SmartMetering:C_Vert"
+			(pin_names (offset 0) (hide yes))
+			(exclude_from_sim no)(in_bom yes)(on_board yes)(in_pos_files yes)(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "C" (at 2.54 0 0) (effects (font (size 1.27 1.27))))
+			(property "Value" "C" (at -2.54 0 0) (effects (font (size 1.27 1.27))))
+			(property "Footprint" "" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+			(property "Datasheet" "" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+			(property "Description" "Capacitor" (at 0 0 0) (effects (font (size 1.27 1.27)) (hide yes)))
+			(symbol "C_Vert_0_1"
+				(polyline (pts (xy -2.032 -0.635) (xy 2.032 -0.635)) (stroke (width 0.5) (type default)) (fill (type none)))
+				(polyline (pts (xy -2.032 0.635) (xy 2.032 0.635)) (stroke (width 0.5) (type default)) (fill (type none)))
+			)
+			(symbol "C_Vert_1_1"
+				(pin passive line (at 0 -2.54 270) (length 1.905) (name "" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27)))))
+				(pin passive line (at 0 2.54 90) (length 1.905) (name "" (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27)))))
+			)
+			(embedded_fonts no)
+		) (symbol "power:PWR_FLAG"
+		(power global)
+		(pin_numbers
+			(hide yes)
 		)
-	)
-	(embedded_fonts no)
-)
+		(pin_names
+			(offset 0)
+			(hide yes)
+		)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "#FLG"
+			(at 0 1.905 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 0 3.81 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "ki_keywords" "flag power"
+			(at 0 0 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(symbol "PWR_FLAG_0_0"
+			(pin power_out line
+				(at 0 0 90)
+				(length 0)
+				(name ""
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+				(number "1"
+					(effects
+						(font
+							(size 1.27 1.27)
+						)
+					)
+				)
+			)
+		)
+		(symbol "PWR_FLAG_0_1"
+			(polyline
+				(pts
+					(xy 0 0) (xy 0 1.27) (xy -1.016 1.905) (xy 0 2.54) (xy 1.016 1.905) (xy 0 1.27)
+				)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type none)
+				)
+			)
+		)
+		(embedded_fonts no)
+	))
+(symbol (lib_id "SmartMetering:Supply_2Pin") (at 40.64 60.96 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid "91f3612c-a82f-4d64-bd25-96b36a88fa18") (property "Reference" "J1" (at 40.64 48.96 0) (effects (font (size 1.27 1.27)))) (property "Value" "5V METROLOGY INPUT" (at 40.64 51.96 0) (effects (font (size 1.27 1.27)))) (property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" (at 40.64 60.96 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Datasheet" "" (at 40.64 60.96 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Description" "Prototype input only; isolation barrier upstream, not provided by header" (at 40.64 60.96 0) (effects (font (size 1.27 1.27)) (hide yes))) (pin "1" (uuid "e7b61626-57ad-4e2f-bee7-88661b38ab0f"))(pin "2" (uuid "07392592-a704-4f9e-8488-28da8f0332b4"))(instances (project "Smart-Metering" (path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1009-0009-4e09-9009-000000000009" (reference "J1") (unit 1)))))
+(global_label "+5V_MET_IN" (shape bidirectional) (at 38.1 60.96 180) (effects (font (size 1.27 1.27))) (uuid "aea16723-c92c-4d9c-a7a4-0a3e341f0c2f"))
+(global_label "GND" (shape bidirectional) (at 38.1 63.5 180) (effects (font (size 1.27 1.27))) (uuid "caff0c12-76c8-44d2-a1fd-5fba03d1e524"))
+(symbol (lib_id "SmartMetering:TPS7A2033PDBVR") (at 111.76 81.28 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid "3c029ad4-6e6e-428d-82d7-6ef9efb51308") (property "Reference" "U2" (at 111.76 69.28 0) (effects (font (size 1.27 1.27)))) (property "Value" "TPS7A2033PDBVR" (at 111.76 72.28 0) (effects (font (size 1.27 1.27)))) (property "Footprint" "Package_TO_SOT_SMD:SOT-23-5" (at 111.76 81.28 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Datasheet" "https://www.ti.com/lit/ds/symlink/tps7a20.pdf" (at 111.76 81.28 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Description" "Dedicated ADE9430 LDO, 3.3V, 300mA device rating" (at 111.76 81.28 0) (effects (font (size 1.27 1.27)) (hide yes))) (pin "1" (uuid "5cc1813c-9bc8-4219-93cc-bc90e90f8a15"))(pin "2" (uuid "b8949731-4260-45e6-86c7-c0fc045e593d"))(pin "3" (uuid "8c23bcf0-703d-45b0-9c7d-efb1334c92be"))(pin "4" (uuid "a24da959-4051-4d7d-a52c-2de9ea3d7871"))(pin "5" (uuid "99c31c16-6560-49d4-b902-9d2c54f6f2f6"))(instances (project "Smart-Metering" (path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1009-0009-4e09-9009-000000000009" (reference "U2") (unit 1)))))
+(wire (pts (xy 104.14 76.2) (xy 83.82 76.2)) (stroke (width 0) (type default)) (uuid "57c0ddf6-0392-4e69-b707-c2b8d95d9f48"))
+(wire (pts (xy 83.82 76.2) (xy 83.82 81.28)) (stroke (width 0) (type default)) (uuid "b7667d33-88f8-460f-bbaf-218277b3c6fb"))
+(wire (pts (xy 83.82 81.28) (xy 104.14 81.28)) (stroke (width 0) (type default)) (uuid "66d24570-32ba-4c9c-b9f6-0af0e033dd6f"))
+(global_label "+5V_MET_IN" (shape bidirectional) (at 83.82 76.2 180) (effects (font (size 1.27 1.27))) (uuid "30b89951-bfe7-4e73-81c3-bb958c6362d8"))
+(junction (at 83.82 76.2) (diameter 0) (color 0 0 0 0) (uuid "9b093706-f40c-4d2b-b2f7-0414e0d11def"))
+(global_label "GND" (shape bidirectional) (at 111.76 91.44 270) (effects (font (size 1.27 1.27))) (uuid "3a1e6f2e-71f0-4b71-860c-d61a7cd25bcc"))
+(no_connect (at 119.38 86.36) (uuid "b1d87917-6c8c-4e7a-add7-5f26efd5b490"))
+(wire (pts (xy 119.38 76.2) (xy 157.48 76.2)) (stroke (width 0) (type default)) (uuid "00b2ca08-d196-41c7-81c1-2ff002584c2a"))
+(global_label "+3V3_ADE" (shape bidirectional) (at 157.48 76.2 0) (effects (font (size 1.27 1.27))) (uuid "20812ab9-78a0-45fc-8d6e-675962970046"))
+(symbol (lib_id "SmartMetering:C_Vert") (at 66.04 101.6 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid "eb675ba9-ed14-4d38-88ed-8b22925afb0a") (property "Reference" "C30" (at 66.04 89.6 0) (effects (font (size 1.27 1.27)))) (property "Value" "2.2uF X7R 10V" (at 66.04 92.6 0) (effects (font (size 1.27 1.27)))) (property "Footprint" "Capacitor_SMD:C_0805_2012Metric" (at 66.04 101.6 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Datasheet" "" (at 66.04 101.6 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Description" "Effective capacitance >=1uF at operating voltage; ESR <=100mOhm" (at 66.04 101.6 0) (effects (font (size 1.27 1.27)) (hide yes))) (pin "1" (uuid "eac1fa15-2871-48e1-af7f-5f46f6bd6769"))(pin "2" (uuid "a56a4ec2-a6a9-4e62-a627-e6d9c8680430"))(instances (project "Smart-Metering" (path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1009-0009-4e09-9009-000000000009" (reference "C30") (unit 1)))))
+(global_label "+5V_MET_IN" (shape bidirectional) (at 66.04 99.06 90) (effects (font (size 1.27 1.27))) (uuid "3e1a3a7a-72e1-49ef-81f1-fab8d9beb6f4"))
+(global_label "GND" (shape bidirectional) (at 66.04 104.14 270) (effects (font (size 1.27 1.27))) (uuid "e8b5230a-5b41-4709-832a-d1641d45db0e"))
+(symbol (lib_id "SmartMetering:C_Vert") (at 139.7 101.6 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid "205d0fe3-cf48-4a51-a506-61617f5fdea6") (property "Reference" "C31" (at 139.7 89.6 0) (effects (font (size 1.27 1.27)))) (property "Value" "2.2uF X7R 10V" (at 139.7 92.6 0) (effects (font (size 1.27 1.27)))) (property "Footprint" "Capacitor_SMD:C_0805_2012Metric" (at 139.7 101.6 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Datasheet" "" (at 139.7 101.6 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Description" "Effective capacitance >=1uF at operating voltage; ESR <=100mOhm" (at 139.7 101.6 0) (effects (font (size 1.27 1.27)) (hide yes))) (pin "1" (uuid "41339c82-09a7-433d-813d-1f5d95efe8a1"))(pin "2" (uuid "737b7916-5a28-4170-889a-bac9d4852421"))(instances (project "Smart-Metering" (path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1009-0009-4e09-9009-000000000009" (reference "C31") (unit 1)))))
+(global_label "+3V3_ADE" (shape bidirectional) (at 139.7 99.06 90) (effects (font (size 1.27 1.27))) (uuid "593492b7-a437-4758-a965-c6f12b05b2d2"))
+(global_label "GND" (shape bidirectional) (at 139.7 104.14 270) (effects (font (size 1.27 1.27))) (uuid "70b30ea5-eb44-4be9-9798-85fceb7a802c"))
+(symbol (lib_id "power:PWR_FLAG") (at 25.4 111.76 0) (unit 1) (in_bom no) (on_board no) (dnp no) (uuid "df7151fa-46d8-4b1e-9e91-17a82e8865e8") (property "Reference" "#FLG01" (at 25.4 99.76 0) (effects (font (size 1.27 1.27)))) (property "Value" "PWR_FLAG" (at 25.4 102.76 0) (effects (font (size 1.27 1.27)))) (property "Footprint" "" (at 25.4 111.76 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Datasheet" "" (at 25.4 111.76 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Description" "" (at 25.4 111.76 0) (effects (font (size 1.27 1.27)) (hide yes))) (pin "1" (uuid "765f5782-803e-4543-9ba8-345223476c78"))(instances (project "Smart-Metering" (path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1009-0009-4e09-9009-000000000009" (reference "#FLG01") (unit 1)))))
+(global_label "+5V_MET_IN" (shape bidirectional) (at 25.4 111.76 180) (effects (font (size 1.27 1.27))) (uuid "62ea9174-777c-4a11-bb92-98871fb3ea59"))
+(symbol (lib_id "power:PWR_FLAG") (at 45.72 111.76 0) (unit 1) (in_bom no) (on_board no) (dnp no) (uuid "acb8ccee-d4ba-4885-a304-e74a759c63aa") (property "Reference" "#FLG02" (at 45.72 99.76 0) (effects (font (size 1.27 1.27)))) (property "Value" "PWR_FLAG" (at 45.72 102.76 0) (effects (font (size 1.27 1.27)))) (property "Footprint" "" (at 45.72 111.76 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Datasheet" "" (at 45.72 111.76 0) (effects (font (size 1.27 1.27)) (hide yes))) (property "Description" "" (at 45.72 111.76 0) (effects (font (size 1.27 1.27)) (hide yes))) (pin "1" (uuid "625939dc-175f-4d3d-952e-1de0144e2464"))(instances (project "Smart-Metering" (path "/5fa62d70-4279-48bb-8603-6bcc60fb353a/a10e1009-0009-4e09-9009-000000000009" (reference "#FLG02") (unit 1)))))
+(global_label "GND" (shape bidirectional) (at 45.72 111.76 180) (effects (font (size 1.27 1.27))) (uuid "a8a7639a-6a5a-4f94-9a32-a655a7af95bd"))
+(text "LOCAL REGULATOR ONLY - input 5 V +/-5%, dedicated ADE9430 rail.\nJ1 supplied externally; flags describe this explicit input contract.\nGND is mains-referenced through VN_SENSE. Isolation is NOT implemented here.\nBudget 50 mA for this rail; MCU/HMI require separate power budgeting.\nNo direct mains energization until input protection and isolation are validated." (at 25.4 139.7 0) (effects (font (size 1.27 1.27)) (justify left top)) (uuid "7c0bc25c-d34e-4bb7-88b6-a799c2e82cd6"))
+(sheet_instances (path "/" (page "10"))) (embedded_fonts no))

@@ -1,0 +1,1797 @@
+[
+  {
+    "name": "SmartMeter_DesktopFeet",
+    "source_sha": "2fd5b58f2a13470d125dd9fbd3b2a5848accd442",
+    "defaults": {
+      "footLength": 55,
+      "footWidth": 24,
+      "footHeight": 10,
+      "footSpacing": 150,
+      "holeSpacing": 35,
+      "holeDiameter": 3.2
+    },
+    "operations": [
+      {
+        "shape": "rect",
+        "w": 55,
+        "h": 24,
+        "x": -75,
+        "y": 0,
+        "z": 0,
+        "t": 10,
+        "op": "new",
+        "r": 0
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 11,
+        "x": -92.5,
+        "y": 0,
+        "z": 0,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 11,
+        "x": -57.5,
+        "y": 0,
+        "z": 0,
+        "op": "cut"
+      },
+      {
+        "shape": "rect",
+        "w": 55,
+        "h": 24,
+        "x": 75,
+        "y": 0,
+        "z": 0,
+        "t": 10,
+        "op": "new",
+        "r": 0
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 11,
+        "x": 57.5,
+        "y": 0,
+        "z": 0,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 11,
+        "x": 92.5,
+        "y": 0,
+        "z": 0,
+        "op": "cut"
+      }
+    ]
+  },
+  {
+    "name": "SmartMeter_DisplayBracket",
+    "source_sha": "5d8d8f7b555b14438e98136142f366b210a1be69",
+    "defaults": {
+      "bracketWidth": 190,
+      "bracketHeight": 125,
+      "bracketThickness": 3,
+      "displayClearanceWidth": 169,
+      "displayClearanceHeight": 104,
+      "cableNotchWidth": 24,
+      "cableNotchDepth": 10,
+      "mountSpacingX": 180,
+      "mountSpacingY": 115,
+      "mountHoleDiameter": 3.2
+    },
+    "operations": [
+      {
+        "shape": "rect",
+        "w": 190,
+        "h": 125,
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "t": 3,
+        "op": "new",
+        "r": 0
+      },
+      {
+        "shape": "rect",
+        "w": 169,
+        "h": 104,
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "t": 4,
+        "op": "cut",
+        "r": 0
+      },
+      {
+        "shape": "rect",
+        "w": 24,
+        "h": 10,
+        "x": 0,
+        "y": -57.5,
+        "z": 0,
+        "t": 4,
+        "op": "cut",
+        "r": 0
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 4,
+        "x": -90,
+        "y": -57.5,
+        "z": 0,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 4,
+        "x": -90,
+        "y": 57.5,
+        "z": 0,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 4,
+        "x": 90,
+        "y": -57.5,
+        "z": 0,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 4,
+        "x": 90,
+        "y": 57.5,
+        "z": 0,
+        "op": "cut"
+      }
+    ]
+  },
+  {
+    "name": "SmartMeter_FrontPanel",
+    "source_sha": "0b6931ea7ececaeeb34b5439281cc30cedc14455",
+    "defaults": {
+      "panelWidth": 220,
+      "panelHeight": 145,
+      "panelThickness": 4,
+      "cornerRadius": 8,
+      "displayWidth": 167,
+      "displayHeight": 102,
+      "windowWidth": 155,
+      "windowHeight": 87,
+      "recessDepth": 2.5,
+      "holeSpacingX": 180,
+      "holeSpacingY": 115,
+      "holeDiameter": 3.2
+    },
+    "operations": [
+      {
+        "shape": "rounded",
+        "w": 220,
+        "h": 145,
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "t": 4,
+        "op": "new",
+        "r": 8
+      },
+      {
+        "shape": "rect",
+        "w": 155,
+        "h": 87,
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "t": 5,
+        "op": "cut",
+        "r": 0
+      },
+      {
+        "shape": "rect",
+        "w": 167,
+        "h": 102,
+        "x": 0,
+        "y": 0,
+        "z": 1.5,
+        "t": 2.7,
+        "op": "cut",
+        "r": 0
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 5,
+        "x": -90,
+        "y": -57.5,
+        "z": 0,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 5,
+        "x": -90,
+        "y": 57.5,
+        "z": 0,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 5,
+        "x": 90,
+        "y": -57.5,
+        "z": 0,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 5,
+        "x": 90,
+        "y": 57.5,
+        "z": 0,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 4,
+        "x": -104,
+        "y": -60,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 4,
+        "x": -104,
+        "y": 60,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 4,
+        "x": 104,
+        "y": -60,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 4,
+        "x": 104,
+        "y": 60,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      }
+    ]
+  },
+  {
+    "name": "SmartMeter_InternalTray",
+    "source_sha": "7d96d9b01947198de556f5a77ef376c4451b8772",
+    "defaults": {
+      "trayWidth": 202,
+      "trayHeight": 127,
+      "trayThickness": 3,
+      "metrologyZoneWidth": 90,
+      "dividerThickness": 3,
+      "dividerHeight": 25,
+      "standoffDiameter": 10,
+      "standoffHeight": 8,
+      "standoffHoleDiameter": 3.2,
+      "metrologyHoleSpacingX": 60,
+      "metrologyHoleSpacingY": 60,
+      "commHoleSpacingX": 70,
+      "commHoleSpacingY": 50,
+      "cableSlotWidth": 8,
+      "cableSlotLength": 24
+    },
+    "operations": [
+      {
+        "shape": "rect",
+        "w": 202,
+        "h": 127,
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "t": 3,
+        "op": "new",
+        "r": 0
+      },
+      {
+        "shape": "rect",
+        "w": 3,
+        "h": 127,
+        "x": -11,
+        "y": 0,
+        "z": 0,
+        "t": 28,
+        "op": "join",
+        "r": 0
+      },
+      {
+        "shape": "circle",
+        "dia": 10,
+        "t": 11,
+        "x": -86,
+        "y": -30,
+        "z": 0,
+        "op": "join"
+      },
+      {
+        "shape": "circle",
+        "dia": 10,
+        "t": 11,
+        "x": -86,
+        "y": 30,
+        "z": 0,
+        "op": "join"
+      },
+      {
+        "shape": "circle",
+        "dia": 10,
+        "t": 11,
+        "x": -26,
+        "y": -30,
+        "z": 0,
+        "op": "join"
+      },
+      {
+        "shape": "circle",
+        "dia": 10,
+        "t": 11,
+        "x": -26,
+        "y": 30,
+        "z": 0,
+        "op": "join"
+      },
+      {
+        "shape": "circle",
+        "dia": 10,
+        "t": 11,
+        "x": 10,
+        "y": -25,
+        "z": 0,
+        "op": "join"
+      },
+      {
+        "shape": "circle",
+        "dia": 10,
+        "t": 11,
+        "x": 10,
+        "y": 25,
+        "z": 0,
+        "op": "join"
+      },
+      {
+        "shape": "circle",
+        "dia": 10,
+        "t": 11,
+        "x": 80,
+        "y": -25,
+        "z": 0,
+        "op": "join"
+      },
+      {
+        "shape": "circle",
+        "dia": 10,
+        "t": 11,
+        "x": 80,
+        "y": 25,
+        "z": 0,
+        "op": "join"
+      },
+      {
+        "shape": "rect",
+        "w": 8,
+        "h": 24,
+        "x": -24.5,
+        "y": 0,
+        "z": 0,
+        "t": 3,
+        "op": "cut",
+        "r": 0
+      },
+      {
+        "shape": "rect",
+        "w": 8,
+        "h": 24,
+        "x": 2.5,
+        "y": 0,
+        "z": 0,
+        "t": 3,
+        "op": "cut",
+        "r": 0
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 8,
+        "x": -86,
+        "y": -30,
+        "z": 3,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 8,
+        "x": -86,
+        "y": 30,
+        "z": 3,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 8,
+        "x": -26,
+        "y": -30,
+        "z": 3,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 8,
+        "x": -26,
+        "y": 30,
+        "z": 3,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 8,
+        "x": 10,
+        "y": -25,
+        "z": 3,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 8,
+        "x": 10,
+        "y": 25,
+        "z": 3,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 8,
+        "x": 80,
+        "y": -25,
+        "z": 3,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 8,
+        "x": 80,
+        "y": 25,
+        "z": 3,
+        "op": "cut"
+      },
+      {
+        "shape": "rect",
+        "w": 17,
+        "h": 12,
+        "x": -92.5,
+        "y": -57.5,
+        "z": 0,
+        "t": 3,
+        "op": "cut",
+        "r": 0
+      },
+      {
+        "shape": "rect",
+        "w": 17,
+        "h": 12,
+        "x": -92.5,
+        "y": 57.5,
+        "z": 0,
+        "t": 3,
+        "op": "cut",
+        "r": 0
+      },
+      {
+        "shape": "rect",
+        "w": 17,
+        "h": 12,
+        "x": 92.5,
+        "y": -57.5,
+        "z": 0,
+        "t": 3,
+        "op": "cut",
+        "r": 0
+      },
+      {
+        "shape": "rect",
+        "w": 17,
+        "h": 12,
+        "x": 92.5,
+        "y": 57.5,
+        "z": 0,
+        "t": 3,
+        "op": "cut",
+        "r": 0
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 3,
+        "x": -56,
+        "y": -58,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 3,
+        "x": -56,
+        "y": 58,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 3,
+        "x": 45,
+        "y": -58,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 3,
+        "x": 45,
+        "y": 58,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      }
+    ]
+  },
+  {
+    "name": "SmartMeter_PanelMountFrame",
+    "source_sha": "a05b881b0cf1b811da77a948d13c743cdee4a6f5",
+    "defaults": {
+      "frameWidth": 240,
+      "frameHeight": 165,
+      "frameThickness": 4,
+      "cutoutWidth": 222,
+      "cutoutHeight": 147,
+      "mountSpacingX": 228,
+      "mountSpacingY": 153,
+      "mountHoleDiameter": 4.5
+    },
+    "operations": [
+      {
+        "shape": "rect",
+        "w": 240,
+        "h": 165,
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "t": 4,
+        "op": "new",
+        "r": 0
+      },
+      {
+        "shape": "rect",
+        "w": 202,
+        "h": 127,
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "t": 5,
+        "op": "cut",
+        "r": 0
+      },
+      {
+        "shape": "circle",
+        "dia": 4.5,
+        "t": 5,
+        "x": -114,
+        "y": -76.5,
+        "z": 0,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 4.5,
+        "t": 5,
+        "x": -114,
+        "y": 76.5,
+        "z": 0,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 4.5,
+        "t": 5,
+        "x": 114,
+        "y": -76.5,
+        "z": 0,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 4.5,
+        "t": 5,
+        "x": 114,
+        "y": 76.5,
+        "z": 0,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 4,
+        "x": -104,
+        "y": -60,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 4,
+        "x": -104,
+        "y": 60,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 4,
+        "x": 104,
+        "y": -60,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 4,
+        "x": 104,
+        "y": 60,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      }
+    ]
+  },
+  {
+    "name": "SmartMeter_RearHousing",
+    "source_sha": "13faa2ca4c15bdadfa929d1870471d495512d77e",
+    "defaults": {
+      "bodyWidth": 220,
+      "bodyHeight": 145,
+      "bodyDepth": 75,
+      "wallThickness": 3,
+      "backThickness": 3,
+      "bossSpacingX": 180,
+      "bossSpacingY": 115,
+      "bossDiameter": 10,
+      "insertDiameter": 4.6,
+      "insertDepth": 9,
+      "rearMountSpacingX": 192,
+      "rearMountSpacingY": 117,
+      "rearMountHoleDiameter": 3.2
+    },
+    "operations": [
+      {
+        "shape": "rect",
+        "w": 220,
+        "h": 145,
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "t": 75,
+        "op": "new",
+        "r": 0
+      },
+      {
+        "shape": "rect",
+        "w": 214,
+        "h": 139,
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "t": 72,
+        "op": "cut",
+        "r": 0
+      },
+      {
+        "shape": "circle",
+        "dia": 10,
+        "t": 72,
+        "x": -90,
+        "y": -57.5,
+        "z": 3,
+        "op": "join"
+      },
+      {
+        "shape": "circle",
+        "dia": 10,
+        "t": 72,
+        "x": -90,
+        "y": 57.5,
+        "z": 3,
+        "op": "join"
+      },
+      {
+        "shape": "circle",
+        "dia": 10,
+        "t": 72,
+        "x": 90,
+        "y": -57.5,
+        "z": 3,
+        "op": "join"
+      },
+      {
+        "shape": "circle",
+        "dia": 10,
+        "t": 72,
+        "x": 90,
+        "y": 57.5,
+        "z": 3,
+        "op": "join"
+      },
+      {
+        "shape": "circle",
+        "dia": 4.6,
+        "t": 9,
+        "x": -90,
+        "y": -57.5,
+        "z": 3,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 4.6,
+        "t": 9,
+        "x": -90,
+        "y": 57.5,
+        "z": 3,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 4.6,
+        "t": 9,
+        "x": 90,
+        "y": -57.5,
+        "z": 3,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 4.6,
+        "t": 9,
+        "x": 90,
+        "y": 57.5,
+        "z": 3,
+        "op": "cut"
+      },
+      {
+        "shape": "rect",
+        "w": 78,
+        "h": 16,
+        "x": -55,
+        "y": -42,
+        "z": 72,
+        "t": 4,
+        "op": "cut",
+        "r": 0
+      },
+      {
+        "shape": "circle",
+        "dia": 12,
+        "t": 4,
+        "x": -88,
+        "y": 5,
+        "z": 72,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 12,
+        "t": 4,
+        "x": -66,
+        "y": 5,
+        "z": 72,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 12,
+        "t": 4,
+        "x": -44,
+        "y": 5,
+        "z": 72,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 12,
+        "t": 4,
+        "x": -22,
+        "y": 5,
+        "z": 72,
+        "op": "cut"
+      },
+      {
+        "shape": "rect",
+        "w": 16,
+        "h": 14,
+        "x": 62,
+        "y": 34,
+        "z": 72,
+        "t": 4,
+        "op": "cut",
+        "r": 0
+      },
+      {
+        "shape": "rect",
+        "w": 24,
+        "h": 12,
+        "x": 62,
+        "y": 4,
+        "z": 72,
+        "t": 4,
+        "op": "cut",
+        "r": 0
+      },
+      {
+        "shape": "rect",
+        "w": 10,
+        "h": 4.5,
+        "x": 62,
+        "y": -28,
+        "z": 72,
+        "t": 4,
+        "op": "cut",
+        "r": 0
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 4,
+        "x": -96,
+        "y": -58.5,
+        "z": 72,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 4,
+        "x": -96,
+        "y": 58.5,
+        "z": 72,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 4,
+        "x": 96,
+        "y": -58.5,
+        "z": 72,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 4,
+        "x": 96,
+        "y": 58.5,
+        "z": 72,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 10,
+        "t": 32,
+        "x": -56,
+        "y": -58,
+        "z": 43,
+        "op": "join",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 4.6,
+        "t": 9,
+        "x": -56,
+        "y": -58,
+        "z": 43,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 10,
+        "t": 32,
+        "x": -56,
+        "y": 58,
+        "z": 43,
+        "op": "join",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 4.6,
+        "t": 9,
+        "x": -56,
+        "y": 58,
+        "z": 43,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 10,
+        "t": 32,
+        "x": 45,
+        "y": -58,
+        "z": 43,
+        "op": "join",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 4.6,
+        "t": 9,
+        "x": 45,
+        "y": -58,
+        "z": 43,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 10,
+        "t": 32,
+        "x": 45,
+        "y": 58,
+        "z": 43,
+        "op": "join",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 4.6,
+        "t": 9,
+        "x": 45,
+        "y": 58,
+        "z": 43,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 8,
+        "t": 75,
+        "x": -104,
+        "y": -60,
+        "z": 0,
+        "op": "join",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 4.6,
+        "t": 9,
+        "x": -104,
+        "y": -60,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 8,
+        "t": 75,
+        "x": -104,
+        "y": 60,
+        "z": 0,
+        "op": "join",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 4.6,
+        "t": 9,
+        "x": -104,
+        "y": 60,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 8,
+        "t": 75,
+        "x": 104,
+        "y": -60,
+        "z": 0,
+        "op": "join",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 4.6,
+        "t": 9,
+        "x": 104,
+        "y": -60,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 8,
+        "t": 75,
+        "x": 104,
+        "y": 60,
+        "z": 0,
+        "op": "join",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 4.6,
+        "t": 9,
+        "x": 104,
+        "y": 60,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 4,
+        "x": -92.5,
+        "y": 40,
+        "z": 69.5,
+        "op": "cut",
+        "axis": "XZ"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 4,
+        "x": -57.5,
+        "y": 40,
+        "z": 69.5,
+        "op": "cut",
+        "axis": "XZ"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 4,
+        "x": 57.5,
+        "y": 40,
+        "z": 69.5,
+        "op": "cut",
+        "axis": "XZ"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 4,
+        "x": 92.5,
+        "y": 40,
+        "z": 69.5,
+        "op": "cut",
+        "axis": "XZ"
+      },
+      {
+        "shape": "rect",
+        "w": 72,
+        "h": 30,
+        "t": 3.5,
+        "x": 45,
+        "y": 40,
+        "z": -72.5,
+        "op": "cut",
+        "r": 0,
+        "axis": "XZ"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 3.5,
+        "x": 6,
+        "y": 28,
+        "z": -72.5,
+        "op": "cut",
+        "axis": "XZ"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 3.5,
+        "x": 6,
+        "y": 52,
+        "z": -72.5,
+        "op": "cut",
+        "axis": "XZ"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 3.5,
+        "x": 84,
+        "y": 28,
+        "z": -72.5,
+        "op": "cut",
+        "axis": "XZ"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 3.5,
+        "x": 84,
+        "y": 52,
+        "z": -72.5,
+        "op": "cut",
+        "axis": "XZ"
+      }
+    ]
+  },
+  {
+    "name": "SmartMeter_RearPanel",
+    "source_sha": "bb7ae4c421bbac0f3a6ad7f5fc1d3e008092d770",
+    "defaults": {
+      "panelWidth": 208,
+      "panelHeight": 133,
+      "panelThickness": 3,
+      "mountSpacingX": 192,
+      "mountSpacingY": 117,
+      "mountHoleDiameter": 3.2,
+      "voltageWidth": 78,
+      "voltageHeight": 16,
+      "currentDiameter": 12,
+      "currentSpacing": 22,
+      "ethernetWidth": 16,
+      "ethernetHeight": 14,
+      "rs485Width": 24,
+      "rs485Height": 12,
+      "usbWidth": 10,
+      "usbHeight": 4.5
+    },
+    "operations": [
+      {
+        "shape": "rect",
+        "w": 208,
+        "h": 133,
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "t": 3,
+        "op": "new",
+        "r": 0
+      },
+      {
+        "shape": "rect",
+        "w": 78,
+        "h": 16,
+        "x": -55,
+        "y": -42,
+        "z": 0,
+        "t": 4,
+        "op": "cut",
+        "r": 0
+      },
+      {
+        "shape": "circle",
+        "dia": 12,
+        "t": 4,
+        "x": -88,
+        "y": 5,
+        "z": 0,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 12,
+        "t": 4,
+        "x": -66,
+        "y": 5,
+        "z": 0,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 12,
+        "t": 4,
+        "x": -44,
+        "y": 5,
+        "z": 0,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 12,
+        "t": 4,
+        "x": -22,
+        "y": 5,
+        "z": 0,
+        "op": "cut"
+      },
+      {
+        "shape": "rect",
+        "w": 16,
+        "h": 14,
+        "x": 62,
+        "y": 34,
+        "z": 0,
+        "t": 4,
+        "op": "cut",
+        "r": 0
+      },
+      {
+        "shape": "rect",
+        "w": 24,
+        "h": 12,
+        "x": 62,
+        "y": 4,
+        "z": 0,
+        "t": 4,
+        "op": "cut",
+        "r": 0
+      },
+      {
+        "shape": "rect",
+        "w": 10,
+        "h": 4.5,
+        "x": 62,
+        "y": -28,
+        "z": 0,
+        "t": 4,
+        "op": "cut",
+        "r": 0
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 4,
+        "x": -96,
+        "y": -58.5,
+        "z": 0,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 4,
+        "x": -96,
+        "y": 58.5,
+        "z": 0,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 4,
+        "x": 96,
+        "y": -58.5,
+        "z": 0,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 4,
+        "x": 96,
+        "y": 58.5,
+        "z": 0,
+        "op": "cut"
+      }
+    ]
+  },
+  {
+    "name": "SmartMeter_VentilationGrille",
+    "source_sha": "74127b15a660b9ce5b13d5ed0afbb668afa63994",
+    "defaults": {
+      "grilleWidth": 90,
+      "grilleHeight": 36,
+      "grilleThickness": 2.5,
+      "slotLength": 68,
+      "slotHeight": 3.5,
+      "slotPitch": 5,
+      "mountSpacingX": 78,
+      "mountSpacingY": 24,
+      "mountHoleDiameter": 3.2
+    },
+    "operations": [
+      {
+        "shape": "rect",
+        "w": 90,
+        "h": 36,
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "t": 2.5,
+        "op": "new",
+        "r": 0
+      },
+      {
+        "shape": "rect",
+        "w": 68,
+        "h": 3.5,
+        "x": 0,
+        "y": -12.5,
+        "z": 0,
+        "t": 3.5,
+        "op": "cut",
+        "r": 0
+      },
+      {
+        "shape": "rect",
+        "w": 68,
+        "h": 3.5,
+        "x": 0,
+        "y": -7.5,
+        "z": 0,
+        "t": 3.5,
+        "op": "cut",
+        "r": 0
+      },
+      {
+        "shape": "rect",
+        "w": 68,
+        "h": 3.5,
+        "x": 0,
+        "y": -2.5,
+        "z": 0,
+        "t": 3.5,
+        "op": "cut",
+        "r": 0
+      },
+      {
+        "shape": "rect",
+        "w": 68,
+        "h": 3.5,
+        "x": 0,
+        "y": 2.5,
+        "z": 0,
+        "t": 3.5,
+        "op": "cut",
+        "r": 0
+      },
+      {
+        "shape": "rect",
+        "w": 68,
+        "h": 3.5,
+        "x": 0,
+        "y": 7.5,
+        "z": 0,
+        "t": 3.5,
+        "op": "cut",
+        "r": 0
+      },
+      {
+        "shape": "rect",
+        "w": 68,
+        "h": 3.5,
+        "x": 0,
+        "y": 12.5,
+        "z": 0,
+        "t": 3.5,
+        "op": "cut",
+        "r": 0
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 3.5,
+        "x": -39,
+        "y": -12,
+        "z": 0,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 3.5,
+        "x": -39,
+        "y": 12,
+        "z": 0,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 3.5,
+        "x": 39,
+        "y": -12,
+        "z": 0,
+        "op": "cut"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 3.5,
+        "x": 39,
+        "y": 12,
+        "z": 0,
+        "op": "cut"
+      }
+    ]
+  },
+  {
+    "name": "SmartMeter_MetrologyCarrier",
+    "source_sha": "97c94f36d6c7275ac7e4e75c41e6bece0fe3c5ee",
+    "operations": [
+      {
+        "shape": "rect",
+        "w": 85,
+        "h": 95,
+        "t": 3,
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "op": "new",
+        "r": 0,
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 3,
+        "x": -32.5,
+        "y": -37.5,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 3,
+        "x": -32.5,
+        "y": 37.5,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 3,
+        "x": 32.5,
+        "y": -37.5,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 3,
+        "x": 32.5,
+        "y": 37.5,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 3,
+        "x": -30,
+        "y": -30,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 3,
+        "x": -30,
+        "y": 30,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 3,
+        "x": 30,
+        "y": -30,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 3,
+        "x": 30,
+        "y": 30,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      }
+    ]
+  },
+  {
+    "name": "SmartMeter_HmiCarrier",
+    "source_sha": "97c94f36d6c7275ac7e4e75c41e6bece0fe3c5ee",
+    "operations": [
+      {
+        "shape": "rect",
+        "w": 105,
+        "h": 75,
+        "t": 3,
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "op": "new",
+        "r": 0,
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 3,
+        "x": -42.5,
+        "y": -27.5,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 3,
+        "x": -42.5,
+        "y": 27.5,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 3,
+        "x": 42.5,
+        "y": -27.5,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 3,
+        "x": 42.5,
+        "y": 27.5,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 3,
+        "x": -35,
+        "y": -25,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 3,
+        "x": -35,
+        "y": 25,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 3,
+        "x": 35,
+        "y": -25,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 3,
+        "x": 35,
+        "y": 25,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 10,
+        "t": 12,
+        "x": -27.5,
+        "y": -17.5,
+        "z": 0,
+        "op": "join",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 10,
+        "t": 12,
+        "x": -27.5,
+        "y": 17.5,
+        "z": 0,
+        "op": "join",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 10,
+        "t": 12,
+        "x": 27.5,
+        "y": -17.5,
+        "z": 0,
+        "op": "join",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 10,
+        "t": 12,
+        "x": 27.5,
+        "y": 17.5,
+        "z": 0,
+        "op": "join",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 9,
+        "x": -27.5,
+        "y": -17.5,
+        "z": 3,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 9,
+        "x": -27.5,
+        "y": 17.5,
+        "z": 3,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 9,
+        "x": 27.5,
+        "y": -17.5,
+        "z": 3,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 9,
+        "x": 27.5,
+        "y": 17.5,
+        "z": 3,
+        "op": "cut",
+        "axis": "XY"
+      }
+    ]
+  },
+  {
+    "name": "SmartMeter_CommCarrier",
+    "source_sha": "97c94f36d6c7275ac7e4e75c41e6bece0fe3c5ee",
+    "operations": [
+      {
+        "shape": "rect",
+        "w": 75,
+        "h": 55,
+        "t": 3,
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "op": "new",
+        "r": 0,
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 3,
+        "x": -27.5,
+        "y": -17.5,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 3,
+        "x": -27.5,
+        "y": 17.5,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 3,
+        "x": 27.5,
+        "y": -17.5,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      },
+      {
+        "shape": "circle",
+        "dia": 3.2,
+        "t": 3,
+        "x": 27.5,
+        "y": 17.5,
+        "z": 0,
+        "op": "cut",
+        "axis": "XY"
+      }
+    ]
+  }
+]

@@ -1,0 +1,42 @@
+{
+  "repository": "https://github.com/frahncky/Smart-Metering",
+  "source": "cad/",
+  "files": [
+    {
+      "name": "SmartMeter_DesktopFeet.fs",
+      "sha": "2fd5b58f2a13470d125dd9fbd3b2a5848accd442"
+    },
+    {
+      "name": "SmartMeter_DisplayBracket.fs",
+      "sha": "5d8d8f7b555b14438e98136142f366b210a1be69"
+    },
+    {
+      "name": "SmartMeter_FrontPanel.fs",
+      "sha": "0b6931ea7ececaeeb34b5439281cc30cedc14455"
+    },
+    {
+      "name": "SmartMeter_InternalTray.fs",
+      "sha": "7d96d9b01947198de556f5a77ef376c4451b8772"
+    },
+    {
+      "name": "SmartMeter_PCBSupports.fs",
+      "sha": "97c94f36d6c7275ac7e4e75c41e6bece0fe3c5ee"
+    },
+    {
+      "name": "SmartMeter_PanelMountFrame.fs",
+      "sha": "a05b881b0cf1b811da77a948d13c743cdee4a6f5"
+    },
+    {
+      "name": "SmartMeter_RearHousing.fs",
+      "sha": "13faa2ca4c15bdadfa929d1870471d495512d77e"
+    },
+    {
+      "name": "SmartMeter_RearPanel.fs",
+      "sha": "bb7ae4c421bbac0f3a6ad7f5fc1d3e008092d770"
+    },
+    {
+      "name": "SmartMeter_VentilationGrille.fs",
+      "sha": "74127b15a660b9ce5b13d5ed0afbb668afa63994"
+    }
+  ]
+}

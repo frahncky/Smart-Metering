@@ -1,0 +1,1 @@
+Verificador atualizado para Design.analyzeInterference. O relatório anterior que declarou todas as peças sem interferência é inconclusivo: contradiz as dimensões das peças. O novo verificador marca contradições e falhas como não verificadas. Sintaxe verificada; execução da API pendente.

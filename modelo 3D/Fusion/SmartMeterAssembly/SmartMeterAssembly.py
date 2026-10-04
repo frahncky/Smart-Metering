@@ -1,0 +1,237 @@
+"""Recreates the nine GitHub FeatureScripts at their default dimensions.
+Parts are arranged on a grid for inspection, not as a validated assembly.
+"""
+import adsk.core
+import adsk.fusion
+import json
+import math
+import os
+import traceback
+from datetime import datetime
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+OFFICIAL_FOLDER = r'F:\DevIA\Smart-Metering\modelo 3D\Fusion'
+
+def point(x, y):
+    return adsk.core.Point3D.create(x / 10, y / 10, 0)
+
+def sketch_for(comp, z, axis="XY"):
+    plane = comp.xZConstructionPlane if axis == "XZ" else comp.xYConstructionPlane
+    if abs(z) > 1e-9:
+        inp = comp.constructionPlanes.createInput()
+        inp.setByOffset(plane, adsk.core.ValueInput.createByReal(z / 10))
+        plane = comp.constructionPlanes.add(inp)
+    return comp.sketches.add(plane)
+
+def outline(sketch, spec):
+    def point(x, y):
+        if spec.get("axis", "XY") == "XZ":
+            return sketch.modelToSketchSpace(adsk.core.Point3D.create(x/10, -spec["z"]/10, y/10))
+        return adsk.core.Point3D.create(x/10, y/10, 0)
+    x, y = spec['x'], spec['y']
+    if spec['shape'] == 'circle':
+        sketch.sketchCurves.sketchCircles.addByCenterRadius(
+            point(x, y), spec['dia'] / 20)
+        return
+    a, b = spec['w'] / 2, spec['h'] / 2
+    lines = sketch.sketchCurves.sketchLines
+    if spec['shape'] == 'rect':
+        lines.addTwoPointRectangle(point(x-a, y-b), point(x+a, y+b))
+        return
+    r = spec['r']
+    k = r / math.sqrt(2)
+    # Clockwise outline, exact circular corner arcs.
+    corners = [
+        ((-a+r,b), (a-r,b), (a-r+k,b-r+k), (a,b-r)),
+        ((a,b-r), (a,-b+r), (a-r+k,-b+r-k), (a-r,-b)),
+        ((a-r,-b), (-a+r,-b), (-a+r-k,-b+r-k), (-a,-b+r)),
+        ((-a,-b+r), (-a,b-r), (-a+r-k,b-r+k), (-a+r,b)),
+    ]
+    for start, end, mid, arcend in corners:
+        lines.addByTwoPoints(point(x+start[0],y+start[1]),
+                             point(x+end[0],y+end[1]))
+        sketch.sketchCurves.sketchArcs.addByThreePoints(
+            point(x+end[0],y+end[1]),
+            point(x+mid[0],y+mid[1]),
+            point(x+arcend[0],y+arcend[1]))
+
+def build(comp, recipe):
+    modes = {
+        'new': adsk.fusion.FeatureOperations.NewBodyFeatureOperation,
+        'cut': adsk.fusion.FeatureOperations.CutFeatureOperation,
+        'join': adsk.fusion.FeatureOperations.JoinFeatureOperation,
+    }
+    for index, spec in enumerate(recipe['operations']):
+        sketch = sketch_for(comp, spec['z'], spec.get('axis', 'XY'))
+        sketch.name = '%02d_%s_%s' % (index+1, spec['op'], spec['shape'])
+        outline(sketch, spec)
+        if sketch.profiles.count != 1:
+            raise RuntimeError('%s operation %s has %s profiles' %
+                               (recipe['name'], index+1, sketch.profiles.count))
+        own_bodies = [body for body in comp.bRepBodies]
+        operation = (adsk.fusion.FeatureOperations.NewBodyFeatureOperation
+                     if spec['op'] == 'join' else modes[spec['op']])
+        extrudes = comp.features.extrudeFeatures
+        extrusion_input = extrudes.createInput(sketch.profiles.item(0), operation)
+        extent = adsk.fusion.DistanceExtentDefinition.create(
+            adsk.core.ValueInput.createByReal(spec['t'] / 10))
+        if not extrusion_input.setOneSideExtent(
+                extent, adsk.fusion.ExtentDirections.PositiveExtentDirection):
+            raise RuntimeError('Could not define extrusion extent')
+        if spec['op'] == 'cut':
+            extrusion_input.participantBodies = own_bodies
+        feature = extrudes.add(extrusion_input)
+        if spec['op'] == 'join':
+            if not own_bodies:
+                raise RuntimeError('Join requires a component-local target')
+            tools = adsk.core.ObjectCollection.create()
+            for body in feature.bodies:
+                tools.add(body)
+            combine_input = comp.features.combineFeatures.createInput(own_bodies[0], tools)
+            combine_input.operation = adsk.fusion.FeatureOperations.JoinFeatureOperation
+            combine_input.isKeepToolBodies = False
+            feature = comp.features.combineFeatures.add(combine_input)
+        if not feature:
+            raise RuntimeError('Extrusion failed: '+sketch.name)
+        feature.name = sketch.name
+        sketch.isVisible = False
+    expected = 2 if recipe['name'].endswith('DesktopFeet') else (
+        3 if recipe['name'].endswith('PCBSupports') else 1)
+    if comp.bRepBodies.count != expected:
+        raise RuntimeError('%s: expected %s bodies, got %s' %
+                           (recipe['name'], expected, comp.bRepBodies.count))
+    for body in comp.bRepBodies:
+        if not body.isSolid or body.volume <= 0:
+            raise RuntimeError('Invalid solid: '+recipe['name'])
+
+
+# Provisional positions in millimetres. Accessories remain alongside the assembly.
+POSITIONS = {"SmartMeter_RearHousing":[0,0,0],"SmartMeter_FrontPanel":[0,0,-4],"SmartMeter_DisplayBracket":[0,0,0],"SmartMeter_InternalTray":[0,0,40],"SmartMeter_RearPanel":[0,0,75],"SmartMeter_DesktopFeet":[0,-72.5,40],"SmartMeter_PanelMountFrame":[0,0,-8],"SmartMeter_VentilationGrille":[45,72.5,40],"SmartMeter_MetrologyCarrier":[-56,0,51],"SmartMeter_HmiCarrier":[45,0,51],"SmartMeter_CommCarrier":[45,0,63]}
+ROTATIONS = {"SmartMeter_DesktopFeet":90,"SmartMeter_VentilationGrille":-90}
+CORE = list(POSITIONS.keys())
+
+def overlap_check(occurrences):
+    design = adsk.fusion.Design.cast(adsk.core.Application.get().activeProduct)
+    results = []
+    for index, name_a in enumerate(CORE):
+        for name_b in CORE[index+1:]:
+            try:
+                entities = adsk.core.ObjectCollection.create()
+                entities.add(occurrences[name_a])
+                entities.add(occurrences[name_b])
+                inp = design.createInterferenceInput(entities)
+                inp.areCoincidentFacesIncluded = False
+                found = design.analyzeInterference(inp)
+                if found is None:
+                    raise RuntimeError('Fusion returned no analysis result')
+                volume = sum(found.item(i).interferenceBody.volume * 1000
+                             for i in range(found.count))
+                results.append({'a':name_a, 'b':name_b, 'volume_mm3':volume,
+                                'status':'interference' if volume > 0.01 else 'no_volume_overlap'})
+            except Exception as error:
+                results.append({'a':name_a, 'b':name_b, 'status':'unverified',
+                                'error':str(error)})
+    expected_pairs = []  # Revised geometry deliberately removes these overlaps.
+    for pair in expected_pairs:
+        record = next(r for r in results if {r['a'], r['b']} == pair)
+        if record['status'] == 'no_volume_overlap':
+            record['status'] = 'unverified_dimensional_contradiction'
+            record['error'] = 'Default dimensions predict overlap; inspect geometry and placement.'
+    return results
+
+
+def placement_diagnostics(occurrences):
+    records = {}
+    for name, occurrence in occurrences.items():
+        translation = occurrence.transform2.translation
+        expected = POSITIONS[name]
+        actual = [translation.x*10, translation.y*10, translation.z*10]
+        if any(abs(actual[i]-expected[i]) > 0.001 for i in range(3)):
+            raise RuntimeError('Position mismatch: %s actual=%s expected=%s' % (name, actual, expected))
+        bodies = []
+        for native in occurrence.component.bRepBodies:
+            proxy = native.createForAssemblyContext(occurrence)
+            if not native.isSolid or native.volume <= 0:
+                raise RuntimeError("Invalid final solid: "+name)
+            bounds = proxy.boundingBox
+            bodies.append({'volume_mm3':native.volume*1000,
+                           'min_mm':[bounds.minPoint.x*10,bounds.minPoint.y*10,bounds.minPoint.z*10],
+                           'max_mm':[bounds.maxPoint.x*10,bounds.maxPoint.y*10,bounds.maxPoint.z*10]})
+        records[name] = {'translation_mm':actual, 'bodies':bodies}
+    return records
+
+def run(context):
+    app = adsk.core.Application.get()
+    ui = app.userInterface
+    try:
+        with open(os.path.join(HERE, 'geometry_interfaces.json'), encoding='utf-8') as handle:
+            recipes = json.load(handle)
+        doc = app.documents.add(adsk.core.DocumentTypes.FusionDesignDocumentType)
+        doc.name = 'Smart Metering - Interfaces mecanicas'
+        design = adsk.fusion.Design.cast(app.activeProduct)
+        design.designType = adsk.fusion.DesignTypes.ParametricDesignType
+        root = design.rootComponent
+        occurrences = {}
+        for recipe in recipes:
+            transform = adsk.core.Matrix3D.create()
+            occurrence = root.occurrences.addNewComponent(transform)
+            occurrence.isGroundToParent = False
+            occurrence.isGrounded = False
+            occurrence.component.name = recipe['name']
+            build(occurrence.component, recipe)
+            occurrences[recipe['name']] = occurrence
+            adsk.doEvents()
+        # Build at origin first; position after all geometry is complete.
+        for name, occurrence in occurrences.items():
+            x, y, z = POSITIONS[name]
+            transform = adsk.core.Matrix3D.create()
+            if name in ROTATIONS:
+                transform.setToRotation(math.radians(ROTATIONS[name]),
+                    adsk.core.Vector3D.create(1,0,0), adsk.core.Point3D.create(0,0,0))
+            transform.translation = adsk.core.Vector3D.create(x/10, y/10, z/10)
+            occurrence.isGroundToParent = False
+            occurrence.isGrounded = False
+            occurrence.transform2 = transform
+        if design.snapshots.hasPendingSnapshot:
+            design.snapshots.add()
+        adsk.doEvents()
+        placements = placement_diagnostics(occurrences)
+        checks = overlap_check(occurrences)
+        output = os.path.join(OFFICIAL_FOLDER, 'montagens',
+                              datetime.now().strftime('%Y%m%d_%H%M%S_%f'))
+        os.makedirs(output, exist_ok=True)
+        report = {'status':'preliminary', 'positions_mm':POSITIONS,
+                  'checks':checks, 'actual_geometry':placements, 'not_validated':['physical fasteners and insert part numbers', 'electronics', 'battery',
+                    'electrical_clearances', 'thermal and strength tests'],
+                  'original_geometry_preserved':False,
+                  'changes':['tray mounting posts and four matching holes',
+                             'three separate PCB carriers with compatible fixture holes',
+                             'frame retention posts, matching holes, opening 202x127mm',
+                             'feet placed under housing and bottom fixing holes',
+                             'ventilation grille placed on roof with matching opening and holes'],
+                  'originals_preserved_in':'geometry.json'}
+        with open(os.path.join(output, 'interferencias.json'), 'w', encoding='utf-8') as handle:
+            json.dump(report, handle, indent=2)
+        manager = design.exportManager
+        archive = os.path.join(output, 'SmartMeter_Interfaces_Mecanicas.f3d')
+        if not manager.execute(manager.createFusionArchiveExportOptions(archive)):
+            raise RuntimeError('F3D export failed')
+        occurrences['SmartMeter_RearHousing'].isLightBulbOn = False
+        occurrences['SmartMeter_FrontPanel'].isLightBulbOn = False
+        inspection = os.path.join(output, 'SmartMeter_Vista_Interna.f3d')
+        if not manager.execute(manager.createFusionArchiveExportOptions(inspection)):
+            raise RuntimeError('Internal view export failed')
+        for occurrence in root.occurrences:
+            step = os.path.join(output, occurrence.component.name+".step")
+            if not manager.execute(manager.createSTEPExportOptions(step, occurrence.component)):
+                raise RuntimeError("STEP export failed: "+occurrence.component.name)
+        app.activeViewport.fit()
+        conflicts = sum(item['status']=='interference' for item in checks)
+        ui.messageBox('Interfaces mecanicas criadas. Pares com interferencia: '+
+                      str(conflicts)+'\nRelatorio e F3D em:\n'+output+
+                      '\nDimensoes reais da eletronica e bateria ainda precisam ser definidas.')
+    except Exception:
+        error = traceback.format_exc()
+        with open(os.path.join(HERE, 'erro.txt'), 'w', encoding='utf-8') as handle:
+            handle.write(error)
+        ui.messageBox('Montagem interrompida. Consulte erro.txt.\n'+error)

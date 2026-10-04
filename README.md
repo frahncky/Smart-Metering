@@ -80,7 +80,19 @@ Smart-Metering/
 
 **Fase 1 — núcleo metrológico ADE9430 iniciado no KiCad.**
 
-Próxima etapa: completar alimentação, desacoplamento, clock e reset do ADE9430; em seguida implementar os front-ends de tensão e corrente.
+Alimentação, desacoplamento, clock e reset do ADE9430 implementados. Front-end preliminar de tensão fase-neutro implementado para três fases, com divisores e filtros anti-aliasing; ver [dimensionamento e limites](docs/VOLTAGE_SENSING.md).
+
+Regulador local dedicado de 3,3 V e configuração de cristal definidos; ver [fonte e clock](docs/POWER_CLOCK.md). Entrada de 5 V externa de protótipo; fonte isolada upstream ainda pendente.
+
+Próxima etapa: definir fonte isolada upstream, MCU/SPI, proteção e conectores de entrada, TCs e front-end de corrente. A topologia sem neutro e a isolação ainda precisam de validação. O circuito não está liberado para energização na rede.
+
+## Bateria interna
+
+Bateria Li-Po plana recarregável, com autonomia a definir; a meta anterior de 13 horas foi retirada. A folha 10 contém interfaces preliminares, ainda sem carregador/boost. Ver [arquitetura atual](docs/INTERNAL_BATTERY.md).
+
+## Método de trabalho
+
+Papéis dos agentes e regras de colaboração: [AGENTS.md](AGENTS.md). Etapas, revisão e rastreabilidade: [docs/WORKFLOW.md](docs/WORKFLOW.md). Decisões de projeto: [docs/DECISIONS.md](docs/DECISIONS.md).
 
 ## Referências principais
 

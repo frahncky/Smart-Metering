@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:/Users/frahn/Documents/Codex/2026-10-02/co/outputs/modelo 3D/Fusion/SmartMeterGithub/SmartMeterGithub.py", line 95, in run
+    design.unitsManager.defaultLengthUnits = 'mm'
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: property '_get_defaultLengthUnits' of 'FusionUnitsManager' object has no setter

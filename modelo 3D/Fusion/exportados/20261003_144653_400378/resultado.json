@@ -1,0 +1,57 @@
+{
+  "status": "generated",
+  "parts": 9,
+  "source": "frahncky/Smart-Metering/cad",
+  "layout": "inspection grid, not assembly",
+  "solids": [
+    {
+      "component": "SmartMeter_DesktopFeet",
+      "volume_mm3": 13039.150456136194
+    },
+    {
+      "component": "SmartMeter_DesktopFeet",
+      "volume_mm3": 13039.150456136194
+    },
+    {
+      "component": "SmartMeter_DisplayBracket",
+      "volume_mm3": 17705.490273681728
+    },
+    {
+      "component": "SmartMeter_FrontPanel",
+      "volume_mm3": 64439.068084227954
+    },
+    {
+      "component": "SmartMeter_InternalTray",
+      "volume_mm3": 89846.82970537971
+    },
+    {
+      "component": "SmartMeter_PCBSupports",
+      "volume_mm3": 24128.49027368172
+    },
+    {
+      "component": "SmartMeter_PCBSupports",
+      "volume_mm3": 23528.49027368172
+    },
+    {
+      "component": "SmartMeter_PCBSupports",
+      "volume_mm3": 12278.490273681718
+    },
+    {
+      "component": "SmartMeter_PanelMountFrame",
+      "volume_mm3": 27609.53099505923
+    },
+    {
+      "component": "SmartMeter_RearHousing",
+      "volume_mm3": 265940.5044482276
+    },
+    {
+      "component": "SmartMeter_RearPanel",
+      "volume_mm3": 76123.32224733087
+    },
+    {
+      "component": "SmartMeter_VentilationGrille",
+      "volume_mm3": 4449.575228068094
+    }
+  ],
+  "scoped_operations": true
+}

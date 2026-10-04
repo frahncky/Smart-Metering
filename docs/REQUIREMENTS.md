@@ -120,6 +120,14 @@ A placa de metrologia deverá ser funcionalmente separável da placa de HMI, per
 - ensaios metrológicos sem interface gráfica;
 - redução da interferência entre subsistemas.
 
+## REQ-011 — Alimentação e bateria interna
+
+Entrada nominal 127 V ou 220 V AC, 60 Hz, sem seletor manual. Bateria interna Li-Po plana recarregável, com proteção independente, sensor de temperatura e gerenciamento automático entre fonte e bateria. Capacidade, dimensões, peso e autonomia ainda serão definidos pelo gabinete e consumo reais. A exigência anterior de 13 horas foi retirada pelo usuário; não limitar implicitamente o uso a salvar dados ou desligar.
+
+O pack deve ser acessível para manutenção, acomodado sem compressão e com folga mecânica conforme fabricante. Avaliar configuração 1S, com tensão de carga compatível com a célula escolhida. A bateria e HMI pertencem ao domínio GND_HMI; não conectar diretamente ao GND metrológico referenciado à rede. Carregamento e descarga devem respeitar limites térmicos e elétricos do pack.
+
+Esquemático: folha 10 contém apenas as interfaces físicas preliminares de bateria e sensor; carregador, boost, corte de descarga, fonte AC/DC e isolação ainda não implementados. Arquitetura e critérios em INTERNAL_BATTERY.md.
+
 ## Pendências de definição
 
 - classe de precisão alvo;
