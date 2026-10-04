@@ -84,7 +84,7 @@ Depois de ligar esses nets: rodar o DRC, revisar os pontos onde a rede cruza o d
 - **posicionamento inicial** por domínio: cada componente fica perto do CI ao qual se liga;
 - **faixas de barreira** como áreas proibidas para cobre: 7 mm entre metrologia e lado seguro (x = 75 a 82 mm; os pads dos isoladores SOIC-16W ficam a 7,3 mm entre fileiras) e 7/4 mm em volta da ilha RS-485;
 - **planos de terra por domínio** em In1.Cu e B.Cu (GND, GND_SYS, GND_485), ainda sem preenchimento (pressionar **B** no KiCad);
-- roteamento do domínio quente (ver acima); lado seguro ainda sem roteamento.
+- placa inteira roteada (domínio quente, lado seguro e ilha RS-485), com 10 pads a ligar à mão (ver acima).
 
 Componentes que atravessam a barreira:
 
@@ -148,7 +148,7 @@ Os nós internos dos divisores ficam nas classes DIVIDER_A, DIVIDER_B e DIVIDER_
 
 ## Modelos 3D
 
-Todos os footprints têm modelo 3D (Ver → Visualizador 3D no KiCad; Arquivo → Exportar → STEP para o gabinete no Onshape):
+Todos os footprints de componentes têm modelo 3D; só os furos de fixação H1–H4 não têm. No KiCad: Ver → Visualizador 3D; para o gabinete no Onshape: Arquivo → Exportar → STEP.
 
 - modelos oficiais da biblioteca do KiCad (`${KICAD10_3DMODEL_DIR}`) para a maioria dos componentes;
 - U401 (ADE9430), U902 (TPS63001) e F701 usam modelos equivalentes da biblioteca oficial (QFN-40 6×6, VSON-10 3×3 e caixa 1812), porque os modelos próprios desses footprints não existem na biblioteca;
