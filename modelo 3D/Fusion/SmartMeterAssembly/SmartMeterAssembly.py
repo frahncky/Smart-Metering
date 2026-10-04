@@ -10,7 +10,8 @@ import traceback
 from datetime import datetime
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-OFFICIAL_FOLDER = r'F:\DevIA\Smart-Metering\modelo 3D\Fusion'
+# Shared Fusion folder (modelo 3D/Fusion), resolved from this script's location.
+OFFICIAL_FOLDER = os.path.dirname(HERE)
 
 def point(x, y):
     return adsk.core.Point3D.create(x / 10, y / 10, 0)
@@ -105,9 +106,12 @@ def build(comp, recipe):
             raise RuntimeError('Invalid solid: '+recipe['name'])
 
 
-# Provisional positions in millimetres. Accessories remain alongside the assembly.
-POSITIONS = {"SmartMeter_RearHousing":[0,0,0],"SmartMeter_FrontPanel":[0,0,-4],"SmartMeter_DisplayBracket":[0,0,0],"SmartMeter_InternalTray":[0,0,40],"SmartMeter_RearPanel":[0,0,75],"SmartMeter_DesktopFeet":[0,-72.5,40],"SmartMeter_PanelMountFrame":[0,0,-8],"SmartMeter_VentilationGrille":[45,72.5,40],"SmartMeter_MetrologyCarrier":[-56,0,51],"SmartMeter_HmiCarrier":[45,0,51],"SmartMeter_CommCarrier":[45,0,63]}
-ROTATIONS = {"SmartMeter_DesktopFeet":90,"SmartMeter_VentilationGrille":-90}
+# Provisional positions (mm) and X rotations (deg) come from mounting.json.
+# Accessories remain alongside the assembly.
+with open(os.path.join(HERE, 'mounting.json'), encoding='utf-8') as _handle:
+    _MOUNTING = json.load(_handle)
+POSITIONS = _MOUNTING['positions_mm']
+ROTATIONS = _MOUNTING.get('rotation_x_deg', {})
 CORE = list(POSITIONS.keys())
 
 def overlap_check(occurrences):
@@ -200,7 +204,8 @@ def run(context):
         output = os.path.join(OFFICIAL_FOLDER, 'montagens',
                               datetime.now().strftime('%Y%m%d_%H%M%S_%f'))
         os.makedirs(output, exist_ok=True)
-        report = {'status':'preliminary', 'positions_mm':POSITIONS,
+        report = {'status':'preliminary' if not any(c['status'].startswith('unverified') for c in checks)
+                  else 'incomplete_unverified_pairs', 'positions_mm':POSITIONS,
                   'checks':checks, 'actual_geometry':placements, 'not_validated':['physical fasteners and insert part numbers', 'electronics', 'battery',
                     'electrical_clearances', 'thermal and strength tests'],
                   'original_geometry_preserved':False,
@@ -216,19 +221,22 @@ def run(context):
         archive = os.path.join(output, 'SmartMeter_Interfaces_Mecanicas.f3d')
         if not manager.execute(manager.createFusionArchiveExportOptions(archive)):
             raise RuntimeError('F3D export failed')
+        # Export every STEP before hiding housing and panel for the internal view.
+        for occurrence in root.occurrences:
+            step = os.path.join(output, occurrence.component.name+".step")
+            if not manager.execute(manager.createSTEPExportOptions(step, occurrence.component)):
+                raise RuntimeError("STEP export failed: "+occurrence.component.name)
         occurrences['SmartMeter_RearHousing'].isLightBulbOn = False
         occurrences['SmartMeter_FrontPanel'].isLightBulbOn = False
         inspection = os.path.join(output, 'SmartMeter_Vista_Interna.f3d')
         if not manager.execute(manager.createFusionArchiveExportOptions(inspection)):
             raise RuntimeError('Internal view export failed')
-        for occurrence in root.occurrences:
-            step = os.path.join(output, occurrence.component.name+".step")
-            if not manager.execute(manager.createSTEPExportOptions(step, occurrence.component)):
-                raise RuntimeError("STEP export failed: "+occurrence.component.name)
         app.activeViewport.fit()
         conflicts = sum(item['status']=='interference' for item in checks)
+        unverified = sum(item['status'].startswith('unverified') for item in checks)
         ui.messageBox('Interfaces mecanicas criadas. Pares com interferencia: '+
-                      str(conflicts)+'\nRelatorio e F3D em:\n'+output+
+                      str(conflicts)+'\nPares NAO verificados (resultado incompleto): '+
+                      str(unverified)+'\nRelatorio e F3D em:\n'+output+
                       '\nDimensoes reais da eletronica e bateria ainda precisam ser definidas.')
     except Exception:
         error = traceback.format_exc()

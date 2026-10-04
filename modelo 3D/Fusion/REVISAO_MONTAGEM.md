@@ -1,6 +1,6 @@
 # Revisão da montagem — resultado verificado
 
-Pasta oficial: F:\DevIA\Smart-Metering\modelo 3D\Fusion.
+Pasta oficial: `modelo 3D/Fusion` (relativa à raiz do repositório).
 
 ## Versões
 

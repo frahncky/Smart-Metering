@@ -10,7 +10,8 @@ import traceback
 from datetime import datetime
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-OFFICIAL_FOLDER = r'F:\DevIA\Smart-Metering\modelo 3D\Fusion'
+# Shared Fusion folder (modelo 3D/Fusion), resolved from this script's location.
+OFFICIAL_FOLDER = os.path.dirname(HERE)
 
 def point(x, y):
     return adsk.core.Point3D.create(x / 10, y / 10, 0)

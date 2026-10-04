@@ -1,6 +1,6 @@
 # Gerador de montagem Smart Metering
 
-Pasta oficial: F:\DevIA\Smart-Metering\modelo 3D\Fusion\SmartMeterAssembly.
+Pasta oficial: `modelo 3D/Fusion/SmartMeterAssembly`.
 
 Execute SmartMeterAssembly.py pelo painel Scripts e complementos do Autodesk Fusion. A versão atual lê geometry_interfaces.json e mounting.json, gera 11 componentes e exporta F3D, 11 arquivos STEP e interferencias.json para uma nova pasta montagens. O arquivo SmartMeter_Interfaces_Mecanicas.f3d contém a montagem; SmartMeter_Vista_Interna.f3d permite inspecionar os suportes.
 

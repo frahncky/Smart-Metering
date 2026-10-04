@@ -1,6 +1,6 @@
 # Pasta oficial do Fusion
 
-F:\DevIA\Smart-Metering\modelo 3D\Fusion
+`modelo 3D/Fusion` (relativa à raiz do repositório)
 
 Manter SmartMeterGithub (script, manifest e geometry.json) nesta pasta. As próximas execuções exportam F3D e os nove STEP em Fusion/exportados/<data-hora>, preservando versões anteriores.
 

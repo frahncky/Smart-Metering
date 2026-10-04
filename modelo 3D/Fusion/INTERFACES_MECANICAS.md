@@ -19,7 +19,7 @@ Os suportes são adaptadores mecânicos provisórios, não modelos das placas el
 
 ## Arquivos e edição
 
-A pasta oficial é F:\DevIA\Smart-Metering\modelo 3D\Fusion.
+A pasta oficial é `modelo 3D/Fusion` (relativa à raiz do repositório).
 O gerador da montagem é SmartMeterAssembly/SmartMeterAssembly.py; suas dimensões ficam em geometry_interfaces.json e as posições em mounting.json, na mesma subpasta. Executar esse script no Fusion cria um novo documento e exporta uma nova pasta versionada em montagens. Alterações manuais no F3D não retornam automaticamente ao gerador.
 
 geometry.json preserva a geometria de origem; geometry_fit.json preserva a revisão anterior. Os arquivos originais do GitHub e suas exportações continuam separados desta variante.
